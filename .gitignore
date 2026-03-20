@@ -22,3 +22,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+# Rohdaten (von opendata.swiss separat herunterladen)
+pipeline/raw/*.csv
+pipeline/raw/*.xlsx
+
