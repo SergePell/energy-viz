@@ -83,7 +83,9 @@ KANTON_NAMES = {
 # Download
 # ---------------------------------------------------------------------------
 
-def download_xlsx(year: int, target_dir: Path = Path("raw")) -> Path:
+def download_xlsx(year: int, target_dir: Path = None) -> Path:
+    if target_dir is None:
+        target_dir = Path(__file__).resolve().parent / "raw"
     """
     Lade EnergieUebersichtCH-{year} herunter.
     - Ab 2020: .xlsx
@@ -614,7 +616,8 @@ def main():
     parser.add_argument("--year", type=int, default=2024)
     parser.add_argument("--years", type=str, help="Komma-separiert: 2020,2021,2022")
     parser.add_argument("--file", type=str, help="Lokale XLSX statt Download")
-    parser.add_argument("--out-dir", type=str, default="src/data")
+    default_out = str(Path(__file__).resolve().parent.parent / "src" / "data")
+    parser.add_argument("--out-dir", type=str, default=default_out)
     parser.add_argument("--kanton-agg", type=str, default="1h",
                         help="Kanton-Aggregation: 15min, 1h, 1D (default: 1h)")
     parser.add_argument("--skip-national", action="store_true")

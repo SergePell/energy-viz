@@ -25,7 +25,9 @@ import requests
 BASE_URL = "https://www.swissgrid.ch/dam/dataimport/energy-statistic"
 
 
-def download_xlsx(year: int, target_dir: Path = Path("raw")) -> Path:
+def download_xlsx(year: int, target_dir: Path = None) -> Path:
+    if target_dir is None:
+        target_dir = Path(__file__).resolve().parent / "raw"
     """Lade EnergieUebersichtCH-{year}.xlsx herunter."""
     target_dir.mkdir(parents=True, exist_ok=True)
     filename = f"EnergieUebersichtCH-{year}.xlsx"
