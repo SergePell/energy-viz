@@ -65,22 +65,18 @@ SOURCES = {
         "notes": "Jährliche Schweizer Elektrizitätsbilanz, lange Zeitreihe (CH-gesamt)",
     },
 
-    # === Aussenhandel ===
-    "aussenhandel_laender": {
-        "slug": "schweizerische-elektrizitatsstatistik-aussenhandel-der-schweiz-mit-elektrizitat-nach-landern",
-        "preferred_formats": ["CSV", "XLSX"],
-        "rq_bezug": "RQ, SQ-1",
+    # === Energiedashboard CH (aktuell, höhere Auflösung) ===
+    # Ersetzt die veralteten Datensätze 'aussenhandel_laender' (nur bis 2016)
+    # und 'endverbrauch_gruppen' (nur bis 2019). Das Energiedashboard ist
+    # die aktuelle Datenbasis des BFE — methodisch sauber, weil deine Arbeit
+    # auf derselben Grundlage operiert wie das BFE-Dashboard, gegen das du
+    # dich in SQ-3 abgrenzst.
+    "energiedashboard_verbrauch": {
+        "slug": "energiedashboard-ch-landesverbrauch-und-endverbrauch",
+        "preferred_formats": ["CSV", "XLSX", "JSON"],
+        "rq_bezug": "RQ, SQ-1, SQ-3",
         "priority": "A",
-        "notes": "Strom-Aussenhandel CH mit Nachbarländern, Import/Export",
-    },
-
-    # === Verbrauch ===
-    "endverbrauch_gruppen": {
-        "slug": "schweizerische-elektrizitatsstatistik-aufteilung-des-endverbrauchs-nach-verbrauchergruppen",
-        "preferred_formats": ["CSV", "XLSX"],
-        "rq_bezug": "RQ, SQ-1",
-        "priority": "A",
-        "notes": "Endverbrauch nach Verbrauchergruppen (Haushalte, Industrie, ...)",
+        "notes": "Aktuelle Landes- und Endverbrauchsdaten des BFE-Energiedashboards",
     },
 }
 

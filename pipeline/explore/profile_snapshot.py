@@ -46,69 +46,186 @@ PROFILES_ROOT = PIPELINE_ROOT / "profiles"
 # === Profil-Erstellung pro Dateityp ===
 
 def profile_csv(filepath: Path) -> dict:
-    """Profiliert eine CSV-Datei."""
-    # Erst encoding und separator robust erkennen
+    """
+    Profiliert eine CSV-Datei mit Robustheit gegen Header-Zeilen.
+
+    BFE-Datensätze haben oft mehrzeilige Metadaten-Header (Titel, Lizenz,
+    Beschreibung) vor der eigentlichen Datentabelle. pd.read_csv scheitert
+    daran. Wir probieren mehrere skiprows-Werte und nehmen das Ergebnis
+    mit den meisten gefundenen Spalten.
+    """
     encoding, separator = detect_csv_format(filepath)
 
-    df = pd.read_csv(filepath, encoding=encoding, sep=separator, low_memory=False)
+    # Strategie: skiprows=0..20 probieren, behalte das Ergebnis mit der
+    # höchsten "Qualität" (= meiste Spalten × meiste Zeilen)
+    best_result = None
+    best_score = 0
+    best_skiprows = 0
+    last_error = None
 
-    return {
+    for skip in range(0, 21):
+        try:
+            df_try = pd.read_csv(
+                filepath,
+                encoding=encoding,
+                sep=separator,
+                skiprows=skip,
+                low_memory=False,
+                on_bad_lines="skip",  # Fallback: tolerante Mode
+            )
+            if len(df_try) == 0 or len(df_try.columns) == 0:
+                continue
+            score = len(df_try) * len(df_try.columns)
+            if score > best_score:
+                best_score = score
+                best_result = df_try
+                best_skiprows = skip
+        except Exception as e:
+            last_error = str(e)
+            continue
+
+    if best_result is None:
+        # Komplette Niederlage — wenigstens Raw-Auszug zur Diagnose
+        return {
+            "format": "csv",
+            "encoding": encoding,
+            "separator": separator,
+            "error": f"Konnte CSV nicht parsen. Letzter Fehler: {last_error}",
+            "raw_preview": _read_raw_lines(filepath, encoding, n_lines=30),
+        }
+
+    profile = {
         "format": "csv",
         "encoding": encoding,
         "separator": separator,
-        **profile_dataframe(df),
+        "skipped_header_rows": best_skiprows,
+        **profile_dataframe(best_result),
     }
+
+    if best_skiprows > 0:
+        profile["note"] = (
+            f"Datei hat {best_skiprows} Header-/Metadaten-Zeilen vor den "
+            f"eigentlichen Daten. Diese wurden für die Tabellen-Erkennung "
+            f"übersprungen, aber im raw_header dokumentiert."
+        )
+        profile["raw_header"] = _read_raw_lines(filepath, encoding, n_lines=best_skiprows)
+
+    return profile
+
+
+def _read_raw_lines(filepath: Path, encoding: str, n_lines: int) -> list:
+    """Liest die ersten n Zeilen als Raw-Text — für Diagnose und Header-Doku."""
+    try:
+        with open(filepath, "r", encoding=encoding, errors="replace") as f:
+            return [next(f).rstrip("\n\r") for _ in range(n_lines)]
+    except StopIteration:
+        return []
+    except Exception:
+        return []
 
 
 def detect_csv_format(filepath: Path) -> tuple:
     """
     Versucht Encoding und Separator robust zu erkennen.
     BFE-CSVs sind oft UTF-8 mit Semikolon, manchmal Latin-1.
+
+    Strategie für Separator: Mehrere Zeilen lesen (auch tief im File), die
+    Spalten-Anzahl pro Separator zählen, und den Separator wählen, dessen
+    Zählung am stabilsten und höchsten ist. Damit funktioniert es auch bei
+    Files mit Metadaten-Header, in denen die ersten Zeilen anders aussehen
+    als die eigentliche Tabelle.
     """
     # Encoding probieren
+    encoding = None
     for enc in ["utf-8", "utf-8-sig", "latin-1", "cp1252"]:
         try:
             with open(filepath, "r", encoding=enc) as f:
-                first_line = f.readline()
+                f.read(4096)  # nur ein Stück zum Test
             encoding = enc
             break
         except UnicodeDecodeError:
             continue
-    else:
+    if encoding is None:
         encoding = "utf-8"
-        first_line = ""
 
-    # Separator: Semikolon-Heuristik
-    if first_line.count(";") > first_line.count(","):
-        separator = ";"
-    elif first_line.count("\t") > first_line.count(","):
-        separator = "\t"
-    else:
-        separator = ","
+    # Mehrere Zeilen lesen für Separator-Statistik
+    lines = []
+    try:
+        with open(filepath, "r", encoding=encoding, errors="replace") as f:
+            for i, line in enumerate(f):
+                if i >= 50:  # nur erste 50 Zeilen ansehen, reicht
+                    break
+                lines.append(line)
+    except Exception:
+        pass
 
-    return encoding, separator
+    # Pro Separator-Kandidat: wie konsistent ist die Spalten-Anzahl?
+    candidates = [";", "\t", ","]
+    best_sep = ","
+    best_score = -1
+
+    for sep in candidates:
+        # Nur Zeilen mit mindestens einem Vorkommen des Separators zählen —
+        # Header-Zeilen ohne Trennzeichen verfälschen sonst die Statistik
+        counts = [line.count(sep) for line in lines if line.strip() and sep in line]
+        if not counts:
+            continue
+        # Häufigste Spalten-Anzahl
+        from collections import Counter
+        counter = Counter(counts)
+        most_common_count, frequency = counter.most_common(1)[0]
+        # Score = (# Trennzeichen pro Zeile) × (Anzahl Zeilen mit dieser Anzahl)
+        # Bevorzugt Separatoren, die in vielen Zeilen ähnlich oft vorkommen
+        score = most_common_count * frequency
+        if score > best_score:
+            best_score = score
+            best_sep = sep
+
+    return encoding, best_sep
 
 
 def profile_xlsx(filepath: Path) -> dict:
-    """Profiliert eine XLSX-Datei (erstes Sheet)."""
-    xl = pd.ExcelFile(filepath)
-    sheet_names = xl.sheet_names
+    """
+    Profiliert eine Excel-Datei (XLSX oder XLS, ALLE Sheets).
+    Bei Swissgrid und ähnlichen Files sind Multi-Sheet üblich (Einstellungen,
+    Daten, Übersichten). Wir profilieren jedes Sheet einzeln, damit du die
+    Struktur jedes Sheets siehst.
+    """
+    try:
+        xl = pd.ExcelFile(filepath)
+    except Exception as e:
+        return {
+            "format": filepath.suffix.lstrip(".").lower(),
+            "error": f"Konnte Datei nicht öffnen: {e}",
+            "hint": "Für .xls: pip install xlrd. Für .xlsx: pip install openpyxl",
+        }
 
-    # Erstes Sheet profilieren
-    df = pd.read_excel(filepath, sheet_name=sheet_names[0])
+    sheet_names = xl.sheet_names
+    sheets_profiled = {}
+    sheet_errors = {}
+
+    for sheet in sheet_names:
+        try:
+            df = pd.read_excel(filepath, sheet_name=sheet)
+            if df.empty:
+                sheets_profiled[sheet] = {
+                    "rows": 0,
+                    "n_columns": 0,
+                    "note": "Sheet ist leer",
+                }
+            else:
+                sheets_profiled[sheet] = profile_dataframe(df)
+        except Exception as e:
+            sheet_errors[sheet] = str(e)
 
     profile = {
-        "format": "xlsx",
+        "format": filepath.suffix.lstrip(".").lower(),
         "all_sheets": sheet_names,
-        "profiled_sheet": sheet_names[0],
-        **profile_dataframe(df),
+        "sheets": sheets_profiled,
     }
 
-    if len(sheet_names) > 1:
-        profile["note"] = (
-            f"Datei hat {len(sheet_names)} Sheets. Profiliert wurde nur das erste "
-            f"('{sheet_names[0]}'). Andere Sheets ggf. separat prüfen."
-        )
+    if sheet_errors:
+        profile["sheet_errors"] = sheet_errors
 
     return profile
 
@@ -124,12 +241,37 @@ def profile_geopackage(filepath: Path) -> dict:
                      "Installiere mit: pip install geopandas",
         }
 
-    # Layer auflisten
-    layers = gpd.list_layers(filepath)
-    layer_names = layers["name"].tolist() if hasattr(layers, "tolist") else list(layers)
+    # Layer auflisten — gpd.list_layers gibt ein DataFrame mit Spalte 'name' zurück
+    try:
+        layers_df = gpd.list_layers(filepath)
+        if hasattr(layers_df, "columns") and "name" in layers_df.columns:
+            layer_names = layers_df["name"].tolist()
+        else:
+            # Fallback: pyogrio direkt verwenden
+            import pyogrio
+            layer_info = pyogrio.list_layers(str(filepath))
+            layer_names = [row[0] for row in layer_info]
+    except Exception as e:
+        return {
+            "format": "gpkg",
+            "error": f"Konnte Layer nicht auflisten: {e}",
+        }
+
+    if not layer_names:
+        return {
+            "format": "gpkg",
+            "error": "Keine Layer im GeoPackage gefunden",
+        }
 
     # Ersten Layer profilieren
-    gdf = gpd.read_file(filepath, layer=layer_names[0])
+    try:
+        gdf = gpd.read_file(filepath, layer=layer_names[0])
+    except Exception as e:
+        return {
+            "format": "gpkg",
+            "all_layers": layer_names,
+            "error": f"Konnte Layer '{layer_names[0]}' nicht lesen: {e}",
+        }
 
     profile = {
         "format": "gpkg",
@@ -138,7 +280,7 @@ def profile_geopackage(filepath: Path) -> dict:
         "crs": str(gdf.crs) if gdf.crs else None,
         "geometry_type": str(gdf.geom_type.value_counts().to_dict())
                          if not gdf.empty else None,
-        "bbox": list(gdf.total_bounds) if not gdf.empty else None,
+        "bbox": [float(x) for x in gdf.total_bounds] if not gdf.empty else None,
         **profile_dataframe(pd.DataFrame(gdf.drop(columns="geometry", errors="ignore"))),
     }
 
@@ -241,6 +383,40 @@ def _safe_value(val):
 
 # === Renderer ===
 
+def _render_columns_table(columns: list) -> str:
+    """Erzeugt aus einer Spalten-Liste die Markdown-Tabelle."""
+    lines = []
+    lines.append("| Name | Typ | Nulls | Unique | Wertebereich / Beispiele |")
+    lines.append("|------|-----|-------|--------|--------------------------|")
+
+    for col in columns:
+        # Spaltennamen: Newlines entfernen für saubere Tabelle
+        name = str(col["name"]).replace("\n", " | ")
+        dtype = col["dtype"]
+        nulls = f"{col['null_count']} ({col['null_pct']}%)"
+        unique = col["unique_count"]
+
+        if "min" in col and col["min"] is not None:
+            mean_str = f"{col['mean']:.2f}" if col.get("mean") is not None else "—"
+            value_info = f"{col['min']} … {col['max']} (mean {mean_str})"
+        elif "min_date" in col:
+            value_info = f"{col['min_date']} … {col['max_date']}"
+        elif "all_values" in col:
+            vals = col["all_values"]
+            if len(vals) <= 8:
+                value_info = ", ".join(f"`{v}`" for v in vals)
+            else:
+                value_info = ", ".join(f"`{v}`" for v in vals[:5]) + f", … (+{len(vals)-5})"
+        elif "examples" in col:
+            value_info = ", ".join(f"`{v}`" for v in col["examples"][:3])
+        else:
+            value_info = "—"
+
+        lines.append(f"| `{name}` | {dtype} | {nulls} | {unique} | {value_info} |")
+
+    return "\n".join(lines)
+
+
 def render_markdown(profile: dict, filepath: Path, manifest_entry: Optional[dict]) -> str:
     """Erzeugt aus dem Profil eine Markdown-Übersicht."""
     lines = []
@@ -261,14 +437,58 @@ def render_markdown(profile: dict, filepath: Path, manifest_entry: Optional[dict
     if profile.get("format") == "csv":
         lines.append(f"**Encoding:** {profile.get('encoding')}")
         lines.append(f"**Separator:** `{profile.get('separator')}`")
+        if profile.get("skipped_header_rows", 0) > 0:
+            lines.append(f"**Übersprungene Header-Zeilen:** "
+                         f"{profile['skipped_header_rows']}")
         lines.append("")
-    elif profile.get("format") == "xlsx":
-        lines.append(f"**Sheets:** {', '.join(profile.get('all_sheets', []))}")
-        lines.append(f"**Profiliertes Sheet:** {profile.get('profiled_sheet')}")
-        if "note" in profile:
+
+        # Bei Diagnose-Bedarf: rohe Header-Zeilen zeigen
+        if "raw_header" in profile:
+            lines.append("### Übersprungene Header-Zeilen (zur Doku)")
+            lines.append("```")
+            for line in profile["raw_header"]:
+                lines.append(line)
+            lines.append("```")
             lines.append("")
-            lines.append(f"> {profile['note']}")
+
+        if "raw_preview" in profile:
+            lines.append("### Raw-Vorschau (CSV konnte nicht geparst werden)")
+            lines.append("```")
+            for line in profile["raw_preview"]:
+                lines.append(line)
+            lines.append("```")
+            lines.append("")
+
+    elif profile.get("format") == "xlsx" or profile.get("format") == "xls":
+        lines.append(f"**Sheets:** {', '.join(profile.get('all_sheets', []))}")
         lines.append("")
+
+        # Bei Multi-Sheet-Profilen: pro Sheet einen eigenen Block rendern
+        if "sheets" in profile:
+            for sheet_name, sheet_profile in profile["sheets"].items():
+                lines.append(f"## Sheet: `{sheet_name}`")
+                lines.append("")
+                if "note" in sheet_profile:
+                    lines.append(f"> {sheet_profile['note']}")
+                    lines.append("")
+                if "rows" in sheet_profile:
+                    lines.append(f"**Zeilen:** {sheet_profile['rows']:,}")
+                    lines.append(f"**Spalten:** {sheet_profile['n_columns']}")
+                    lines.append("")
+                if "columns" in sheet_profile and sheet_profile["columns"]:
+                    lines.append(_render_columns_table(sheet_profile["columns"]))
+                    lines.append("")
+            # Sheet-Errors falls vorhanden
+            if "sheet_errors" in profile:
+                lines.append("## Fehler beim Lesen einzelner Sheets")
+                for sheet, err in profile["sheet_errors"].items():
+                    lines.append(f"- `{sheet}`: {err}")
+                lines.append("")
+            return "\n".join(lines)
+        # Fallback (alte Struktur falls vorhanden)
+        if "note" in profile:
+            lines.append(f"> {profile['note']}")
+            lines.append("")
     elif profile.get("format") == "gpkg":
         lines.append(f"**Layer:** {', '.join(profile.get('all_layers', []))}")
         lines.append(f"**CRS:** {profile.get('crs')}")
@@ -285,37 +505,11 @@ def render_markdown(profile: dict, filepath: Path, manifest_entry: Optional[dict
         lines.append(f"**Spalten:** {profile['n_columns']}")
         lines.append("")
 
-    # Spalten-Tabelle
+    # Spalten-Tabelle (für CSV / JSON-Records)
     if "columns" in profile:
         lines.append("## Spalten")
         lines.append("")
-        lines.append("| Name | Typ | Nulls | Unique | Wertebereich / Beispiele |")
-        lines.append("|------|-----|-------|--------|--------------------------|")
-
-        for col in profile["columns"]:
-            name = col["name"]
-            dtype = col["dtype"]
-            nulls = f"{col['null_count']} ({col['null_pct']}%)"
-            unique = col["unique_count"]
-
-            # Wertebereich kompakt
-            if "min" in col:
-                value_info = f"{col['min']} … {col['max']} (mean {col['mean']:.2f})"
-            elif "min_date" in col:
-                value_info = f"{col['min_date']} … {col['max_date']}"
-            elif "all_values" in col:
-                vals = col["all_values"]
-                if len(vals) <= 8:
-                    value_info = ", ".join(f"`{v}`" for v in vals)
-                else:
-                    value_info = ", ".join(f"`{v}`" for v in vals[:5]) + f", … (+{len(vals)-5})"
-            elif "examples" in col:
-                value_info = ", ".join(f"`{v}`" for v in col["examples"][:3])
-            else:
-                value_info = "—"
-
-            lines.append(f"| `{name}` | {dtype} | {nulls} | {unique} | {value_info} |")
-
+        lines.append(_render_columns_table(profile["columns"]))
         lines.append("")
 
     # JSON-Spezifika
@@ -333,6 +527,7 @@ def render_markdown(profile: dict, filepath: Path, manifest_entry: Optional[dict
 PROFILER_BY_EXTENSION = {
     ".csv": profile_csv,
     ".xlsx": profile_xlsx,
+    ".xls": profile_xlsx,  # älteres Excel-Format, gleicher Profiler
     ".gpkg": profile_geopackage,
     ".json": profile_json,
 }
@@ -411,37 +606,52 @@ def main():
     print(f"Profile gehen nach: {profiles_dir}")
     print()
 
-    # Alle Datendateien durchgehen
+    # Alle Datendateien rekursiv durchgehen
     profiled_count = 0
     for source_family_dir in snapshot_dir.iterdir():
         if not source_family_dir.is_dir():
             continue
 
-        for filepath in sorted(source_family_dir.iterdir()):
+        # rglob statt iterdir: damit auch entpackte ZIP-Bundles in Unterordnern
+        # (z.B. snapshot/bfe/wasta_wasserkraft/HydropowerPlant.csv) profiliert werden
+        all_files = sorted(source_family_dir.rglob("*"))
+
+        for filepath in all_files:
+            if not filepath.is_file():
+                continue
             if filepath.suffix.lower() not in PROFILER_BY_EXTENSION:
                 continue
             if args.file and filepath.name != args.file:
                 continue
+            # _manifest.json ausschliessen
+            if filepath.name == "_manifest.json":
+                continue
 
-            print(f"→ {filepath.name}")
+            # Output-Pfad: behalte die relative Struktur unter snapshot_dir bei,
+            # aber flatten zu eindeutigen Namen für die Profile
+            rel_path = filepath.relative_to(snapshot_dir)
+            # rel_path z.B. 'bfe/wasta_wasserkraft/HydropowerPlant.csv'
+            # Profil-Name: 'bfe__wasta_wasserkraft__HydropowerPlant'
+            profile_stem = "__".join(rel_path.with_suffix("").parts)
+
+            print(f"→ {rel_path}")
             profile = profile_file(filepath)
             if profile is None:
                 continue
 
             # JSON schreiben
-            json_path = profiles_dir / f"{filepath.stem}.profile.json"
+            json_path = profiles_dir / f"{profile_stem}.profile.json"
             with open(json_path, "w", encoding="utf-8") as f:
                 json.dump(profile, f, indent=2, ensure_ascii=False, default=str)
 
             # Markdown schreiben
             manifest_entry = find_manifest_entry(manifest, filepath)
             md = render_markdown(profile, filepath, manifest_entry)
-            md_path = profiles_dir / f"{filepath.stem}.profile.md"
+            md_path = profiles_dir / f"{profile_stem}.profile.md"
             with open(md_path, "w", encoding="utf-8") as f:
                 f.write(md)
 
             print(f"  ✓ {json_path.name}")
-            print(f"  ✓ {md_path.name}")
             profiled_count += 1
 
     print()

@@ -29,6 +29,7 @@ Idempotent: Zweifaches Ausführen ohne --force überspringt vorhandene Files.
 
 import argparse
 import sys
+import zipfile
 from datetime import date
 from pathlib import Path
 from typing import Optional
@@ -162,6 +163,100 @@ def download_file(url: str, target_path: Path) -> None:
                 f.write(chunk)
 
 
+def is_zip_file(filepath: Path) -> bool:
+    """
+    Prüft via Magic-Number, ob die Datei in Wahrheit ein ZIP-Archiv ist.
+    Manche opendata.swiss-Resources sind als 'CSV' deklariert, in Wahrheit
+    aber ZIP-Container mit der CSV (oder GeoPackage) drin.
+    """
+    try:
+        with open(filepath, "rb") as f:
+            magic = f.read(4)
+        # ZIP-Magic-Numbers: 'PK\x03\x04' (normal), 'PK\x05\x06' (empty), 'PK\x07\x08' (split)
+        return magic[:2] == b"PK"
+    except Exception:
+        return False
+
+
+def unpack_zip_inplace(zip_path: Path, expected_extension: str) -> tuple[Path, list]:
+    """
+    Entpackt ein ZIP-Archiv. Strategie:
+    - Wenn das Archiv genau eine Datei mit der erwarteten Endung enthält:
+      diese ersetzt das ZIP-File mit dem ursprünglichen Namen
+    - Bei mehreren Files: alle in einen Unterordner mit demselben Namen entpacken,
+      die "passende" Datei wird als Hauptfile angesehen
+
+    Returns: (Pfad zur Hauptdatei, Liste aller entpackten Files)
+    """
+    extract_dir = zip_path.parent
+    base_name = zip_path.stem  # ohne Endung
+    members_extracted = []
+
+    # ZIP zuerst zu temporärem Namen verschieben, damit wir an dieselbe Stelle
+    # entpacken können (sonst überschreibt der Entpack-Vorgang sich selbst)
+    tmp_zip = zip_path.with_suffix(zip_path.suffix + ".zip_tmp")
+    zip_path.rename(tmp_zip)
+
+    try:
+        with zipfile.ZipFile(tmp_zip, "r") as zf:
+            members = [m for m in zf.namelist() if not m.endswith("/")]
+
+            # Filter: nur Files mit passender Endung berücksichtigen
+            matching_members = [
+                m for m in members
+                if m.lower().endswith(expected_extension.lower())
+            ]
+
+            if len(matching_members) == 1:
+                # Einfacher Fall: genau eine passende Datei → an Stelle des ZIP ablegen
+                member = matching_members[0]
+                target = extract_dir / f"{base_name}{expected_extension}"
+                with zf.open(member) as src, open(target, "wb") as dst:
+                    dst.write(src.read())
+                members_extracted.append(target)
+                tmp_zip.unlink()
+                return target, members_extracted
+
+            elif len(matching_members) >= 2 or (len(members) > 1 and not matching_members):
+                # Mehrere Files: in Unterordner entpacken
+                subdir = extract_dir / base_name
+                subdir.mkdir(exist_ok=True)
+                for member in members:
+                    target = subdir / Path(member).name
+                    with zf.open(member) as src, open(target, "wb") as dst:
+                        dst.write(src.read())
+                    members_extracted.append(target)
+
+                tmp_zip.unlink()
+                main = next(
+                    (p for p in members_extracted
+                     if p.suffix.lower() == expected_extension.lower()),
+                    members_extracted[0] if members_extracted else None,
+                )
+                return main, members_extracted
+
+            elif len(members) == 1:
+                # Nur ein File, aber andere Endung als erwartet
+                member = members[0]
+                ext = Path(member).suffix or expected_extension
+                target = extract_dir / f"{base_name}{ext}"
+                with zf.open(member) as src, open(target, "wb") as dst:
+                    dst.write(src.read())
+                members_extracted.append(target)
+                tmp_zip.unlink()
+                return target, members_extracted
+
+            else:
+                # Leeres Archiv — temporäres ZIP zurückbenennen
+                tmp_zip.rename(zip_path)
+                return zip_path, members_extracted
+    except Exception:
+        # Bei Fehler: ZIP zurückbenennen, damit Datenstand erhalten bleibt
+        if tmp_zip.exists() and not zip_path.exists():
+            tmp_zip.rename(zip_path)
+        raise
+
+
 # === Hauptlogik ===
 
 def extract_source(
@@ -225,8 +320,25 @@ def extract_source(
         try:
             print(f"  ↓ {format_key} → {target_filename}", end=" ", flush=True)
             download_file(url, target_path)
-            size_kb = target_path.stat().st_size / 1024
-            print(f"({size_kb:.1f} KB)")
+
+            # Prüfen, ob es in Wahrheit ein ZIP ist
+            if is_zip_file(target_path) and file_ext.lower() != ".zip":
+                print(f"[ZIP erkannt, entpacke...]", end=" ", flush=True)
+                main_file, all_files = unpack_zip_inplace(target_path, file_ext)
+                if main_file and main_file.exists():
+                    target_path = main_file
+                    n_extracted = len(all_files)
+                    if n_extracted > 1:
+                        print(f"({n_extracted} Files entpackt, "
+                              f"Haupt: {main_file.name})")
+                    else:
+                        print(f"({main_file.name})")
+                else:
+                    print(f"[Entpacken fehlgeschlagen]")
+                    continue
+            else:
+                size_kb = target_path.stat().st_size / 1024
+                print(f"({size_kb:.1f} KB)")
 
             add_file_to_manifest(
                 manifest, SOURCE_FAMILY, source_id, format_key,
@@ -234,7 +346,7 @@ def extract_source(
             )
             success_count += 1
         except Exception as e:
-            print(f"\n  ! Fehler beim Download: {e}")
+            print(f"\n  ! Fehler beim Download/Entpacken: {e}")
             if target_path.exists():
                 target_path.unlink()  # unvollständiges File löschen
 

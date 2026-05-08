@@ -53,7 +53,7 @@ SOURCE_FAMILY = "swissgrid"
 HTTP_TIMEOUT = 120  # Sekunden — Swissgrid-Server kann lahm sein
 
 HTTP_HEADERS = {
-    "User-Agent": "energy-viz-pipeline/0.1 (Masterthesis FHGR; serge.pellegrini@stud.fhgr.ch)",
+    "User-Agent": "energy-viz-pipeline/0.1 (Masterthesis FHGR; serge.pellegatta@stud.fhgr.ch)",
 }
 
 
