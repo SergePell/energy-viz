@@ -1,0 +1,214 @@
+{
+  "format": "csv",
+  "encoding": "utf-8",
+  "separator": ",",
+  "skipped_header_rows": 0,
+  "rows": 5,
+  "n_columns": 12,
+  "columns": [
+    {
+      "name": "ID",
+      "dtype": "str",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 5,
+      "examples": [
+        "reactor1",
+        "reactor2",
+        "reactor3",
+        "reactor4",
+        "reactor5"
+      ],
+      "all_values": [
+        "reactor1",
+        "reactor2",
+        "reactor3",
+        "reactor4",
+        "reactor5"
+      ]
+    },
+    {
+      "name": "Name",
+      "dtype": "str",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 5,
+      "examples": [
+        "Mühleberg",
+        "Gösgen",
+        "Beznau 1",
+        "Beznau 2",
+        "Leibstadt"
+      ],
+      "all_values": [
+        "Beznau 1",
+        "Beznau 2",
+        "Gösgen",
+        "Leibstadt",
+        "Mühleberg"
+      ]
+    },
+    {
+      "name": "NominalThermalOutput",
+      "dtype": "int64",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 4,
+      "min": 1097,
+      "max": 3600,
+      "mean": 1991.8,
+      "median": 1130.0
+    },
+    {
+      "name": "GrossElectricalOutput",
+      "dtype": "int64",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 4,
+      "min": 380,
+      "max": 1245,
+      "mean": 691.0,
+      "median": 390.0
+    },
+    {
+      "name": "NetElectricalOutput",
+      "dtype": "int64",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 4,
+      "min": 365,
+      "max": 1190,
+      "mean": 660.6,
+      "median": 373.0
+    },
+    {
+      "name": "UnderConstructionPhase",
+      "dtype": "str",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 5,
+      "examples": [
+        "01.03.1967 - 30.06.1971",
+        "01.12.1973 - 01.02.1979",
+        "01.09.1965 - 16.07.1969",
+        "01.01.1968 - 22.10.1971",
+        "01.01.1974 - 23.05.1984"
+      ],
+      "all_values": [
+        "01.01.1968 - 22.10.1971",
+        "01.01.1974 - 23.05.1984",
+        "01.03.1967 - 30.06.1971",
+        "01.09.1965 - 16.07.1969",
+        "01.12.1973 - 01.02.1979"
+      ]
+    },
+    {
+      "name": "OperationPhase",
+      "dtype": "str",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 5,
+      "examples": [
+        "06.11.1972 - 20.12.2019",
+        "01.11.1979 - ",
+        "01.09.1969 -",
+        "01.12.1971 -",
+        "15.12.1984 - "
+      ],
+      "all_values": [
+        "01.09.1969 -",
+        "01.11.1979 - ",
+        "01.12.1971 -",
+        "06.11.1972 - 20.12.2019",
+        "15.12.1984 - "
+      ]
+    },
+    {
+      "name": "DecomissioningPhase",
+      "dtype": "str",
+      "null_count": 4,
+      "null_pct": 80.0,
+      "unique_count": 1,
+      "examples": [
+        "21.12.2019 -"
+      ],
+      "all_values": [
+        "21.12.2019 -"
+      ]
+    },
+    {
+      "name": "TypeOfCoolingSystem",
+      "dtype": "str",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 2,
+      "examples": [
+        "toc1",
+        "toc2",
+        "toc1",
+        "toc1",
+        "toc2"
+      ],
+      "all_values": [
+        "toc1",
+        "toc2"
+      ]
+    },
+    {
+      "name": "TypeOfReactor",
+      "dtype": "str",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 2,
+      "examples": [
+        "tor1",
+        "tor2",
+        "tor2",
+        "tor2",
+        "tor1"
+      ],
+      "all_values": [
+        "tor1",
+        "tor2"
+      ]
+    },
+    {
+      "name": "PhaseOfLife",
+      "dtype": "str",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 2,
+      "examples": [
+        "pol3",
+        "pol2",
+        "pol2",
+        "pol2",
+        "pol2"
+      ],
+      "all_values": [
+        "pol2",
+        "pol3"
+      ]
+    },
+    {
+      "name": "nuclearPowerPlantR1",
+      "dtype": "str",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 4,
+      "examples": [
+        "plant1",
+        "plant2",
+        "plant3",
+        "plant3",
+        "plant4"
+      ],
+      "all_values": [
+        "plant1",
+        "plant2",
+        "plant3",
+        "plant4"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "format": "csv",
+  "encoding": "utf-8",
+  "separator": ",",
+  "skipped_header_rows": 0,
+  "rows": 4,
+  "n_columns": 4,
+  "columns": [
+    {
+      "name": "xtf_id",
+      "dtype": "str",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 4,
+      "examples": [
+        "facilityType_small",
+        "facilityType_medium",
+        "facilityType_big",
+        "facilityType_windpark"
+      ],
+      "all_values": [
+        "facilityType_big",
+        "facilityType_medium",
+        "facilityType_small",
+        "facilityType_windpark"
+      ]
+    },
+    {
+      "name": "DE",
+      "dtype": "str",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 4,
+      "examples": [
+        "Kleine Einzelanlage",
+        "Mittlere Einzelanlage",
+        "Grosse Einzelanlage",
+        "Windpark"
+      ],
+      "all_values": [
+        "Grosse Einzelanlage",
+        "Kleine Einzelanlage",
+        "Mittlere Einzelanlage",
+        "Windpark"
+      ]
+    },
+    {
+      "name": "FR",
+      "dtype": "str",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 4,
+      "examples": [
+        "Petite éolienne",
+        "Moyenne éolienne",
+        "Grande éolienne",
+        "Parc éolien"
+      ],
+      "all_values": [
+        "Grande éolienne",
+        "Moyenne éolienne",
+        "Parc éolien",
+        "Petite éolienne"
+      ]
+    },
+    {
+      "name": "IT",
+      "dtype": "str",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 4,
+      "examples": [
+        "Piccola turbina eolica",
+        "Media turbina eolica",
+        "Grande turbina eolica",
+        "Parco eolico"
+      ],
+      "all_values": [
+        "Grande turbina eolica",
+        "Media turbina eolica",
+        "Parco eolico",
+        "Piccola turbina eolica"
+      ]
+    }
+  ]
+}

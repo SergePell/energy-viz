@@ -1,0 +1,118 @@
+{
+  "format": "gpkg",
+  "all_layers": [
+    "HydropowerPlant",
+    "HydropowerPlantOperationalStatusCatalogue",
+    "HydropowerPlantTypeCatalogue",
+    "TechnicalSpecification"
+  ],
+  "profiled_layer": "HydropowerPlant",
+  "crs": "EPSG:2056",
+  "geometry_type": "{'Point': 723}",
+  "bbox": [
+    2486880.0,
+    1083247.0,
+    2844830.0,
+    1283470.0
+  ],
+  "rows": 723,
+  "n_columns": 7,
+  "columns": [
+    {
+      "name": "WASTANumber",
+      "dtype": "int64",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 723,
+      "min": 100100,
+      "max": 900200,
+      "mean": 352916.19087136927,
+      "median": 305300.0
+    },
+    {
+      "name": "Name",
+      "dtype": "str",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 723,
+      "examples": [
+        "Val Giuv",
+        "Curnera Druckminderer",
+        "Val Strem",
+        "Sedrun 1",
+        "Sedrun 2"
+      ]
+    },
+    {
+      "name": "Location",
+      "dtype": "str",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 566,
+      "examples": [
+        "Rueras",
+        "Schiebekammer Curnera",
+        "Sedrun",
+        "Sedrun",
+        "Sedrun"
+      ]
+    },
+    {
+      "name": "Canton",
+      "dtype": "str",
+      "null_count": 16,
+      "null_pct": 2.21,
+      "unique_count": 25,
+      "examples": [
+        "GR",
+        "GR",
+        "GR",
+        "GR",
+        "GR"
+      ]
+    },
+    {
+      "name": "TypeCode",
+      "dtype": "str",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 4,
+      "examples": [
+        "t1",
+        "t1",
+        "t1",
+        "t3",
+        "t1"
+      ],
+      "all_values": [
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ]
+    },
+    {
+      "name": "BeginningOfOperation",
+      "dtype": "int64",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 156,
+      "min": 1816,
+      "max": 2026,
+      "mean": 1957.908713692946,
+      "median": 1961.0
+    },
+    {
+      "name": "FallHeight",
+      "dtype": "float32",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 445,
+      "min": 0.0,
+      "max": 1809.0,
+      "mean": 264.683837890625,
+      "median": 179.0
+    }
+  ],
+  "note": "GeoPackage hat 4 Layer. Profiliert wurde nur der erste ('HydropowerPlant')."
+}

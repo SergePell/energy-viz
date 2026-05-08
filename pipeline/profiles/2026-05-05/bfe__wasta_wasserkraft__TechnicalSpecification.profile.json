@@ -1,0 +1,146 @@
+{
+  "format": "csv",
+  "encoding": "utf-8",
+  "separator": ",",
+  "skipped_header_rows": 0,
+  "rows": 723,
+  "n_columns": 11,
+  "columns": [
+    {
+      "name": "xtf_id",
+      "dtype": "int64",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 723,
+      "min": 2024100100,
+      "max": 2024900200,
+      "mean": 2024352916.1908715,
+      "median": 2024305300.0
+    },
+    {
+      "name": "Year",
+      "dtype": "int64",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 1,
+      "min": 2024,
+      "max": 2024,
+      "mean": 2024.0,
+      "median": 2024.0
+    },
+    {
+      "name": "hydropowerPlantR",
+      "dtype": "int64",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 723,
+      "min": 100100,
+      "max": 900200,
+      "mean": 352916.19087136927,
+      "median": 305300.0
+    },
+    {
+      "name": "PerformanceGeneratorMaximum",
+      "dtype": "float64",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 361,
+      "min": 0.0,
+      "max": 1200.0,
+      "mean": 24.360055325034576,
+      "median": 1.9
+    },
+    {
+      "name": "PerformanceTurbineMaximum",
+      "dtype": "float64",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 352,
+      "min": 0.0,
+      "max": 1269.0,
+      "mean": 24.99893499308437,
+      "median": 1.97
+    },
+    {
+      "name": "ProductionExpected",
+      "dtype": "float64",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 447,
+      "min": 0.0,
+      "max": 2103.1,
+      "mean": 57.50612724757953,
+      "median": 7.0
+    },
+    {
+      "name": "PumpsPowerInputMaximum",
+      "dtype": "float64",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 38,
+      "min": 0.0,
+      "max": 1000.0,
+      "mean": 5.552130013831258,
+      "median": 0.0
+    },
+    {
+      "name": "EnginePowerDemand",
+      "dtype": "float64",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 32,
+      "min": 0.0,
+      "max": 226.9,
+      "mean": 1.2782019363762103,
+      "median": 0.0
+    },
+    {
+      "name": "OperationalStatusCode",
+      "dtype": "str",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 4,
+      "examples": [
+        "os1",
+        "os1",
+        "os1",
+        "os1",
+        "os1"
+      ],
+      "all_values": [
+        "os1",
+        "os2",
+        "os3",
+        "os5"
+      ]
+    },
+    {
+      "name": "DateOfStatistic",
+      "dtype": "str",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 1,
+      "examples": [
+        "2024-12-31",
+        "2024-12-31",
+        "2024-12-31",
+        "2024-12-31",
+        "2024-12-31"
+      ],
+      "all_values": [
+        "2024-12-31"
+      ]
+    },
+    {
+      "name": "FallHeight",
+      "dtype": "float64",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 445,
+      "min": 0.0,
+      "max": 1809.0,
+      "mean": 264.6838174273859,
+      "median": 179.0
+    }
+  ]
+}

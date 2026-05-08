@@ -1,0 +1,105 @@
+{
+  "format": "csv",
+  "encoding": "utf-8",
+  "separator": ",",
+  "skipped_header_rows": 0,
+  "rows": 4,
+  "n_columns": 5,
+  "columns": [
+    {
+      "name": "ID",
+      "dtype": "str",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 4,
+      "examples": [
+        "pol1",
+        "pol2",
+        "pol3",
+        "pol4"
+      ],
+      "all_values": [
+        "pol1",
+        "pol2",
+        "pol3",
+        "pol4"
+      ]
+    },
+    {
+      "name": "DE",
+      "dtype": "str",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 4,
+      "examples": [
+        "Bau",
+        "Betrieb",
+        "Stilllegung",
+        "Stilllegung abgeschlossen"
+      ],
+      "all_values": [
+        "Bau",
+        "Betrieb",
+        "Stilllegung",
+        "Stilllegung abgeschlossen"
+      ]
+    },
+    {
+      "name": "FR",
+      "dtype": "str",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 4,
+      "examples": [
+        "Construction",
+        "Exploitation",
+        "Désaffectation ",
+        "Désaffectation finie"
+      ],
+      "all_values": [
+        "Construction",
+        "Désaffectation ",
+        "Désaffectation finie",
+        "Exploitation"
+      ]
+    },
+    {
+      "name": "IT",
+      "dtype": "str",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 4,
+      "examples": [
+        "Costruzione",
+        "Esercizio",
+        "Disattivazione",
+        "Disattivazione finita"
+      ],
+      "all_values": [
+        "Costruzione",
+        "Disattivazione",
+        "Disattivazione finita",
+        "Esercizio"
+      ]
+    },
+    {
+      "name": "EN",
+      "dtype": "str",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 4,
+      "examples": [
+        "Construction",
+        "Operation",
+        "Decommissioning",
+        "Decommissioning completed"
+      ],
+      "all_values": [
+        "Construction",
+        "Decommissioning",
+        "Decommissioning completed",
+        "Operation"
+      ]
+    }
+  ]
+}

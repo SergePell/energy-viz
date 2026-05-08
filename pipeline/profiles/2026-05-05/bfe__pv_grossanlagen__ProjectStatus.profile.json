@@ -1,0 +1,127 @@
+{
+  "format": "csv",
+  "encoding": "utf-8",
+  "separator": ",",
+  "skipped_header_rows": 0,
+  "rows": 55,
+  "n_columns": 10,
+  "columns": [
+    {
+      "name": "xtf_id",
+      "dtype": "int64",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 55,
+      "min": 1,
+      "max": 198,
+      "mean": 158.23636363636365,
+      "median": 167.0
+    },
+    {
+      "name": "Date",
+      "dtype": "int64",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 49,
+      "min": 20231030,
+      "max": 20260225,
+      "mean": 20245583.818181816,
+      "median": 20250120.0
+    },
+    {
+      "name": "Power",
+      "dtype": "float64",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 29,
+      "min": 6.2,
+      "max": 92.0,
+      "mean": 12.922,
+      "median": 9.0
+    },
+    {
+      "name": "AnnualProduction",
+      "dtype": "float64",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 30,
+      "min": 10.69,
+      "max": 148.0,
+      "mean": 19.323454545454545,
+      "median": 13.8
+    },
+    {
+      "name": "WinterProduction",
+      "dtype": "float64",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 31,
+      "min": 4.08,
+      "max": 64.0,
+      "mean": 8.29162909090909,
+      "median": 5.5
+    },
+    {
+      "name": "SpecificAnnualProduction",
+      "dtype": "int64",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 32,
+      "min": 1247,
+      "max": 2081,
+      "mean": 1487.9454545454546,
+      "median": 1448.0
+    },
+    {
+      "name": "SpecificWinterProduction",
+      "dtype": "int64",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 29,
+      "min": 505,
+      "max": 903,
+      "mean": 625.8909090909091,
+      "median": 615.0
+    },
+    {
+      "name": "NumberOfPlants",
+      "dtype": "float64",
+      "null_count": 9,
+      "null_pct": 16.36,
+      "unique_count": 1,
+      "min": 0.0,
+      "max": 0.0,
+      "mean": 0.0,
+      "median": 0.0
+    },
+    {
+      "name": "PlantType",
+      "dtype": "float64",
+      "null_count": 55,
+      "null_pct": 100.0,
+      "unique_count": 0,
+      "examples": []
+    },
+    {
+      "name": "Status",
+      "dtype": "str",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 5,
+      "examples": [
+        "st11",
+        "st11",
+        "st12",
+        "st11",
+        "st16"
+      ],
+      "all_values": [
+        "st11",
+        "st12",
+        "st13",
+        "st14",
+        "st16"
+      ]
+    }
+  ]
+}

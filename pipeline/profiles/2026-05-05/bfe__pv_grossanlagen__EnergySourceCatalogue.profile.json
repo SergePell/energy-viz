@@ -1,0 +1,114 @@
+{
+  "format": "csv",
+  "encoding": "utf-8",
+  "separator": ",",
+  "skipped_header_rows": 0,
+  "rows": 8,
+  "n_columns": 5,
+  "columns": [
+    {
+      "name": "EnergySource_ID",
+      "dtype": "float64",
+      "null_count": 8,
+      "null_pct": 100.0,
+      "unique_count": 0,
+      "examples": []
+    },
+    {
+      "name": "DE",
+      "dtype": "str",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 8,
+      "examples": [
+        "öffentlich aufgelegt",
+        "erstinstanzlich bewilligt",
+        "rechtskräftig bewilligt",
+        "teilweise in Betrieb",
+        "vollständig in Betrieb"
+      ],
+      "all_values": [
+        "Betrieb nach 3 Jahren",
+        "abgewiesen",
+        "erstinstanzlich bewilligt",
+        "rechtskräftig bewilligt",
+        "teilweise in Betrieb",
+        "vollständig in Betrieb",
+        "zurückgezogen",
+        "öffentlich aufgelegt"
+      ]
+    },
+    {
+      "name": "FR",
+      "dtype": "str",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 8,
+      "examples": [
+        "mise à l'enquête publique",
+        "octroi de l'autorisation de première instance",
+        "entrée en force de l'autorisation",
+        "mise en service partielle",
+        "mise en service complète"
+      ],
+      "all_values": [
+        "entrée en force de l'autorisation",
+        "exploitation après 3 ans",
+        "mise en service complète",
+        "mise en service partielle",
+        "mise à l'enquête publique",
+        "octroi de l'autorisation de première instance",
+        "refusé",
+        "retiré"
+      ]
+    },
+    {
+      "name": "IT",
+      "dtype": "str",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 8,
+      "examples": [
+        "deposito pubblico della domanda",
+        "concessione dell'autorizzazione di prima istanza",
+        "passaggio in giudicato dell'autorizzazione",
+        "messa in esercizio parziale",
+        "messa in esercizio completa"
+      ],
+      "all_values": [
+        "concessione dell'autorizzazione di prima istanza",
+        "deposito pubblico della domanda",
+        "messa in esercizio completa",
+        "messa in esercizio parziale",
+        "operatività dopo 3 anni",
+        "passaggio in giudicato dell'autorizzazione",
+        "rifiutato",
+        "ritirato"
+      ]
+    },
+    {
+      "name": "EN",
+      "dtype": "str",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 8,
+      "examples": [
+        "public circulation",
+        "granting of the first-instance authorisation",
+        "legally authorised",
+        "partial commissioning",
+        "full commissioning"
+      ],
+      "all_values": [
+        "full commissioning",
+        "granting of the first-instance authorisation",
+        "legally authorised",
+        "operation after 3 years",
+        "partial commissioning",
+        "public circulation",
+        "rejected",
+        "withdrawn"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,77 @@
+{
+  "format": "csv",
+  "encoding": "utf-8",
+  "separator": ",",
+  "skipped_header_rows": 0,
+  "rows": 229,
+  "n_columns": 4,
+  "columns": [
+    {
+      "name": "xtf_id",
+      "dtype": "str",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 229,
+      "examples": [
+        "production_FEL_2006",
+        "production_GUE_2004",
+        "production_GUE_2005",
+        "production_GUE_2006",
+        "production_MTC_1997"
+      ]
+    },
+    {
+      "name": "year",
+      "dtype": "int64",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 29,
+      "min": 1997,
+      "max": 2025,
+      "mean": 2015.46288209607,
+      "median": 2016.0
+    },
+    {
+      "name": "production",
+      "dtype": "int64",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 228,
+      "min": 77284,
+      "max": 91144250,
+      "mean": 8947087.751091704,
+      "median": 4813010.0
+    },
+    {
+      "name": "facility",
+      "dtype": "str",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 15,
+      "examples": [
+        "facility_FEL",
+        "facility_GUE",
+        "facility_GUE",
+        "facility_GUE",
+        "facility_MTC"
+      ],
+      "all_values": [
+        "facility_CHA",
+        "facility_COL",
+        "facility_FEL",
+        "facility_GOT",
+        "facility_GRI",
+        "facility_GUE",
+        "facility_HAL",
+        "facility_LUT",
+        "facility_MTC",
+        "facility_MTG",
+        "facility_OGR",
+        "facility_PEU",
+        "facility_STB",
+        "facility_STC",
+        "facility_URI"
+      ]
+    }
+  ]
+}

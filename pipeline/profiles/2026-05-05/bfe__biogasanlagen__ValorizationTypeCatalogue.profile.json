@@ -1,0 +1,89 @@
+{
+  "format": "csv",
+  "encoding": "latin-1",
+  "separator": ",",
+  "skipped_header_rows": 0,
+  "rows": 3,
+  "n_columns": 5,
+  "columns": [
+    {
+      "name": "idValorizationType",
+      "dtype": "int64",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 3,
+      "min": 101,
+      "max": 103,
+      "mean": 102.0,
+      "median": 102.0
+    },
+    {
+      "name": "ValorizationType_DE",
+      "dtype": "str",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 3,
+      "examples": [
+        "Strom und Wärme",
+        "Biogasaufbereitung und Einspeisung",
+        "Biogasverkauf bei der Anlage"
+      ],
+      "all_values": [
+        "Biogasaufbereitung und Einspeisung",
+        "Biogasverkauf bei der Anlage",
+        "Strom und Wärme"
+      ]
+    },
+    {
+      "name": "ValorizationType_FR",
+      "dtype": "str",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 3,
+      "examples": [
+        "Électricité et chaleur",
+        "Purification et alimentation du biogaz",
+        "Vente directe de biogaz carburant"
+      ],
+      "all_values": [
+        "Purification et alimentation du biogaz",
+        "Vente directe de biogaz carburant",
+        "Électricité et chaleur"
+      ]
+    },
+    {
+      "name": "ValorizationType_IT",
+      "dtype": "str",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 3,
+      "examples": [
+        "Elettricità e calore",
+        "Purificazione del biogas e immissione",
+        "Vendita diretta di biogas-carburante"
+      ],
+      "all_values": [
+        "Elettricità e calore",
+        "Purificazione del biogas e immissione",
+        "Vendita diretta di biogas-carburante"
+      ]
+    },
+    {
+      "name": "ValorizationType_EN",
+      "dtype": "str",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 3,
+      "examples": [
+        "Electricity and heat",
+        "Biogas treatment and feed-in",
+        "Direct sale of biogas fuel"
+      ],
+      "all_values": [
+        "Biogas treatment and feed-in",
+        "Direct sale of biogas fuel",
+        "Electricity and heat"
+      ]
+    }
+  ]
+}

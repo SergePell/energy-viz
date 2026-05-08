@@ -1,0 +1,84 @@
+{
+  "format": "csv",
+  "encoding": "utf-8",
+  "separator": ",",
+  "skipped_header_rows": 0,
+  "rows": 974,
+  "n_columns": 7,
+  "columns": [
+    {
+      "name": "xtf_id",
+      "dtype": "str",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 974,
+      "examples": [
+        "plant1-2017",
+        "plant1-2016",
+        "plant1-2018",
+        "plant2-2017",
+        "plant2-2016"
+      ]
+    },
+    {
+      "name": "Year",
+      "dtype": "int64",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 10,
+      "min": 2011,
+      "max": 2020,
+      "mean": 2016.2731006160163,
+      "median": 2017.0
+    },
+    {
+      "name": "Electricity",
+      "dtype": "float64",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 947,
+      "min": 0.0,
+      "max": 17563857.5,
+      "mean": 1425220.9563880905,
+      "median": 983057.9715
+    },
+    {
+      "name": "Heat",
+      "dtype": "float64",
+      "null_count": 974,
+      "null_pct": 100.0,
+      "unique_count": 0,
+      "examples": []
+    },
+    {
+      "name": "BiomethaneInjection",
+      "dtype": "float64",
+      "null_count": 974,
+      "null_pct": 100.0,
+      "unique_count": 0,
+      "examples": []
+    },
+    {
+      "name": "BiomethaneDirect",
+      "dtype": "float64",
+      "null_count": 974,
+      "null_pct": 100.0,
+      "unique_count": 0,
+      "examples": []
+    },
+    {
+      "name": "BiogasPlantR",
+      "dtype": "str",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 153,
+      "examples": [
+        "plant1",
+        "plant1",
+        "plant1",
+        "plant2",
+        "plant2"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,97 @@
+{
+  "format": "csv",
+  "encoding": "utf-8",
+  "separator": ",",
+  "skipped_header_rows": 0,
+  "rows": 4,
+  "n_columns": 5,
+  "columns": [
+    {
+      "name": "OBJECTID",
+      "dtype": "int64",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 4,
+      "min": 1,
+      "max": 4,
+      "mean": 2.5,
+      "median": 2.5
+    },
+    {
+      "name": "DE",
+      "dtype": "str",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 4,
+      "examples": [
+        "Laufkraftwerk",
+        "reines Umwälzwerk",
+        "Speicherkraftwerk",
+        "Pumpspeicherkraftwerk"
+      ],
+      "all_values": [
+        "Laufkraftwerk",
+        "Pumpspeicherkraftwerk",
+        "Speicherkraftwerk",
+        "reines Umwälzwerk"
+      ]
+    },
+    {
+      "name": "FR",
+      "dtype": "str",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 4,
+      "examples": [
+        "aménagement au fil de l'eau",
+        "aménagement de pompage-turbinage pur",
+        "aménagement à accumulation",
+        "aménagement de pompage-turbinage mixte"
+      ],
+      "all_values": [
+        "aménagement au fil de l'eau",
+        "aménagement de pompage-turbinage mixte",
+        "aménagement de pompage-turbinage pur",
+        "aménagement à accumulation"
+      ]
+    },
+    {
+      "name": "IT",
+      "dtype": "str",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 4,
+      "examples": [
+        "impianto ad acqua fluente",
+        "impianto di pompaggio-turbinaggio puro",
+        "impianto con serbatoio",
+        "impianto di pompaggio-turbinaggio misto"
+      ],
+      "all_values": [
+        "impianto ad acqua fluente",
+        "impianto con serbatoio",
+        "impianto di pompaggio-turbinaggio misto",
+        "impianto di pompaggio-turbinaggio puro"
+      ]
+    },
+    {
+      "name": "ID",
+      "dtype": "str",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 4,
+      "examples": [
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ],
+      "all_values": [
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ]
+    }
+  ]
+}

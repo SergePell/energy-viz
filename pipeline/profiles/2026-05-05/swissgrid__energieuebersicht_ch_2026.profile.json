@@ -1,0 +1,1488 @@
+{
+  "format": "xlsx",
+  "all_sheets": [
+    "Einstellungen",
+    "Datetime",
+    "Uebersicht",
+    "Zeitreihen0h15"
+  ],
+  "sheets": {
+    "Einstellungen": {
+      "rows": 43,
+      "n_columns": 22,
+      "columns": [
+        {
+          "name": "Energieübersicht Schweiz 2026",
+          "dtype": "str",
+          "null_count": 32,
+          "null_pct": 74.42,
+          "unique_count": 11,
+          "examples": [
+            "Energy Statistic Switzerland 2026",
+            "Betrachtungszeitraum | Observation Period",
+            "Von | From:",
+            "Bis | To:",
+            "Einheit | Unit"
+          ],
+          "all_values": [
+            "Anleitung",
+            "Ausgewählt | Selected:",
+            "Betrachtungszeitraum | Observation Period",
+            "Bis | To:",
+            "Das hier vorliegende Excel-Sheet beinhaltet die Gesamtübersicht der wichtigsten Eckdaten der Regelzone Schweiz.\n\nDie Daten sind aggregierte Viertelstunden, welche zu ihrer Referenz im Blatt «Zeitreihen» abgelegt sind. Ab 2025 sind die Daten linksbündig, das heißt: der Zeitstempel bei \"00:00\" betrifft das Zeitintervall 00:00 – 00:15. Die Daten sind dieselben, wie auch von Swissgrid zu Abrechnungszwecken verwendet werden.\n\nNebst den Zeitreihen finden Sie auf dem Blatt «Übersicht» die Summen der jeweiligen Energiegrösse welche für den eingestellten Zeitraum direkt berechnet werden. Der Betrachtungszeitraum kann auf dieser Seite eingestellt werden.\n\nAchtung: Bei MS-Excel 2003 und älter werden einige Felder nicht automatisch berechnet. Drücken Sie daher STRG+ALT+F9 nachdem Sie die Datei geöffnet haben.",
+            "Einheit | Unit",
+            "Energy Statistic Switzerland 2026",
+            "Erstelldatum:",
+            "Manual",
+            "This excel sheet contains a general overview of the most important energy key data of the Swiss control block.\n\nYou can find 15 Minutes based aggregated time series within the sheets with the naming «Zeitreihen» for your reference. As of 2025, the data is left-aligned, that is: the timestamp at \"00:00\" concerns the time interval 00:00 - 00:15. The energy data you find there is the same as used by Swissgrid for clearing purposes.\n\nBesides the pure time series you can find an overview of all aggregates on sheet «Übersicht», which will be the sum of all values of the selected timeframe. The observated timeframe can be controlled on this page.\n\nAttention: In MS-Excel 2003 and older, some calculations aren't performed automatically. Press CTRL+ALT+F9 initially after opening this file.",
+            "Von | From:"
+          ]
+        },
+        {
+          "name": "Unnamed: 1",
+          "dtype": "str",
+          "null_count": 42,
+          "null_pct": 97.67,
+          "unique_count": 1,
+          "examples": [
+            "17.04.2026 07:42:29"
+          ],
+          "all_values": [
+            "17.04.2026 07:42:29"
+          ]
+        },
+        {
+          "name": "Unnamed: 2",
+          "dtype": "object",
+          "null_count": 39,
+          "null_pct": 90.7,
+          "unique_count": 3,
+          "examples": [
+            "DD",
+            "1",
+            "1",
+            "MW / MWh"
+          ],
+          "all_values": [
+            "1",
+            "DD",
+            "MW / MWh"
+          ]
+        },
+        {
+          "name": "Unnamed: 3",
+          "dtype": "object",
+          "null_count": 40,
+          "null_pct": 93.02,
+          "unique_count": 3,
+          "examples": [
+            "MM",
+            "1",
+            "3"
+          ],
+          "all_values": [
+            "1",
+            "3",
+            "MM"
+          ]
+        },
+        {
+          "name": "Unnamed: 4",
+          "dtype": "object",
+          "null_count": 40,
+          "null_pct": 93.02,
+          "unique_count": 2,
+          "examples": [
+            "YYYY",
+            "2026",
+            "2026"
+          ],
+          "all_values": [
+            "2026",
+            "YYYY"
+          ]
+        },
+        {
+          "name": "Unnamed: 5",
+          "dtype": "object",
+          "null_count": 40,
+          "null_pct": 93.02,
+          "unique_count": 2,
+          "examples": [
+            "hh",
+            "0",
+            "0"
+          ],
+          "all_values": [
+            "0",
+            "hh"
+          ]
+        },
+        {
+          "name": "Unnamed: 6",
+          "dtype": "object",
+          "null_count": 40,
+          "null_pct": 93.02,
+          "unique_count": 2,
+          "examples": [
+            "min",
+            "0",
+            "0"
+          ],
+          "all_values": [
+            "0",
+            "min"
+          ]
+        },
+        {
+          "name": "Unnamed: 7",
+          "dtype": "datetime64[us]",
+          "null_count": 41,
+          "null_pct": 95.35,
+          "unique_count": 2,
+          "min_date": "2026-01-01 00:00:00",
+          "max_date": "2026-03-01 00:00:00"
+        },
+        {
+          "name": "Unnamed: 8",
+          "dtype": "float64",
+          "null_count": 43,
+          "null_pct": 100.0,
+          "unique_count": 0,
+          "examples": []
+        },
+        {
+          "name": "Unnamed: 9",
+          "dtype": "float64",
+          "null_count": 43,
+          "null_pct": 100.0,
+          "unique_count": 0,
+          "examples": []
+        },
+        {
+          "name": "Unnamed: 10",
+          "dtype": "float64",
+          "null_count": 43,
+          "null_pct": 100.0,
+          "unique_count": 0,
+          "examples": []
+        },
+        {
+          "name": "Unnamed: 11",
+          "dtype": "float64",
+          "null_count": 43,
+          "null_pct": 100.0,
+          "unique_count": 0,
+          "examples": []
+        },
+        {
+          "name": "Unnamed: 12",
+          "dtype": "float64",
+          "null_count": 43,
+          "null_pct": 100.0,
+          "unique_count": 0,
+          "examples": []
+        },
+        {
+          "name": "Unnamed: 13",
+          "dtype": "float64",
+          "null_count": 43,
+          "null_pct": 100.0,
+          "unique_count": 0,
+          "examples": []
+        },
+        {
+          "name": 1,
+          "dtype": "float64",
+          "null_count": 13,
+          "null_pct": 30.23,
+          "unique_count": 30,
+          "min": 2.0,
+          "max": 31.0,
+          "mean": 16.5,
+          "median": 16.5
+        },
+        {
+          "name": "1.1",
+          "dtype": "float64",
+          "null_count": 32,
+          "null_pct": 74.42,
+          "unique_count": 11,
+          "min": 2.0,
+          "max": 12.0,
+          "mean": 7.0,
+          "median": 7.0
+        },
+        {
+          "name": 2026,
+          "dtype": "float64",
+          "null_count": 42,
+          "null_pct": 97.67,
+          "unique_count": 1,
+          "min": 2027.0,
+          "max": 2027.0,
+          "mean": 2027.0,
+          "median": 2027.0
+        },
+        {
+          "name": 0,
+          "dtype": "float64",
+          "null_count": 20,
+          "null_pct": 46.51,
+          "unique_count": 23,
+          "min": 1.0,
+          "max": 23.0,
+          "mean": 12.0,
+          "median": 12.0
+        },
+        {
+          "name": "0.1",
+          "dtype": "float64",
+          "null_count": 40,
+          "null_pct": 93.02,
+          "unique_count": 3,
+          "min": 15.0,
+          "max": 45.0,
+          "mean": 30.0,
+          "median": 30.0
+        },
+        {
+          "name": "kW / kWh",
+          "dtype": "str",
+          "null_count": 42,
+          "null_pct": 97.67,
+          "unique_count": 1,
+          "examples": [
+            "MW / MWh"
+          ],
+          "all_values": [
+            "MW / MWh"
+          ]
+        },
+        {
+          "name": "Frühstes Datum",
+          "dtype": "str",
+          "null_count": 39,
+          "null_pct": 90.7,
+          "unique_count": 4,
+          "examples": [
+            "Spätestes Datum",
+            "Faktor:",
+            "Prefix:",
+            "anzMonate"
+          ],
+          "all_values": [
+            "Faktor:",
+            "Prefix:",
+            "Spätestes Datum",
+            "anzMonate"
+          ]
+        },
+        {
+          "name": "2026-01-01 00:00:00",
+          "dtype": "object",
+          "null_count": 39,
+          "null_pct": 90.7,
+          "unique_count": 4,
+          "examples": [
+            "2027-01-01 00:00:00",
+            "1",
+            "M",
+            "12"
+          ],
+          "all_values": [
+            "1",
+            "12",
+            "2027-01-01 00:00:00",
+            "M"
+          ]
+        }
+      ]
+    },
+    "Datetime": {
+      "rows": 35137,
+      "n_columns": 1,
+      "columns": [
+        {
+          "name": "Unnamed: 0",
+          "dtype": "object",
+          "null_count": 26500,
+          "null_pct": 75.42,
+          "unique_count": 8637,
+          "examples": [
+            "Zeitstempel 0h15",
+            "2026-01-01 00:00:00",
+            "2026-01-01 00:15:00",
+            "2026-01-01 00:30:00",
+            "2026-01-01 00:45:00"
+          ]
+        }
+      ]
+    },
+    "Uebersicht": {
+      "rows": 106,
+      "n_columns": 15,
+      "columns": [
+        {
+          "name": "Energieübersicht Schweiz 2026",
+          "dtype": "str",
+          "null_count": 93,
+          "null_pct": 87.74,
+          "unique_count": 13,
+          "examples": [
+            "Periode:",
+            "Summe produzierte Energie Regelblock Schweiz\nTotal energy production Swiss controlblock",
+            "Summe endverbrauchte Energie Regelblock Schweiz\nTotal energy consumed by end users in the Swiss controlblock",
+            "Summe verbrauchte Energie Regelblock Schweiz\nTotal energy consumption Swiss controlblock",
+            "Netto Ausspeisung aus dem Übertragungsnetz Schweiz\nNet outflow of the Swiss transmission grid"
+          ],
+          "all_values": [
+            "Import/Export/Transit",
+            "Negative Sekundärregelenergie\nNegative secondary control energy",
+            "Negative Tertiärregelenergie\nNegative tertiary control energy",
+            "Netto Ausspeisung aus dem Übertragungsnetz Schweiz\nNet outflow of the Swiss transmission grid",
+            "Periode:",
+            "Positive Sekundärregelenergie\nPositive secondary control energy",
+            "Positive Tertiärregelenergie\nPositive tertiary control energy",
+            "Regelenergiepreise\nControl energy prices",
+            "Summe endverbrauchte Energie Regelblock Schweiz\nTotal energy consumed by end users in the Swiss controlblock",
+            "Summe produzierte Energie Regelblock Schweiz\nTotal energy production Swiss controlblock",
+            "Summe verbrauchte Energie Regelblock Schweiz\nTotal energy consumption Swiss controlblock",
+            "Verbundaustausch\nCross Border Exchange",
+            "Vertikale Einspeisung ins Übertragungsnetz Schweiz\nGrid feed-in Swiss transmission grid"
+          ]
+        },
+        {
+          "name": "Unnamed: 1",
+          "dtype": "str",
+          "null_count": 75,
+          "null_pct": 70.75,
+          "unique_count": 15,
+          "examples": [
+            "E",
+            "Pmax",
+            "E",
+            "Pmax",
+            "E"
+          ],
+          "all_values": [
+            "AT→CH",
+            "CH→AT",
+            "CH→DE",
+            "CH→FR",
+            "CH→IT",
+            "DE→CH",
+            "E",
+            "Export",
+            "FR→CH",
+            "IT→CH",
+            "Import",
+            "Pmax",
+            "See sheet with timeseries",
+            "Siehe Blatt mit den Zeitreihen",
+            "Transit"
+          ]
+        },
+        {
+          "name": "Unnamed: 2",
+          "dtype": "float64",
+          "null_count": 97,
+          "null_pct": 91.51,
+          "unique_count": 9,
+          "min": -41276.5,
+          "max": 11784565.046657667,
+          "mean": 4801376.6521919565,
+          "median": 3292352.870029143
+        },
+        {
+          "name": "Unnamed: 3",
+          "dtype": "object",
+          "null_count": 74,
+          "null_pct": 69.81,
+          "unique_count": 12,
+          "examples": [
+            "2026-01-01 00:00:00",
+            "13794.452482908444",
+            "9970.454810853475",
+            "10569.792763172",
+            "5613.197840827999"
+          ],
+          "all_values": [
+            "-271.25714000000005",
+            "-538",
+            "10569.792763172",
+            "1069",
+            "13794.452482908444",
+            "2026-01-01 00:00:00",
+            "416.432672",
+            "5613.197840827999",
+            "8264.575152828",
+            "9970.454810853475",
+            "E",
+            "Pmax"
+          ]
+        },
+        {
+          "name": "Unnamed: 4",
+          "dtype": "float64",
+          "null_count": 84,
+          "null_pct": 79.25,
+          "unique_count": 22,
+          "min": 1696.2720000000002,
+          "max": 6650909.964,
+          "mean": 1065404.4777272728,
+          "median": 135130.62250000003
+        },
+        {
+          "name": "Unnamed: 5",
+          "dtype": "float64",
+          "null_count": 106,
+          "null_pct": 100.0,
+          "unique_count": 0,
+          "examples": []
+        },
+        {
+          "name": "Unnamed: 6",
+          "dtype": "float64",
+          "null_count": 106,
+          "null_pct": 100.0,
+          "unique_count": 0,
+          "examples": []
+        },
+        {
+          "name": "Unnamed: 7",
+          "dtype": "str",
+          "null_count": 105,
+          "null_pct": 99.06,
+          "unique_count": 1,
+          "examples": [
+            "-"
+          ],
+          "all_values": [
+            "-"
+          ]
+        },
+        {
+          "name": "Unnamed: 8",
+          "dtype": "datetime64[us]",
+          "null_count": 105,
+          "null_pct": 99.06,
+          "unique_count": 1,
+          "min_date": "2026-03-01 00:00:00",
+          "max_date": "2026-03-01 00:00:00"
+        },
+        {
+          "name": "Unnamed: 9",
+          "dtype": "float64",
+          "null_count": 106,
+          "null_pct": 100.0,
+          "unique_count": 0,
+          "examples": []
+        },
+        {
+          "name": "Unnamed: 10",
+          "dtype": "str",
+          "null_count": 66,
+          "null_pct": 62.26,
+          "unique_count": 2,
+          "examples": [
+            "MWh",
+            "MW",
+            "MWh",
+            "MW",
+            "MWh"
+          ],
+          "all_values": [
+            "MW",
+            "MWh"
+          ]
+        },
+        {
+          "name": "Unnamed: 11",
+          "dtype": "float64",
+          "null_count": 106,
+          "null_pct": 100.0,
+          "unique_count": 0,
+          "examples": []
+        },
+        {
+          "name": "Unnamed: 12",
+          "dtype": "float64",
+          "null_count": 106,
+          "null_pct": 100.0,
+          "unique_count": 0,
+          "examples": []
+        },
+        {
+          "name": "Unnamed: 13",
+          "dtype": "str",
+          "null_count": 94,
+          "null_pct": 88.68,
+          "unique_count": 11,
+          "examples": [
+            "Beschreibung\nDie Summe der produzierten Energie Regelblock Schweiz ist das Total aller Einspeisegänge der Bilanzgruppen in Viertelstundenauflösung. Diese werden von den Verteilnetzbetreibern an Swissgrid gemeldet.  Die Summe beinhaltet sämtliche im Regelblock Schweiz produzierte und ins Netz eingespeiste elektrische Energie. (Nur Produktionen die durch Lastgangmessung erfasst werden)",
+            "Beschreibung\nDie endverbrauchte Energie oder gemäss VSE Branchendokumente auch «Bruttolastgangsumme des eigenen Netz» (BLS/EN), ist die von den Endverbrauchern in allen Netzebenen bezogene Energie in Viertelstundenauflösung.  Diese Summe wird aus den BLS/EN der VNB im Regelblock Schweiz durch Swissgrid gebildet. (Nicht darin enthalten ist die Energie für Pumpen in Pumpspeicherkraftwerken, der Eigenbedarf von Kraftwerken sowie die Netzverluste)",
+            "Beschreibung\nDie verbrauchte Energie Regelblock Schweiz ist das Total aller Lastgänge der Bilanzgruppen in Viertelstundenauflösung. Diese werden von den Verteilnetzbetreibern an Swissgrid gemeldet. Die Summe beinhaltet sämtliche in der Schweiz aus dem Übertragungsnetz und den Verteilnetzen bezogene elektrische Energie. (Inklusive Verluste, Pumpenergie bei Pumpspeicherkraftwerken und  Eigenbedarf von Kraftwerken)",
+            "Beschreibung\nDie Netto Ausspeisung aus dem Übertragungsnetz ist die Energiemenge, welche effektiv aus dem Übertragungsnetz über direkt angeschlossene Transformatoren zu nachgelagerten Verteilnetzen, Endverbrauchern und Kraftwerken transportiert wurde. Die Netto Ausspeisung ist der positive Anteil der Bilanzierung aller vertikalen Übergabepunkte im Übertragunsgnetz zu Verteilnetzbetreibern, Endverbrauchern und Kraftwerken. Sie wird in Viertelstundenauflösung und in kWh aufbereitet.\n",
+            "Beschreibung\nDie Summe der vertikalen Einspeisungen errechnet sich aus allen Übergaben ins Übertragungsnetz über direkt angeschlossene Transformatoren und Leitungen von  Verteilnetzen und Kraftwerken. Die Summe der vertikalen Einspeisungen wird in Viertelstundenauflösung und in kWh aufbereitet."
+          ],
+          "all_values": [
+            "Beschreibung\nDie Netto Ausspeisung aus dem Übertragungsnetz ist die Energiemenge, welche effektiv aus dem Übertragungsnetz über direkt angeschlossene Transformatoren zu nachgelagerten Verteilnetzen, Endverbrauchern und Kraftwerken transportiert wurde. Die Netto Ausspeisung ist der positive Anteil der Bilanzierung aller vertikalen Übergabepunkte im Übertragunsgnetz zu Verteilnetzbetreibern, Endverbrauchern und Kraftwerken. Sie wird in Viertelstundenauflösung und in kWh aufbereitet.\n",
+            "Beschreibung\nDie Summe der abgegebenen Energiemengen in MWh pro Viertelstunde genettet, welche die Erzeugungseinheiten auf Basis eines SDL-Vertrages und durch Abruf von Swissgrid beziehen.",
+            "Beschreibung\nDie Summe der abgegebenen Energiemengen in MWh pro Viertelstunde, welche die Erzeugungseinheiten auf Basis eines SDL-Vertrages und durch Tertiärabruf von Swissgrid beziehen",
+            "Beschreibung\nDie Summe der bezogenen Energiemengen in MWh pro Viertelstunde genettet, welche die Erzeugungseinheiten auf Basis eines SDL-Vertrages und durch Abruf an Swissgrid liefern.",
+            "Beschreibung\nDie Summe der bezogenen Energiemengen in MWh pro Viertelstunde, welche die Erzeugungseinheiten auf Basis eines SDL-Vertrages und durch Tertiärabruf an Swissgrid liefern.",
+            "Beschreibung\nDie Summe der produzierten Energie Regelblock Schweiz ist das Total aller Einspeisegänge der Bilanzgruppen in Viertelstundenauflösung. Diese werden von den Verteilnetzbetreibern an Swissgrid gemeldet.  Die Summe beinhaltet sämtliche im Regelblock Schweiz produzierte und ins Netz eingespeiste elektrische Energie. (Nur Produktionen die durch Lastgangmessung erfasst werden)",
+            "Beschreibung\nDie Summe der vertikalen Einspeisungen errechnet sich aus allen Übergaben ins Übertragungsnetz über direkt angeschlossene Transformatoren und Leitungen von  Verteilnetzen und Kraftwerken. Die Summe der vertikalen Einspeisungen wird in Viertelstundenauflösung und in kWh aufbereitet.",
+            "Beschreibung\nDie endverbrauchte Energie oder gemäss VSE Branchendokumente auch «Bruttolastgangsumme des eigenen Netz» (BLS/EN), ist die von den Endverbrauchern in allen Netzebenen bezogene Energie in Viertelstundenauflösung.  Diese Summe wird aus den BLS/EN der VNB im Regelblock Schweiz durch Swissgrid gebildet. (Nicht darin enthalten ist die Energie für Pumpen in Pumpspeicherkraftwerken, der Eigenbedarf von Kraftwerken sowie die Netzverluste)",
+            "Beschreibung\nDie verbrauchte Energie Regelblock Schweiz ist das Total aller Lastgänge der Bilanzgruppen in Viertelstundenauflösung. Diese werden von den Verteilnetzbetreibern an Swissgrid gemeldet. Die Summe beinhaltet sämtliche in der Schweiz aus dem Übertragungsnetz und den Verteilnetzen bezogene elektrische Energie. (Inklusive Verluste, Pumpenergie bei Pumpspeicherkraftwerken und  Eigenbedarf von Kraftwerken)",
+            "Beschreibung\nDurchschnittliche Regelenergiepreise pro Viertelstunde auf zwei Nachkommastellen gerundet für die Produkte Sekundär- und Tertiärregelenergie.",
+            "Die Pfeilrichtungen dienen nur zur Illustration und müssen keiner echten Energierichtung entsprechen\nDirections of arrows only ilustrate the meaning and have no link to real energy flows"
+          ]
+        },
+        {
+          "name": "Unnamed: 14",
+          "dtype": "str",
+          "null_count": 96,
+          "null_pct": 90.57,
+          "unique_count": 10,
+          "examples": [
+            "Description\nThe total of the produced energy in the control block Switzerland. The aggregations of the feed-in sequences for the balancing groups are sent from the distribution network operators to Swissgrid. The sum contains all the energy produced and fed in the network. (Only productions plants equipped with load profile meters)",
+            "Description\nThe total of the end- user energy consumption includes all aggregates with the end-user consumptions for the Swiss Control block delivered by the distribution network operators to Swissgrid. Not included are grid losses or energy consumed for  power plant’s own requirements or to drive the pumps in pumped storage hydro power plant. \n",
+            "Description\nThe total of the consumed energy in the control block Switzerland. The aggregations of the consumption sequences for the balancing group are sent from the distribution network operators to Swissgrid. The sum contains all the energy consumed in the transmission and distribution grids. Included are grid losses, energy consumed for a power plant’s own requirements and to drive the pumps in pumped storage hydro power plant.",
+            "Description\nThe net outflow of the Swiss transmission grid is the amount of energy, which effectively flows over transformers out of the transmission grid into the distribution grids, towards end- users and power plants. The net outflow is the positive part of the netting of the vertical in feeds and outflows of the transmission grid. The resolution is 15 minutes and the energy is shown as kWh",
+            "Description\nThe total of the vertical in feed into the Swiss Transmission grid is the sum of all time series of production metering points and other in feeds over transformers and lines into the transmission grid. The resolution is 15 minutes and the energy is shown as kWh"
+          ],
+          "all_values": [
+            "Description\nAverage prices of control energy per 15 minutes rounded to two decimal places for secondary and tertiary control energy products.",
+            "Description\nThe net outflow of the Swiss transmission grid is the amount of energy, which effectively flows over transformers out of the transmission grid into the distribution grids, towards end- users and power plants. The net outflow is the positive part of the netting of the vertical in feeds and outflows of the transmission grid. The resolution is 15 minutes and the energy is shown as kWh",
+            "Description\nThe total of the consumed energy in the control block Switzerland. The aggregations of the consumption sequences for the balancing group are sent from the distribution network operators to Swissgrid. The sum contains all the energy consumed in the transmission and distribution grids. Included are grid losses, energy consumed for a power plant’s own requirements and to drive the pumps in pumped storage hydro power plant.",
+            "Description\nThe total of the end- user energy consumption includes all aggregates with the end-user consumptions for the Swiss Control block delivered by the distribution network operators to Swissgrid. Not included are grid losses or energy consumed for  power plant’s own requirements or to drive the pumps in pumped storage hydro power plant. \n",
+            "Description\nThe total of the fed in energy which generating units have sourced with secondary control energy Swissgrid based on an ancillary services contract. The energy quantity is a netting of production and consumption in MWh within a 15 minutes time period.",
+            "Description\nThe total of the fed in energy which generating units have sourced with tertiary control energy Swissgrid based on an ancillary services contract.",
+            "Description\nThe total of the produced energy in the control block Switzerland. The aggregations of the feed-in sequences for the balancing groups are sent from the distribution network operators to Swissgrid. The sum contains all the energy produced and fed in the network. (Only productions plants equipped with load profile meters)",
+            "Description\nThe total of the sourced energy which generating units have supplied with secondary control energy Swissgrid based on an ancillary services contract. The energy quantity is a netting of production and consumption in MWh within a 15 minutes time period.",
+            "Description\nThe total of the sourced energy which generating units have supplied with tertiary control energy Swissgrid based on an ancillary services contract.",
+            "Description\nThe total of the vertical in feed into the Swiss Transmission grid is the sum of all time series of production metering points and other in feeds over transformers and lines into the transmission grid. The resolution is 15 minutes and the energy is shown as kWh"
+          ]
+        }
+      ]
+    },
+    "Zeitreihen0h15": {
+      "rows": 8637,
+      "n_columns": 65,
+      "columns": [
+        {
+          "name": "Unnamed: 0",
+          "dtype": "str",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 8637,
+          "examples": [
+            "Zeitstempel",
+            "01.01.2026 00:00",
+            "01.01.2026 00:15",
+            "01.01.2026 00:30",
+            "01.01.2026 00:45"
+          ]
+        },
+        {
+          "name": "Summe endverbrauchte Energie Regelblock Schweiz\nTotal energy consumed by end users in the Swiss controlblock",
+          "dtype": "object",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 8637,
+          "examples": [
+            "kWh",
+            "1795064.4572350704",
+            "1793718.38915817",
+            "1788626.3760326235",
+            "1774753.0388584323"
+          ]
+        },
+        {
+          "name": "Summe produzierte Energie Regelblock Schweiz\nTotal energy production Swiss controlblock",
+          "dtype": "object",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 8637,
+          "examples": [
+            "kWh",
+            "1035916.6150000001",
+            "1041729.3059999999",
+            "1033602.191",
+            "1018937.775"
+          ]
+        },
+        {
+          "name": "Summe verbrauchte Energie Regelblock Schweiz\nTotal energy consumption Swiss controlblock",
+          "dtype": "object",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 8637,
+          "examples": [
+            "kWh",
+            "1920830.1817929994",
+            "1912744.0327929999",
+            "1903877.1437929992",
+            "1912557.4557929991"
+          ]
+        },
+        {
+          "name": "Netto Ausspeisung aus dem Übertragungsnetz Schweiz\nNet outflow of the Swiss transmission grid",
+          "dtype": "object",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 7159,
+          "examples": [
+            "kWh",
+            "852572.7982069999",
+            "838874.4612070001",
+            "838423.465207",
+            "863122.131207"
+          ]
+        },
+        {
+          "name": "Vertikale Einspeisung ins Übertragungsnetz Schweiz\nGrid feed-in Swiss transmission grid",
+          "dtype": "object",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 8637,
+          "examples": [
+            "kWh",
+            "1587766.1202069998",
+            "1583967.786207",
+            "1568106.786207",
+            "1571485.453207"
+          ]
+        },
+        {
+          "name": "Positive Sekundär-Regelenergie\nPositive secundary control energy",
+          "dtype": "object",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 8364,
+          "examples": [
+            "kWh",
+            "276.646",
+            "78.296",
+            "1245.533",
+            "9247.225"
+          ]
+        },
+        {
+          "name": "Negative Sekundär-Regelenergie\nNegative secundary control energy",
+          "dtype": "object",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 8032,
+          "examples": [
+            "kWh",
+            "-6260.099999999999",
+            "-14551.848000000002",
+            "-2887.8249999999994",
+            "-1.845"
+          ]
+        },
+        {
+          "name": "Positive Tertiär-Regelenergie\nPositive tertiary control energy",
+          "dtype": "object",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 522,
+          "examples": [
+            "kWh",
+            "62250",
+            "55500",
+            "36000",
+            "15000"
+          ]
+        },
+        {
+          "name": "Negative Tertiär-Regelenergie\nNegative tertiary control energy",
+          "dtype": "object",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 295,
+          "examples": [
+            "kWh",
+            "0",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        {
+          "name": "Verbundaustausch CH->AT\nCross Border Exchange CH->AT",
+          "dtype": "object",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 4410,
+          "examples": [
+            "kWh",
+            "50300",
+            "30400",
+            "25799.999999999996",
+            "29500"
+          ]
+        },
+        {
+          "name": "Verbundaustausch AT->CH\nCross Border Exchange AT->CH",
+          "dtype": "object",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 6552,
+          "examples": [
+            "kWh",
+            "186429",
+            "183792.00000000003",
+            "174134",
+            "171165"
+          ]
+        },
+        {
+          "name": "Verbundaustausch CH->DE\nCross Border Exchange CH->DE",
+          "dtype": "object",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 5813,
+          "examples": [
+            "kWh",
+            "6900",
+            "6900",
+            "7400",
+            "7300"
+          ]
+        },
+        {
+          "name": "Verbundaustausch DE->CH\nCross Border Exchange DE->CH",
+          "dtype": "object",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 8446,
+          "examples": [
+            "kWh",
+            "979386",
+            "968869.9999999998",
+            "921504.9999999999",
+            "922016.0000000001"
+          ]
+        },
+        {
+          "name": "Verbundaustausch CH->FR\nCross Border Exchange CH->FR",
+          "dtype": "object",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 2928,
+          "examples": [
+            "kWh",
+            "140664",
+            "154771.00000000003",
+            "149355.00000000003",
+            "120704"
+          ]
+        },
+        {
+          "name": "Verbundaustausch FR->CH\nCross Border Exchange FR->CH",
+          "dtype": "object",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 8602,
+          "examples": [
+            "kWh",
+            "311790",
+            "301123",
+            "277320.99999999994",
+            "285463"
+          ]
+        },
+        {
+          "name": "Verbundaustausch CH->IT\nCross Border Exchange CH->IT",
+          "dtype": "object",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 8615,
+          "examples": [
+            "kWh",
+            "429986",
+            "428417.00000000006",
+            "373632.99999999994",
+            "380000"
+          ]
+        },
+        {
+          "name": "Verbundaustausch IT->CH\nCross Border Exchange IT->CH",
+          "dtype": "object",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 7068,
+          "examples": [
+            "kWh",
+            "36042",
+            "39796",
+            "54546",
+            "53425"
+          ]
+        },
+        {
+          "name": "Transit",
+          "dtype": "object",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 8629,
+          "examples": [
+            "kWh",
+            "627850",
+            "620488",
+            "556188.0000000001",
+            "537504.0000000001"
+          ]
+        },
+        {
+          "name": "Import",
+          "dtype": "object",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 8624,
+          "examples": [
+            "kWh",
+            "1513647",
+            "1493580.9999999998",
+            "1427505.9999999998",
+            "1432069"
+          ]
+        },
+        {
+          "name": "Export",
+          "dtype": "object",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 8632,
+          "examples": [
+            "kWh",
+            "627850",
+            "620488",
+            "556188.0000000001",
+            "537504.0000000001"
+          ]
+        },
+        {
+          "name": "Durchschnittliche positive Sekundär-Regelenergie Preise\nAverage positive secondary control energy prices",
+          "dtype": "object",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 6281,
+          "examples": [
+            "Euro/MWh",
+            "169",
+            "169",
+            "169.18",
+            "149.21"
+          ]
+        },
+        {
+          "name": "Durchschnittliche negative Sekundär-Regelenergie Preise\nAverage negative secondary control energy prices",
+          "dtype": "object",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 6088,
+          "examples": [
+            "Euro/MWh",
+            "-70.11",
+            "-91.21",
+            "-56.5",
+            "20"
+          ]
+        },
+        {
+          "name": "Durchschnittliche positive Tertiär-Regelenergie Preise\nAverage positive tertiary control energy prices",
+          "dtype": "object",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 3489,
+          "examples": [
+            "Euro/MWh",
+            "124.27341365461848",
+            "124.06193693693693",
+            "123.57208333333331",
+            "122.89"
+          ]
+        },
+        {
+          "name": "Durchschnittliche negative Tertiär-Regelenergie Preise\nAverage negative tertiary control energy prices",
+          "dtype": "object",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 2244,
+          "examples": [
+            "Euro/MWh",
+            "0",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        {
+          "name": "Produktion Kanton AG\nProduction Canton AG",
+          "dtype": "object",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 8637,
+          "examples": [
+            "kWh",
+            "505796.011",
+            "505988.4829999998",
+            "505982.056",
+            "505951.54399999994"
+          ]
+        },
+        {
+          "name": "Verbrauch Kanton AG\nConsumption Canton AG",
+          "dtype": "object",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 8637,
+          "examples": [
+            "kWh",
+            "165702.60099999997",
+            "167748.53699999995",
+            "168000.52899999992",
+            "166532.5759999999"
+          ]
+        },
+        {
+          "name": "Produktion Kanton FR\nProduction Canton FR",
+          "dtype": "object",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 8637,
+          "examples": [
+            "kWh",
+            "7748.54",
+            "7718.014",
+            "7631.837000000001",
+            "7594.9310000000005"
+          ]
+        },
+        {
+          "name": "Verbrauch Kanton FR\nConsumption Canton FR",
+          "dtype": "object",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 8637,
+          "examples": [
+            "kWh",
+            "95248.49799999999",
+            "96049.47099999999",
+            "95701.425",
+            "95617.08299999998"
+          ]
+        },
+        {
+          "name": "Produktion Kanton GL\nProduction Canton GL",
+          "dtype": "object",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 8637,
+          "examples": [
+            "kWh",
+            "2725.7729999999997",
+            "2561.057",
+            "2636.547",
+            "4326.271"
+          ]
+        },
+        {
+          "name": "Verbrauch Kanton GL\nConsumption Canton GL",
+          "dtype": "object",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 8635,
+          "examples": [
+            "kWh",
+            "12072.091",
+            "11965.972999999996",
+            "11818.212",
+            "11845.123999999998"
+          ]
+        },
+        {
+          "name": "Produktion Kanton GR\nProduction Canton GR",
+          "dtype": "object",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 8637,
+          "examples": [
+            "kWh",
+            "97152.48400000001",
+            "106048.50799999999",
+            "109423.36899999996",
+            "105130.753"
+          ]
+        },
+        {
+          "name": "Verbrauch Kanton GR\nConsumption Canton GR",
+          "dtype": "object",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 8637,
+          "examples": [
+            "kWh",
+            "87804.33700000004",
+            "87685.358",
+            "87403.78000000003",
+            "86398.44400000002"
+          ]
+        },
+        {
+          "name": "Produktion Kanton LU\nProduction Canton LU",
+          "dtype": "object",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 8636,
+          "examples": [
+            "kWh",
+            "7768.78",
+            "7752.896",
+            "8069.771000000001",
+            "10225.489"
+          ]
+        },
+        {
+          "name": "Verbrauch Kanton LU\nConsumption Canton LU",
+          "dtype": "object",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 8637,
+          "examples": [
+            "kWh",
+            "95425.85599999999",
+            "95114.39399999997",
+            "96898.611",
+            "97972.48900000002"
+          ]
+        },
+        {
+          "name": "Produktion Kanton NE\nProduction Canton NE",
+          "dtype": "object",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 8618,
+          "examples": [
+            "kWh",
+            "195.625",
+            "283.89799999999997",
+            "322.293",
+            "315.516"
+          ]
+        },
+        {
+          "name": "Verbrauch Kanton NE\nConsumption Canton NE",
+          "dtype": "object",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 8637,
+          "examples": [
+            "kWh",
+            "14857.323000000002",
+            "14607.556",
+            "14216.752999999997",
+            "13998.768000000002"
+          ]
+        },
+        {
+          "name": "Produktion Kanton SO\nProduction Canton SO",
+          "dtype": "object",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 8637,
+          "examples": [
+            "kWh",
+            "6280.342",
+            "5769.456",
+            "5749.174",
+            "5745.457000000001"
+          ]
+        },
+        {
+          "name": "Verbrauch Kanton SO\nConsumption Canton SO",
+          "dtype": "object",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 8637,
+          "examples": [
+            "kWh",
+            "44020.45399999997",
+            "43915.19599999995",
+            "44353.409999999996",
+            "44088.428"
+          ]
+        },
+        {
+          "name": "Produktion Kanton SG\nProduction Canton SG",
+          "dtype": "object",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 8637,
+          "examples": [
+            "kWh",
+            "8993.9746",
+            "9009.798999999999",
+            "9018.2188",
+            "12022.805399999997"
+          ]
+        },
+        {
+          "name": "Verbrauch Kanton SG\nConsumption Canton SG",
+          "dtype": "object",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 8637,
+          "examples": [
+            "kWh",
+            "99897.5102",
+            "98711.07799999998",
+            "96656.78900000002",
+            "94882.18159999997"
+          ]
+        },
+        {
+          "name": "Produktion Kanton TI\nProduction Canton TI",
+          "dtype": "object",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 8637,
+          "examples": [
+            "kWh",
+            "67083.252",
+            "69903.40699999999",
+            "68450.599",
+            "66579.39100000002"
+          ]
+        },
+        {
+          "name": "Verbrauch Kanton TI\nConsumption Canton TI",
+          "dtype": "object",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 8637,
+          "examples": [
+            "kWh",
+            "84093.798",
+            "83623.81900000002",
+            "82100.90799999995",
+            "81529.75499999998"
+          ]
+        },
+        {
+          "name": "Produktion Kanton TG\nProduction Canton TG",
+          "dtype": "object",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 8637,
+          "examples": [
+            "kWh",
+            "2701.5170000000003",
+            "2678.4400000000005",
+            "2680.163",
+            "2857.345000000001"
+          ]
+        },
+        {
+          "name": "Verbrauch Kanton TG\nConsumption Canton TG",
+          "dtype": "object",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 8637,
+          "examples": [
+            "kWh",
+            "55844.58200000004",
+            "56145.721999999936",
+            "56294.39899999997",
+            "55809.564"
+          ]
+        },
+        {
+          "name": "Produktion Kanton VS\nProduction Canton VS",
+          "dtype": "object",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 8637,
+          "examples": [
+            "kWh",
+            "145791.54899999997",
+            "147984.73900000006",
+            "134195.84899999996",
+            "124679.459"
+          ]
+        },
+        {
+          "name": "Verbrauch Kanton VS\nConsumption Canton VS",
+          "dtype": "object",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 8637,
+          "examples": [
+            "kWh",
+            "115410.08399999994",
+            "114761.44699999999",
+            "114315.02800000006",
+            "135964.76099999997"
+          ]
+        },
+        {
+          "name": "Produktion Kantone AI, AR\nProduction Cantons AI, AR",
+          "dtype": "object",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 8637,
+          "examples": [
+            "kWh",
+            "495.2714",
+            "488.17600000000004",
+            "488.5742000000001",
+            "1529.2506"
+          ]
+        },
+        {
+          "name": "Verbrauch Kantone AI, AR\nConsumption Cantons AI, AR",
+          "dtype": "object",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 8636,
+          "examples": [
+            "kWh",
+            "18239.0828",
+            "17965.825000000004",
+            "17653.815000000002",
+            "17292.286400000005"
+          ]
+        },
+        {
+          "name": "Produktion Kantone BL, BS\nProduction Cantons BL, BS",
+          "dtype": "object",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 8635,
+          "examples": [
+            "kWh",
+            "17352.51",
+            "17211.354",
+            "16226.856",
+            "15510.227"
+          ]
+        },
+        {
+          "name": "Verbrauch Kantone BL, BS\nConsumption Cantons BL, BS",
+          "dtype": "object",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 8636,
+          "examples": [
+            "kWh",
+            "95473.244",
+            "96600.437",
+            "96784.123",
+            "95987.91900000001"
+          ]
+        },
+        {
+          "name": "Produktion Kantone BE, JU\nProduction Cantons BE, JU",
+          "dtype": "object",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 8637,
+          "examples": [
+            "kWh",
+            "48039.115000000005",
+            "41580.26699999997",
+            "45684.325000000026",
+            "44107.302"
+          ]
+        },
+        {
+          "name": "Verbrauch Kantone BE, JU\nConsumption Cantons BE, JU",
+          "dtype": "object",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 8637,
+          "examples": [
+            "kWh",
+            "257175.20899999986",
+            "254675.05700000012",
+            "256286.377",
+            "255053.83900000024"
+          ]
+        },
+        {
+          "name": "Produktion Kantone SZ, ZG\nProduction Cantons SZ, ZG",
+          "dtype": "object",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 8637,
+          "examples": [
+            "kWh",
+            "5683.503",
+            "5597.133",
+            "5330.437",
+            "5113.7480000000005"
+          ]
+        },
+        {
+          "name": "Verbrauch Kantone SZ, ZG\nConsumption Cantons SZ, ZG",
+          "dtype": "object",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 8637,
+          "examples": [
+            "kWh",
+            "62153.662999999986",
+            "61838.11",
+            "61986.949",
+            "61027.189999999995"
+          ]
+        },
+        {
+          "name": "Produktion Kantone OW, NW, UR\nProduction Cantons OW, NW, UR",
+          "dtype": "object",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 8637,
+          "examples": [
+            "kWh",
+            "9350.685",
+            "9273.502",
+            "9182.137",
+            "5666.683"
+          ]
+        },
+        {
+          "name": "Verbrauch Kantone OW, NW, UR\nConsumption Cantons OW, NW, UR",
+          "dtype": "object",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 8636,
+          "examples": [
+            "kWh",
+            "34663.68400000001",
+            "34268.501000000004",
+            "34013.136999999995",
+            "33555.681"
+          ]
+        },
+        {
+          "name": "Produktion Kantone GE, VD\nProduction Cantons GE, VD",
+          "dtype": "object",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 8637,
+          "examples": [
+            "kWh",
+            "20366.862",
+            "20350.982000000004",
+            "20183.224",
+            "19773.072"
+          ]
+        },
+        {
+          "name": "Verbrauch Kantone GE, VD\nConsumption Cantons GE, VD",
+          "dtype": "object",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 8637,
+          "examples": [
+            "kWh",
+            "204384.89599999995",
+            "198286.31300000002",
+            "196354.19200000007",
+            "196313.92499999993"
+          ]
+        },
+        {
+          "name": "Produktion Kantone SH, ZH\nProduction Cantons SH, ZH",
+          "dtype": "object",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 8637,
+          "examples": [
+            "kWh",
+            "19881.532000000003",
+            "19872.380000000005",
+            "19842.117999999995",
+            "19950.159"
+          ]
+        },
+        {
+          "name": "Verbrauch Kantone SH, ZH\nConsumption Cantons SH, ZH",
+          "dtype": "object",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 8637,
+          "examples": [
+            "kWh",
+            "305189.731",
+            "306512.69600000005",
+            "301908.8890000003",
+            "300225.28400000004"
+          ]
+        },
+        {
+          "name": "Produktion Kantonsübergreifend\nProduction across Cantons",
+          "dtype": "object",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 8636,
+          "examples": [
+            "kWh",
+            "59820.252",
+            "58947.632",
+            "59857.262",
+            "59304.905"
+          ]
+        },
+        {
+          "name": "Verbrauch Kantonsübergreifend\nConsumption across Cantons",
+          "dtype": "object",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 8637,
+          "examples": [
+            "kWh",
+            "56918.42079299975",
+            "56315.21279300004",
+            "55394.58679299973",
+            "52838.87479299954"
+          ]
+        },
+        {
+          "name": "Produktion Regelzone CH - Ausländische Gebiete\nProduction control area CH - foreign territories",
+          "dtype": "object",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 8631,
+          "examples": [
+            "kWh",
+            "2689.0370000000003",
+            "2709.1830000000004",
+            "2647.381",
+            "2553.467"
+          ]
+        },
+        {
+          "name": "Verbrauch Regelzone CH - Ausländische Gebiete\nConsumption control area CH - foreign territories",
+          "dtype": "object",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 8636,
+          "examples": [
+            "kWh",
+            "16255.117000000002",
+            "15953.33",
+            "15735.231000000002",
+            "15623.283"
+          ]
+        }
+      ]
+    }
+  }
+}

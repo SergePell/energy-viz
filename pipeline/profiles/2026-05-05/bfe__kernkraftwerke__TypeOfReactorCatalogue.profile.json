@@ -1,0 +1,85 @@
+{
+  "format": "csv",
+  "encoding": "utf-8",
+  "separator": ",",
+  "skipped_header_rows": 0,
+  "rows": 2,
+  "n_columns": 5,
+  "columns": [
+    {
+      "name": "ID",
+      "dtype": "str",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 2,
+      "examples": [
+        "tor1",
+        "tor2"
+      ],
+      "all_values": [
+        "tor1",
+        "tor2"
+      ]
+    },
+    {
+      "name": "DE",
+      "dtype": "str",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 2,
+      "examples": [
+        "Siedewasserreaktor",
+        "Druckwasserreaktor"
+      ],
+      "all_values": [
+        "Druckwasserreaktor",
+        "Siedewasserreaktor"
+      ]
+    },
+    {
+      "name": "FR",
+      "dtype": "str",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 2,
+      "examples": [
+        "Réacteur à eau bouillante",
+        "Réacteur à eau pressurisée"
+      ],
+      "all_values": [
+        "Réacteur à eau bouillante",
+        "Réacteur à eau pressurisée"
+      ]
+    },
+    {
+      "name": "IT",
+      "dtype": "str",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 2,
+      "examples": [
+        "Reattore ad acqua bollente",
+        "Reattore ad acqua sotto pressione"
+      ],
+      "all_values": [
+        "Reattore ad acqua bollente",
+        "Reattore ad acqua sotto pressione"
+      ]
+    },
+    {
+      "name": "EN",
+      "dtype": "str",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 2,
+      "examples": [
+        "Boiling water reactor",
+        "Pressurised water reactor"
+      ],
+      "all_values": [
+        "Boiling water reactor",
+        "Pressurised water reactor"
+      ]
+    }
+  ]
+}

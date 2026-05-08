@@ -1,0 +1,85 @@
+{
+  "format": "csv",
+  "encoding": "utf-8",
+  "separator": ",",
+  "skipped_header_rows": 0,
+  "rows": 2,
+  "n_columns": 5,
+  "columns": [
+    {
+      "name": "ID",
+      "dtype": "str",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 2,
+      "examples": [
+        "toc1",
+        "toc2"
+      ],
+      "all_values": [
+        "toc1",
+        "toc2"
+      ]
+    },
+    {
+      "name": "DE",
+      "dtype": "str",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 2,
+      "examples": [
+        "Flusswasserkühlung",
+        "Kühlung mit Kühlturm"
+      ],
+      "all_values": [
+        "Flusswasserkühlung",
+        "Kühlung mit Kühlturm"
+      ]
+    },
+    {
+      "name": "FR",
+      "dtype": "str",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 2,
+      "examples": [
+        "Refroidissement à l'eau de rivière",
+        "Refroidissement par tour de refroidissement"
+      ],
+      "all_values": [
+        "Refroidissement par tour de refroidissement",
+        "Refroidissement à l'eau de rivière"
+      ]
+    },
+    {
+      "name": "IT",
+      "dtype": "str",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 2,
+      "examples": [
+        "Raffreddamento con acqua di fiume ",
+        "Raffreddamento me-diante torre di raffred-damento"
+      ],
+      "all_values": [
+        "Raffreddamento con acqua di fiume ",
+        "Raffreddamento me-diante torre di raffred-damento"
+      ]
+    },
+    {
+      "name": "EN",
+      "dtype": "str",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 2,
+      "examples": [
+        "River water cooling system",
+        "Cooling with cooling tower"
+      ],
+      "all_values": [
+        "Cooling with cooling tower",
+        "River water cooling system"
+      ]
+    }
+  ]
+}

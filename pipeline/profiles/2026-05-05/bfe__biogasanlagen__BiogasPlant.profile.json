@@ -1,0 +1,162 @@
+{
+  "format": "csv",
+  "encoding": "latin-1",
+  "separator": ",",
+  "skipped_header_rows": 0,
+  "rows": 153,
+  "n_columns": 13,
+  "columns": [
+    {
+      "name": "Number",
+      "dtype": "str",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 153,
+      "examples": [
+        "plant131",
+        "plant151",
+        "plant156",
+        "plant78",
+        "plant148"
+      ]
+    },
+    {
+      "name": "Name",
+      "dtype": "str",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 151,
+      "examples": [
+        "*Biogaz Raphaël & Mathieu Etique Montignez",
+        "B Daniel Hofstetter - Versuchsholzgaskraftwerk",
+        "B Elisabeth Giot Guschelmuth - BHKW Dachs",
+        "Biogasanlage Schürch Madiswil",
+        "B Hanspeter Burri Oberbalm - BHKW Dachs (Biodiesel)"
+      ]
+    },
+    {
+      "name": "Place",
+      "dtype": "str",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 137,
+      "examples": [
+        "Montignez",
+        "Schüpbach",
+        "Guschelmuth",
+        "Madiswil",
+        "Oberbalm"
+      ]
+    },
+    {
+      "name": "Operator",
+      "dtype": "str",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 134,
+      "examples": [
+        "Etique Mathieu, Etique Raphaël",
+        "-",
+        "Giot Elisabeth, Bokhoven Lambert ",
+        "Biopower Schürch AG",
+        "-"
+      ]
+    },
+    {
+      "name": "BeginningOfOperation",
+      "dtype": "int64",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 17,
+      "min": 2004,
+      "max": 2020,
+      "mean": 2012.3398692810458,
+      "median": 2012.0
+    },
+    {
+      "name": "Web",
+      "dtype": "str",
+      "null_count": 99,
+      "null_pct": 64.71,
+      "unique_count": 54,
+      "examples": [
+        "https://www.hhkaeser.ch/",
+        "https://www.bkoag.ch/sol-e/anlagen-referenzen/vergaerbare-biomasse/biogasanlage-la-prairie-biogaz-pr",
+        "http://www.duchliranch.ch/index.php/biogas/",
+        "https://www.mooshof.ch/betriebsportrait.html",
+        "http://www.recgas.ch/"
+      ]
+    },
+    {
+      "name": "CombinedHeatAndPower",
+      "dtype": "float64",
+      "null_count": 1,
+      "null_pct": 0.65,
+      "unique_count": 99,
+      "min": 5.4,
+      "max": 2170.0,
+      "mean": 311.4506578947368,
+      "median": 235.0
+    },
+    {
+      "name": "UpgradingCapacity",
+      "dtype": "float64",
+      "null_count": 153,
+      "null_pct": 100.0,
+      "unique_count": 0,
+      "examples": []
+    },
+    {
+      "name": "FacilityKind",
+      "dtype": "int64",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 2,
+      "min": 1,
+      "max": 2,
+      "mean": 1.130718954248366,
+      "median": 1.0
+    },
+    {
+      "name": "ValorizationType",
+      "dtype": "int64",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 1,
+      "min": 101,
+      "max": 101,
+      "mean": 101.0,
+      "median": 101.0
+    },
+    {
+      "name": "UpgradingTechnology",
+      "dtype": "float64",
+      "null_count": 153,
+      "null_pct": 100.0,
+      "unique_count": 0,
+      "examples": []
+    },
+    {
+      "name": "x",
+      "dtype": "float64",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 153,
+      "min": 2493628.592,
+      "max": 2802662.0,
+      "mean": 2638790.418209385,
+      "median": 2640495.0579999983
+    },
+    {
+      "name": "y",
+      "dtype": "float64",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 153,
+      "min": 1095594.9514766603,
+      "max": 1290098.2555847224,
+      "mean": 1215628.9314990959,
+      "median": 1218837.7049588012
+    }
+  ]
+}

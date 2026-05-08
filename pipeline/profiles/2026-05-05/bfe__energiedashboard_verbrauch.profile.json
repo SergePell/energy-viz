@@ -1,0 +1,46 @@
+{
+  "format": "csv",
+  "encoding": "utf-8",
+  "separator": ",",
+  "skipped_header_rows": 0,
+  "rows": 3377,
+  "n_columns": 3,
+  "columns": [
+    {
+      "name": "Datum",
+      "dtype": "str",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 3377,
+      "examples": [
+        "2017-01-01",
+        "2017-01-02",
+        "2017-01-03",
+        "2017-01-04",
+        "2017-01-05"
+      ]
+    },
+    {
+      "name": "Landesverbrauch_GWh",
+      "dtype": "int64",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 105,
+      "min": 120,
+      "max": 231,
+      "mean": 173.50577435593723,
+      "median": 170.0
+    },
+    {
+      "name": "Endverbrauch_GWh",
+      "dtype": "int64",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 113,
+      "min": 98,
+      "max": 213,
+      "mean": 151.55966834468464,
+      "median": 149.0
+    }
+  ]
+}

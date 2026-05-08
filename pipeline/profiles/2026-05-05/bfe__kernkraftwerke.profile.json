@@ -1,0 +1,285 @@
+{
+  "format": "gpkg",
+  "all_layers": [
+    "NuclearPowerPlant",
+    "TypeOfReactorCatalogue",
+    "TypeOfCoolingSystemCatalogue",
+    "PhaseOfLifeCatalogue",
+    "NuclearPowerReactor",
+    "Organisation"
+  ],
+  "profiled_layer": "NuclearPowerPlant",
+  "crs": "EPSG:2056",
+  "geometry_type": "{'Point': 4}",
+  "bbox": [
+    2587018.0,
+    1201992.0,
+    2659448.0,
+    1272573.0
+  ],
+  "rows": 4,
+  "n_columns": 15,
+  "columns": [
+    {
+      "name": "PlantID",
+      "dtype": "str",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 4,
+      "examples": [
+        "plant1",
+        "plant2",
+        "plant3",
+        "plant4"
+      ],
+      "all_values": [
+        "plant1",
+        "plant2",
+        "plant3",
+        "plant4"
+      ]
+    },
+    {
+      "name": "Name",
+      "dtype": "str",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 4,
+      "examples": [
+        "Kernkraftwerk Mühleberg",
+        "Kernkraftwerk Gösgen",
+        "Kernkraftwerk Beznau",
+        "Kernkraftwerk Leibstadt"
+      ],
+      "all_values": [
+        "Kernkraftwerk Beznau",
+        "Kernkraftwerk Gösgen",
+        "Kernkraftwerk Leibstadt",
+        "Kernkraftwerk Mühleberg"
+      ]
+    },
+    {
+      "name": "Abbreviation",
+      "dtype": "str",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 4,
+      "examples": [
+        "KKM",
+        "KKG",
+        "KKB",
+        "KKL"
+      ],
+      "all_values": [
+        "KKB",
+        "KKG",
+        "KKL",
+        "KKM"
+      ]
+    },
+    {
+      "name": "Canton",
+      "dtype": "str",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 3,
+      "examples": [
+        "BE",
+        "SO",
+        "AG",
+        "AG"
+      ],
+      "all_values": [
+        "AG",
+        "BE",
+        "SO"
+      ]
+    },
+    {
+      "name": "Municipality",
+      "dtype": "str",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 4,
+      "examples": [
+        "Mühleberg",
+        "Däniken",
+        "Döttingen",
+        "Leibstadt"
+      ],
+      "all_values": [
+        "Däniken",
+        "Döttingen",
+        "Leibstadt",
+        "Mühleberg"
+      ]
+    },
+    {
+      "name": "EnforcementOfLegislation1",
+      "dtype": "str",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 1,
+      "examples": [
+        "o1",
+        "o1",
+        "o1",
+        "o1"
+      ],
+      "all_values": [
+        "o1"
+      ]
+    },
+    {
+      "name": "EnforcementOfLegislation2",
+      "dtype": "str",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 1,
+      "examples": [
+        "o2",
+        "o2",
+        "o2",
+        "o2"
+      ],
+      "all_values": [
+        "o2"
+      ]
+    },
+    {
+      "name": "EnforcementOfLegislation3",
+      "dtype": "str",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 1,
+      "examples": [
+        "o3",
+        "o3",
+        "o3",
+        "o3"
+      ],
+      "all_values": [
+        "o3"
+      ]
+    },
+    {
+      "name": "LicenceD",
+      "dtype": "str",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 1,
+      "examples": [
+        "Betriebsbewilligungen für KKW werden in der Schweiz grundsätzlich unbefristet erteilt. KKW können solange betrieben werden als ihre Sicherheit gewährleistet ist. Sollten die Voraussetzungen für den sicheren Betrieb eines Kernkraftwerks einmal nicht mehr gegeben sein, kann jederzeit die Betriebsbewilligung entzogen werden. Sind Ausserbetriebnahmekriterien gemäss Verordnung des UVEK über die Methodik und die Randbedingungen zur Überprüfung der Kriterien für die vorläufige Ausserbetriebnahme von Kernkraftwerken erfüllt, muss der Bewilligungsinhaber sein Werk unverzüglich ausser Betrieb nehmen.",
+        "Betriebsbewilligungen für KKW werden in der Schweiz grundsätzlich unbefristet erteilt. KKW können solange betrieben werden als ihre Sicherheit gewährleistet ist. Sollten die Voraussetzungen für den sicheren Betrieb eines Kernkraftwerks einmal nicht mehr gegeben sein, kann jederzeit die Betriebsbewilligung entzogen werden. Sind Ausserbetriebnahmekriterien gemäss Verordnung des UVEK über die Methodik und die Randbedingungen zur Überprüfung der Kriterien für die vorläufige Ausserbetriebnahme von Kernkraftwerken erfüllt, muss der Bewilligungsinhaber sein Werk unverzüglich ausser Betrieb nehmen.",
+        "Betriebsbewilligungen für KKW werden in der Schweiz grundsätzlich unbefristet erteilt. KKW können solange betrieben werden als ihre Sicherheit gewährleistet ist. Sollten die Voraussetzungen für den sicheren Betrieb eines Kernkraftwerks einmal nicht mehr gegeben sein, kann jederzeit die Betriebsbewilligung entzogen werden. Sind Ausserbetriebnahmekriterien gemäss Verordnung des UVEK über die Methodik und die Randbedingungen zur Überprüfung der Kriterien für die vorläufige Ausserbetriebnahme von Kernkraftwerken erfüllt, muss der Bewilligungsinhaber sein Werk unverzüglich ausser Betrieb nehmen.",
+        "Betriebsbewilligungen für KKW werden in der Schweiz grundsätzlich unbefristet erteilt. KKW können solange betrieben werden als ihre Sicherheit gewährleistet ist. Sollten die Voraussetzungen für den sicheren Betrieb eines Kernkraftwerks einmal nicht mehr gegeben sein, kann jederzeit die Betriebsbewilligung entzogen werden. Sind Ausserbetriebnahmekriterien gemäss Verordnung des UVEK über die Methodik und die Randbedingungen zur Überprüfung der Kriterien für die vorläufige Ausserbetriebnahme von Kernkraftwerken erfüllt, muss der Bewilligungsinhaber sein Werk unverzüglich ausser Betrieb nehmen."
+      ],
+      "all_values": [
+        "Betriebsbewilligungen für KKW werden in der Schweiz grundsätzlich unbefristet erteilt. KKW können solange betrieben werden als ihre Sicherheit gewährleistet ist. Sollten die Voraussetzungen für den sicheren Betrieb eines Kernkraftwerks einmal nicht mehr gegeben sein, kann jederzeit die Betriebsbewilligung entzogen werden. Sind Ausserbetriebnahmekriterien gemäss Verordnung des UVEK über die Methodik und die Randbedingungen zur Überprüfung der Kriterien für die vorläufige Ausserbetriebnahme von Kernkraftwerken erfüllt, muss der Bewilligungsinhaber sein Werk unverzüglich ausser Betrieb nehmen."
+      ]
+    },
+    {
+      "name": "LicenceF",
+      "dtype": "str",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 1,
+      "examples": [
+        "En Suisse, l'autorisation d'exploiter une centrale nucléaire est en principe délivrée pour une durée illimitée. Une centrale nucléaire peut être exploitée aussi longtemps que sa sécurité est garantie. Si les conditions d'une exploitation sûre d'une centrale nucléaire ne sont plus remplies, l'autorisation d'exploiter peut être retirée à tout moment. Le détenteur de l'autorisation d'exploiter doit procéder sans délai à la mise hors service de son installation si les critères de mise hors service figurant dans l'ordonnance du DETEC sur la méthode et sur les standards de vérification des critères de la mise hors service provisoire d'une centrale nucléaire sont remplis.",
+        "En Suisse, l'autorisation d'exploiter une centrale nucléaire est en principe délivrée pour une durée illimitée. Une centrale nucléaire peut être exploitée aussi longtemps que sa sécurité est garantie. Si les conditions d'une exploitation sûre d'une centrale nucléaire ne sont plus remplies, l'autorisation d'exploiter peut être retirée à tout moment. Le détenteur de l'autorisation d'exploiter doit procéder sans délai à la mise hors service de son installation si les critères de mise hors service figurant dans l'ordonnance du DETEC sur la méthode et sur les standards de vérification des critères de la mise hors service provisoire d'une centrale nucléaire sont remplis.",
+        "En Suisse, l'autorisation d'exploiter une centrale nucléaire est en principe délivrée pour une durée illimitée. Une centrale nucléaire peut être exploitée aussi longtemps que sa sécurité est garantie. Si les conditions d'une exploitation sûre d'une centrale nucléaire ne sont plus remplies, l'autorisation d'exploiter peut être retirée à tout moment. Le détenteur de l'autorisation d'exploiter doit procéder sans délai à la mise hors service de son installation si les critères de mise hors service figurant dans l'ordonnance du DETEC sur la méthode et sur les standards de vérification des critères de la mise hors service provisoire d'une centrale nucléaire sont remplis.",
+        "En Suisse, l'autorisation d'exploiter une centrale nucléaire est en principe délivrée pour une durée illimitée. Une centrale nucléaire peut être exploitée aussi longtemps que sa sécurité est garantie. Si les conditions d'une exploitation sûre d'une centrale nucléaire ne sont plus remplies, l'autorisation d'exploiter peut être retirée à tout moment. Le détenteur de l'autorisation d'exploiter doit procéder sans délai à la mise hors service de son installation si les critères de mise hors service figurant dans l'ordonnance du DETEC sur la méthode et sur les standards de vérification des critères de la mise hors service provisoire d'une centrale nucléaire sont remplis."
+      ],
+      "all_values": [
+        "En Suisse, l'autorisation d'exploiter une centrale nucléaire est en principe délivrée pour une durée illimitée. Une centrale nucléaire peut être exploitée aussi longtemps que sa sécurité est garantie. Si les conditions d'une exploitation sûre d'une centrale nucléaire ne sont plus remplies, l'autorisation d'exploiter peut être retirée à tout moment. Le détenteur de l'autorisation d'exploiter doit procéder sans délai à la mise hors service de son installation si les critères de mise hors service figurant dans l'ordonnance du DETEC sur la méthode et sur les standards de vérification des critères de la mise hors service provisoire d'une centrale nucléaire sont remplis."
+      ]
+    },
+    {
+      "name": "LicenceI",
+      "dtype": "str",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 1,
+      "examples": [
+        "In Svizzera le licenze d'esercizio per le centrali nucleari sono di regola rilasciate senza limitazioni temporali. Una centrale nucleare può essere esercitata fintantoché la sua sicurezza è garantita. Se i presupposti per esercitare in modo sicuro una centrale nucleare non dovessero più essere soddisfatti, la licenza d'esercizio può essere revocata in qualsiasi momento. Se sono soddisfatti i criteri per la messa fuori servizio indicati nell'ordinanza del DATEC sulla metodica e le condizioni marginali per la verifica dei criteri per la messa fuori servizio temporanea di centrali nucleari, il titolare della licenza deve immediatamente mettere fuori servizio l'impianto.",
+        "In Svizzera le licenze d'esercizio per le centrali nucleari sono di regola rilasciate senza limitazioni temporali. Una centrale nucleare può essere esercitata fintantoché la sua sicurezza è garantita. Se i presupposti per esercitare in modo sicuro una centrale nucleare non dovessero più essere soddisfatti, la licenza d'esercizio può essere revocata in qualsiasi momento. Se sono soddisfatti i criteri per la messa fuori servizio indicati nell'ordinanza del DATEC sulla metodica e le condizioni marginali per la verifica dei criteri per la messa fuori servizio temporanea di centrali nucleari, il titolare della licenza deve immediatamente mettere fuori servizio l'impianto.",
+        "In Svizzera le licenze d'esercizio per le centrali nucleari sono di regola rilasciate senza limitazioni temporali. Una centrale nucleare può essere esercitata fintantoché la sua sicurezza è garantita. Se i presupposti per esercitare in modo sicuro una centrale nucleare non dovessero più essere soddisfatti, la licenza d'esercizio può essere revocata in qualsiasi momento. Se sono soddisfatti i criteri per la messa fuori servizio indicati nell'ordinanza del DATEC sulla metodica e le condizioni marginali per la verifica dei criteri per la messa fuori servizio temporanea di centrali nucleari, il titolare della licenza deve immediatamente mettere fuori servizio l'impianto.",
+        "In Svizzera le licenze d'esercizio per le centrali nucleari sono di regola rilasciate senza limitazioni temporali. Una centrale nucleare può essere esercitata fintantoché la sua sicurezza è garantita. Se i presupposti per esercitare in modo sicuro una centrale nucleare non dovessero più essere soddisfatti, la licenza d'esercizio può essere revocata in qualsiasi momento. Se sono soddisfatti i criteri per la messa fuori servizio indicati nell'ordinanza del DATEC sulla metodica e le condizioni marginali per la verifica dei criteri per la messa fuori servizio temporanea di centrali nucleari, il titolare della licenza deve immediatamente mettere fuori servizio l'impianto."
+      ],
+      "all_values": [
+        "In Svizzera le licenze d'esercizio per le centrali nucleari sono di regola rilasciate senza limitazioni temporali. Una centrale nucleare può essere esercitata fintantoché la sua sicurezza è garantita. Se i presupposti per esercitare in modo sicuro una centrale nucleare non dovessero più essere soddisfatti, la licenza d'esercizio può essere revocata in qualsiasi momento. Se sono soddisfatti i criteri per la messa fuori servizio indicati nell'ordinanza del DATEC sulla metodica e le condizioni marginali per la verifica dei criteri per la messa fuori servizio temporanea di centrali nucleari, il titolare della licenza deve immediatamente mettere fuori servizio l'impianto."
+      ]
+    },
+    {
+      "name": "LicenceE",
+      "dtype": "str",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 1,
+      "examples": [
+        "Operating licenses for nuclear power plants (NPPs) in Switzerland are essentially granted on a permanent basis. NPPs can be operated as long as their security is ensured. Once the conditions for the safe operation of a nuclear power plant can no longer be guaranteed, the operating licence may be withdrawn at any time. If the decommissioning criteria under the DETEC Ordinance of 16 April 2008 on the Methodology and Standards for the Verification of the Criteria for the Provisional Decommissioning of Nuclear Power Plants are met, the licensed operator must decommission the plant immediately.",
+        "Operating licenses for nuclear power plants (NPPs) in Switzerland are essentially granted on a permanent basis. NPPs can be operated as long as their security is ensured. Once the conditions for the safe operation of a nuclear power plant can no longer be guaranteed, the operating licence may be withdrawn at any time. If the decommissioning criteria under the DETEC Ordinance of 16 April 2008 on the Methodology and Standards for the Verification of the Criteria for the Provisional Decommissioning of Nuclear Power Plants are met, the licensed operator must decommission the plant immediately.",
+        "Operating licenses for nuclear power plants (NPPs) in Switzerland are essentially granted on a permanent basis. NPPs can be operated as long as their security is ensured. Once the conditions for the safe operation of a nuclear power plant can no longer be guaranteed, the operating licence may be withdrawn at any time. If the decommissioning criteria under the DETEC Ordinance of 16 April 2008 on the Methodology and Standards for the Verification of the Criteria for the Provisional Decommissioning of Nuclear Power Plants are met, the licensed operator must decommission the plant immediately.",
+        "Operating licenses for nuclear power plants (NPPs) in Switzerland are essentially granted on a permanent basis. NPPs can be operated as long as their security is ensured. Once the conditions for the safe operation of a nuclear power plant can no longer be guaranteed, the operating licence may be withdrawn at any time. If the decommissioning criteria under the DETEC Ordinance of 16 April 2008 on the Methodology and Standards for the Verification of the Criteria for the Provisional Decommissioning of Nuclear Power Plants are met, the licensed operator must decommission the plant immediately."
+      ],
+      "all_values": [
+        "Operating licenses for nuclear power plants (NPPs) in Switzerland are essentially granted on a permanent basis. NPPs can be operated as long as their security is ensured. Once the conditions for the safe operation of a nuclear power plant can no longer be guaranteed, the operating licence may be withdrawn at any time. If the decommissioning criteria under the DETEC Ordinance of 16 April 2008 on the Methodology and Standards for the Verification of the Criteria for the Provisional Decommissioning of Nuclear Power Plants are met, the licensed operator must decommission the plant immediately."
+      ]
+    },
+    {
+      "name": "Operator",
+      "dtype": "str",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 4,
+      "examples": [
+        "o5",
+        "o6",
+        "o7",
+        "o8"
+      ],
+      "all_values": [
+        "o5",
+        "o6",
+        "o7",
+        "o8"
+      ]
+    },
+    {
+      "name": "Owner",
+      "dtype": "str",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 4,
+      "examples": [
+        "o5",
+        "o6",
+        "o7",
+        "o8"
+      ],
+      "all_values": [
+        "o5",
+        "o6",
+        "o7",
+        "o8"
+      ]
+    },
+    {
+      "name": "RegulatoryBody",
+      "dtype": "str",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 1,
+      "examples": [
+        "o4",
+        "o4",
+        "o4",
+        "o4"
+      ],
+      "all_values": [
+        "o4"
+      ]
+    }
+  ],
+  "note": "GeoPackage hat 6 Layer. Profiliert wurde nur der erste ('NuclearPowerPlant')."
+}

@@ -1,0 +1,201 @@
+{
+  "format": "gpkg",
+  "all_layers": [
+    "BiogasPlant",
+    "FacilityKindCatalogue",
+    "UpgradingTechnologyCatalogue",
+    "ValorizationTypeCatalogue",
+    "Production"
+  ],
+  "profiled_layer": "BiogasPlant",
+  "crs": "EPSG:2056",
+  "geometry_type": "{'Point': 153}",
+  "bbox": [
+    2493628.592000153,
+    1095594.9514879384,
+    2802661.999971194,
+    1290098.2555771386
+  ],
+  "rows": 153,
+  "n_columns": 11,
+  "columns": [
+    {
+      "name": "Number",
+      "dtype": "str",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 153,
+      "examples": [
+        "plant131",
+        "plant151",
+        "plant156",
+        "plant78",
+        "plant148"
+      ]
+    },
+    {
+      "name": "Name",
+      "dtype": "str",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 151,
+      "examples": [
+        "*Biogaz Raphaël & Mathieu Etique Montignez",
+        "B Daniel Hofstetter - Versuchsholzgaskraftwerk",
+        "B Elisabeth Giot Guschelmuth - BHKW Dachs",
+        "Biogasanlage Schürch Madiswil",
+        "B Hanspeter Burri Oberbalm - BHKW Dachs (Biodiesel)"
+      ]
+    },
+    {
+      "name": "Place",
+      "dtype": "str",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 137,
+      "examples": [
+        "Montignez",
+        "Schüpbach",
+        "Guschelmuth",
+        "Madiswil",
+        "Oberbalm"
+      ]
+    },
+    {
+      "name": "Operator",
+      "dtype": "str",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 134,
+      "examples": [
+        "Etique Mathieu, Etique Raphaël",
+        "-",
+        "Giot Elisabeth, Bokhoven Lambert ",
+        "Biopower Schürch AG",
+        "-"
+      ]
+    },
+    {
+      "name": "BeginningOfOperation",
+      "dtype": "str",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 17,
+      "examples": [
+        "2020",
+        "2013",
+        "2011",
+        "2007",
+        "2014"
+      ],
+      "all_values": [
+        "2004",
+        "2005",
+        "2006",
+        "2007",
+        "2008",
+        "2009",
+        "2010",
+        "2011",
+        "2012",
+        "2013",
+        "2014",
+        "2015",
+        "2016",
+        "2017",
+        "2018",
+        "2019",
+        "2020"
+      ]
+    },
+    {
+      "name": "Web",
+      "dtype": "str",
+      "null_count": 68,
+      "null_pct": 44.44,
+      "unique_count": 55,
+      "examples": [
+        "",
+        "https://www.hhkaeser.ch/",
+        "https://www.bkoag.ch/sol-e/anlagen-referenzen/vergaerbare-biomasse/biogasanlage-la-prairie-biogaz-pr",
+        "http://www.duchliranch.ch/index.php/biogas/",
+        "https://www.mooshof.ch/betriebsportrait.html"
+      ]
+    },
+    {
+      "name": "CombinedHeatAndPower",
+      "dtype": "str",
+      "null_count": 1,
+      "null_pct": 0.65,
+      "unique_count": 99,
+      "examples": [
+        "220.00000000",
+        "11.00000000",
+        "5.40000000",
+        "300.00000000",
+        "5.40000000"
+      ]
+    },
+    {
+      "name": "UpgradingCapacity",
+      "dtype": "str",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 1,
+      "examples": [
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "all_values": [
+        ""
+      ]
+    },
+    {
+      "name": "FacilityKind",
+      "dtype": "str",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 2,
+      "examples": [
+        "1",
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "all_values": [
+        "1",
+        "2"
+      ]
+    },
+    {
+      "name": "ValorizationType",
+      "dtype": "str",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 1,
+      "examples": [
+        "101",
+        "101",
+        "101",
+        "101",
+        "101"
+      ],
+      "all_values": [
+        "101"
+      ]
+    },
+    {
+      "name": "UpgradingTechnology",
+      "dtype": "float64",
+      "null_count": 153,
+      "null_pct": 100.0,
+      "unique_count": 0,
+      "examples": []
+    }
+  ],
+  "note": "GeoPackage hat 5 Layer. Profiliert wurde nur der erste ('BiogasPlant')."
+}

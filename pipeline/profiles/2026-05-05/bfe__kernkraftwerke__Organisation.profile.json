@@ -1,0 +1,154 @@
+{
+  "format": "csv",
+  "encoding": "utf-8",
+  "separator": ",",
+  "skipped_header_rows": 0,
+  "rows": 8,
+  "n_columns": 6,
+  "columns": [
+    {
+      "name": "ID",
+      "dtype": "str",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 8,
+      "examples": [
+        "o1",
+        "o2",
+        "o3",
+        "o4",
+        "o5"
+      ],
+      "all_values": [
+        "o1",
+        "o2",
+        "o3",
+        "o4",
+        "o5",
+        "o6",
+        "o7",
+        "o8"
+      ]
+    },
+    {
+      "name": "Webseite",
+      "dtype": "str",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 8,
+      "examples": [
+        "http://www.bundesrat.admin.ch",
+        "http://www.uvek.admin.ch",
+        "http://www.bfe.admin.ch",
+        "http://www.ensi.ch",
+        "http://www.bkw-fmb.ch"
+      ],
+      "all_values": [
+        "http://www.axpo.ch",
+        "http://www.bfe.admin.ch",
+        "http://www.bkw-fmb.ch",
+        "http://www.bundesrat.admin.ch",
+        "http://www.ensi.ch",
+        "http://www.kkg.ch",
+        "http://www.kkl.ch",
+        "http://www.uvek.admin.ch"
+      ]
+    },
+    {
+      "name": "NameD",
+      "dtype": "str",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 8,
+      "examples": [
+        "Bundesrat",
+        "Eidgenössisches Departement für Umwelt, Verkehr, Energie und Kommunikation UVEK",
+        "Bundesamt für Energie BFE",
+        "Eidgenössisches Nuklearsicherheitsinspektorat ENSI",
+        "BKW FMB Energie AG"
+      ],
+      "all_values": [
+        "Axpo AG",
+        "BKW FMB Energie AG",
+        "Bundesamt für Energie BFE",
+        "Bundesrat",
+        "Eidgenössisches Departement für Umwelt, Verkehr, Energie und Kommunikation UVEK",
+        "Eidgenössisches Nuklearsicherheitsinspektorat ENSI",
+        "Kernkraftwerk Gösgen-Däniken AG",
+        "Kernkraftwerk Leibstadt AG"
+      ]
+    },
+    {
+      "name": "NameF",
+      "dtype": "str",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 8,
+      "examples": [
+        "Conseil fédéral",
+        "Département fédéral de l'environnement, des transports, de l'énergie et de la communication DETEC",
+        "Office fédéral de l'énergie OFEN",
+        "Inspection fédérale de la sécurité nucléaire IFSN",
+        "BKW FMB Energie AG"
+      ],
+      "all_values": [
+        "Axpo AG",
+        "BKW FMB Energie AG",
+        "Conseil fédéral",
+        "Département fédéral de l'environnement, des transports, de l'énergie et de la communication DETEC",
+        "Inspection fédérale de la sécurité nucléaire IFSN",
+        "Kernkraftwerk Gösgen-Däniken AG",
+        "Kernkraftwerk Leibstadt AG",
+        "Office fédéral de l'énergie OFEN"
+      ]
+    },
+    {
+      "name": "NameI",
+      "dtype": "str",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 8,
+      "examples": [
+        "Consiglio federale",
+        "Dipartimento federale dell'ambiente, dei trasporti, dell'energia e delle comunicazioni DATEC",
+        "Ufficio federale dell'energia UFE",
+        "Ispettorato federale della sicurezza nucleare IFSN",
+        "BKW FMB Energie AG"
+      ],
+      "all_values": [
+        "Axpo AG",
+        "BKW FMB Energie AG",
+        "Consiglio federale",
+        "Dipartimento federale dell'ambiente, dei trasporti, dell'energia e delle comunicazioni DATEC",
+        "Ispettorato federale della sicurezza nucleare IFSN",
+        "Kernkraftwerk Gösgen-Däniken AG",
+        "Kernkraftwerk Leibstadt AG",
+        "Ufficio federale dell'energia UFE"
+      ]
+    },
+    {
+      "name": "NameE",
+      "dtype": "str",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 8,
+      "examples": [
+        "Federal Council",
+        "Federal Department of the Environment, Transport, Energy and Communications DETEC",
+        "Swiss Federal Office of Energy SFOE",
+        "Swiss Federal Nuclear Safety Inspectorate ENSI",
+        "BKW FMB Energie AG"
+      ],
+      "all_values": [
+        "Axpo AG",
+        "BKW FMB Energie AG",
+        "Federal Council",
+        "Federal Department of the Environment, Transport, Energy and Communications DETEC",
+        "Kernkraftwerk Gösgen-Däniken AG",
+        "Kernkraftwerk Leibstadt AG",
+        "Swiss Federal Nuclear Safety Inspectorate ENSI",
+        "Swiss Federal Office of Energy SFOE"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,199 @@
+{
+  "format": "csv",
+  "encoding": "utf-8",
+  "separator": ",",
+  "skipped_header_rows": 0,
+  "rows": 15,
+  "n_columns": 9,
+  "columns": [
+    {
+      "name": "xtf_id",
+      "dtype": "str",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 15,
+      "examples": [
+        "facility_CHA",
+        "facility_COL",
+        "facility_FEL",
+        "facility_GOT",
+        "facility_GRI"
+      ],
+      "all_values": [
+        "facility_CHA",
+        "facility_COL",
+        "facility_FEL",
+        "facility_GOT",
+        "facility_GRI",
+        "facility_GUE",
+        "facility_HAL",
+        "facility_LUT",
+        "facility_MTC",
+        "facility_MTG",
+        "facility_OGR",
+        "facility_PEU",
+        "facility_STB",
+        "facility_STC",
+        "facility_URI"
+      ]
+    },
+    {
+      "name": "name",
+      "dtype": "str",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 15,
+      "examples": [
+        "Charrat VS, Adonis",
+        "Collonges",
+        "Feldmoos/Rengg",
+        "San Gottardo",
+        "Gries"
+      ],
+      "all_values": [
+        "Charrat VS, Adonis",
+        "Collonges",
+        "Feldmoos/Rengg",
+        "Gries",
+        "Gütsch",
+        "Haldenstein",
+        "Lutersarni",
+        "Martigny",
+        "Mt. Crosin",
+        "Oberer Grenchenberg",
+        "Peuchapatte",
+        "San Gottardo",
+        "St. Brais",
+        "Ste-Croix",
+        "Uri"
+      ]
+    },
+    {
+      "name": "operator",
+      "dtype": "str",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 13,
+      "examples": [
+        "ValEole SA",
+        "RhônEole SA",
+        "WindPower AG",
+        "Azienda Elettrica Ticinese",
+        "GriesWind AG"
+      ],
+      "all_values": [
+        "ADEV Windkraft AG",
+        "Azienda Elettrica Ticinese",
+        "Calandawind",
+        "Centralschweizerische Kraftwerke AG (CKW)",
+        "EW Ursern",
+        "Eole Jura SA",
+        "GriesWind AG",
+        "JUVENT SA",
+        "RhônEole SA",
+        "Romande Energie SA",
+        "ValEole SA",
+        "WindPower AG",
+        "energieUri AG"
+      ]
+    },
+    {
+      "name": "website",
+      "dtype": "str",
+      "null_count": 1,
+      "null_pct": 6.67,
+      "unique_count": 12,
+      "examples": [
+        "http://www.valeole.ch",
+        "http://www.rhoneole.ch",
+        "http://www.aet.ch",
+        "http://www.swisswinds.com",
+        "https://www.ew-ursern.ch/kraftwerke/windkraftwerke"
+      ],
+      "all_values": [
+        "http://www.adev.ch/",
+        "http://www.aet.ch",
+        "http://www.alpiq.ch",
+        "http://www.calandawind.ch",
+        "http://www.ckw.ch",
+        "http://www.juvent.ch",
+        "http://www.rhoneole.ch",
+        "http://www.swisswinds.com",
+        "http://www.valeole.ch",
+        "https://www.energieuri.ch/",
+        "https://www.eoliennes-saintecroix.ch/",
+        "https://www.ew-ursern.ch/kraftwerke/windkraftwerke"
+      ]
+    },
+    {
+      "name": "type",
+      "dtype": "str",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 3,
+      "examples": [
+        "facilityType_big",
+        "facilityType_big",
+        "facilityType_windpark",
+        "facilityType_windpark",
+        "facilityType_windpark"
+      ],
+      "all_values": [
+        "facilityType_big",
+        "facilityType_medium",
+        "facilityType_windpark"
+      ]
+    },
+    {
+      "name": "operationalStatus",
+      "dtype": "str",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 2,
+      "examples": [
+        "operationalStatus_normalbetrieb",
+        "operationalStatus_normalbetrieb",
+        "operationalStatus_normalbetrieb",
+        "operationalStatus_normalbetrieb",
+        "operationalStatus_normalbetrieb"
+      ],
+      "all_values": [
+        "operationalStatus_normalbetrieb",
+        "operationalStatus_stillgelegt"
+      ]
+    },
+    {
+      "name": "ratedPower",
+      "dtype": "float64",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 13,
+      "min": 150.0,
+      "max": 37200.0,
+      "mean": 7280.666666666667,
+      "median": 4000.0
+    },
+    {
+      "name": "x",
+      "dtype": "float64",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 15,
+      "min": 2526536.7252855725,
+      "max": 2760010.8453908064,
+      "mean": 2622963.6574130487,
+      "median": 2597100.369715936
+    },
+    {
+      "name": "y",
+      "dtype": "float64",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 15,
+      "min": 1108435.2068784935,
+      "max": 1239200.6008802103,
+      "mean": 1178765.5345143874,
+      "median": 1184498.6203095068
+    }
+  ]
+}

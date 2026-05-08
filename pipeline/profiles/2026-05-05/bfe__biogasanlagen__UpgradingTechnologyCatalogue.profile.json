@@ -1,0 +1,97 @@
+{
+  "format": "csv",
+  "encoding": "latin-1",
+  "separator": ",",
+  "skipped_header_rows": 0,
+  "rows": 4,
+  "n_columns": 5,
+  "columns": [
+    {
+      "name": "idTechnology",
+      "dtype": "int64",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 4,
+      "min": 11,
+      "max": 14,
+      "mean": 12.5,
+      "median": 12.5
+    },
+    {
+      "name": "Technology_DE",
+      "dtype": "str",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 4,
+      "examples": [
+        "Druckwechseladsorption",
+        "Aminwäsche",
+        "Druckwasserwäsche",
+        "Membranverfahren"
+      ],
+      "all_values": [
+        "Aminwäsche",
+        "Druckwasserwäsche",
+        "Druckwechseladsorption",
+        "Membranverfahren"
+      ]
+    },
+    {
+      "name": "Technology_FR",
+      "dtype": "str",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 4,
+      "examples": [
+        "Adsorption par inversion de pression",
+        "Lavage aux amines",
+        "Lavage à l'eau sous pression",
+        "Technologie membranaire"
+      ],
+      "all_values": [
+        "Adsorption par inversion de pression",
+        "Lavage aux amines",
+        "Lavage à l'eau sous pression",
+        "Technologie membranaire"
+      ]
+    },
+    {
+      "name": "Technology_IT",
+      "dtype": "str",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 4,
+      "examples": [
+        "Adsorbimento per inversione di pressione",
+        "Lavaggio con ammine",
+        "Lavaggio con acqua in pressione",
+        "Tecnologia a membrana"
+      ],
+      "all_values": [
+        "Adsorbimento per inversione di pressione",
+        "Lavaggio con acqua in pressione",
+        "Lavaggio con ammine",
+        "Tecnologia a membrana"
+      ]
+    },
+    {
+      "name": "Technology_EN",
+      "dtype": "str",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 4,
+      "examples": [
+        "Pressure reversal adsorption",
+        "Amine wash",
+        "Water pressure washing",
+        "Membrane technology"
+      ],
+      "all_values": [
+        "Amine wash",
+        "Membrane technology",
+        "Pressure reversal adsorption",
+        "Water pressure washing"
+      ]
+    }
+  ]
+}

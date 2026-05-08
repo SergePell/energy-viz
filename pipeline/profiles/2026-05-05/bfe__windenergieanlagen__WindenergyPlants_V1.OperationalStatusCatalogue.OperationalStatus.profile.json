@@ -1,0 +1,78 @@
+{
+  "format": "csv",
+  "encoding": "utf-8",
+  "separator": ",",
+  "skipped_header_rows": 0,
+  "rows": 3,
+  "n_columns": 4,
+  "columns": [
+    {
+      "name": "xtf_id",
+      "dtype": "str",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 3,
+      "examples": [
+        "operationalStatus_normalbetrieb",
+        "operationalStatus_ausserbetrieb",
+        "operationalStatus_stillgelegt"
+      ],
+      "all_values": [
+        "operationalStatus_ausserbetrieb",
+        "operationalStatus_normalbetrieb",
+        "operationalStatus_stillgelegt"
+      ]
+    },
+    {
+      "name": "DE",
+      "dtype": "str",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 3,
+      "examples": [
+        "Im Normalbetrieb",
+        "Ausser Betrieb",
+        "Stillgelegt"
+      ],
+      "all_values": [
+        "Ausser Betrieb",
+        "Im Normalbetrieb",
+        "Stillgelegt"
+      ]
+    },
+    {
+      "name": "FR",
+      "dtype": "str",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 3,
+      "examples": [
+        "En exploitation normale",
+        "Hors service",
+        "Exploitation abandonnée"
+      ],
+      "all_values": [
+        "En exploitation normale",
+        "Exploitation abandonnée",
+        "Hors service"
+      ]
+    },
+    {
+      "name": "IT",
+      "dtype": "str",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 3,
+      "examples": [
+        "In servizio normale",
+        "Fuori servizio",
+        "Esercizio cessato"
+      ],
+      "all_values": [
+        "Esercizio cessato",
+        "Fuori servizio",
+        "In servizio normale"
+      ]
+    }
+  ]
+}

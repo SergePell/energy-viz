@@ -1,0 +1,249 @@
+{
+  "format": "csv",
+  "encoding": "utf-8",
+  "separator": ",",
+  "skipped_header_rows": 0,
+  "rows": 60,
+  "n_columns": 16,
+  "columns": [
+    {
+      "name": "xtf_id",
+      "dtype": "str",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 60,
+      "examples": [
+        "turbine_5",
+        "turbine_8",
+        "turbine_9",
+        "turbine_14",
+        "turbine_15"
+      ]
+    },
+    {
+      "name": "altitude",
+      "dtype": "int64",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 48,
+      "min": 450,
+      "max": 2520,
+      "mean": 1471.4833333333333,
+      "median": 1250.0
+    },
+    {
+      "name": "yearOfConstruction",
+      "dtype": "int64",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 16,
+      "min": 1994,
+      "max": 2025,
+      "mean": 2012.2166666666667,
+      "median": 2011.5
+    },
+    {
+      "name": "yearOfDismantling",
+      "dtype": "float64",
+      "null_count": 51,
+      "null_pct": 85.0,
+      "unique_count": 3,
+      "min": 2013.0,
+      "max": 2020.0,
+      "mean": 2015.111111111111,
+      "median": 2016.0
+    },
+    {
+      "name": "manufacturer",
+      "dtype": "str",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 4,
+      "examples": [
+        "Enercon",
+        "NEG Micon",
+        "Enercon",
+        "Vestas",
+        "Vestas"
+      ],
+      "all_values": [
+        "Bonus, Dänemark",
+        "Enercon",
+        "NEG Micon",
+        "Vestas"
+      ]
+    },
+    {
+      "name": "model",
+      "dtype": "str",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 19,
+      "examples": [
+        "E-70/E4",
+        "NM 52/900",
+        "E-40",
+        "V44",
+        "V47"
+      ],
+      "all_values": [
+        "E-101",
+        "E-40",
+        "E-44",
+        "E-70",
+        "E-70 EP4",
+        "E-70/E4",
+        "E-82",
+        "E-82 E2",
+        "E-92",
+        "E92",
+        "MK III",
+        "NM 52/900",
+        "NM 54/950",
+        "V112",
+        "V44",
+        "V47",
+        "V52",
+        "V66",
+        "V90"
+      ]
+    },
+    {
+      "name": "diameter",
+      "dtype": "int64",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 13,
+      "min": 24,
+      "max": 112,
+      "mean": 78.1,
+      "median": 82.0
+    },
+    {
+      "name": "hubHeight",
+      "dtype": "int64",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 17,
+      "min": 30,
+      "max": 119,
+      "mean": 81.51666666666667,
+      "median": 94.5
+    },
+    {
+      "name": "cutInSpeed",
+      "dtype": "int64",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 3,
+      "min": 2,
+      "max": 4,
+      "mean": 3.2,
+      "median": 3.0
+    },
+    {
+      "name": "ratedSpeed",
+      "dtype": "int64",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 6,
+      "min": 0,
+      "max": 16,
+      "mean": 13.133333333333333,
+      "median": 13.0
+    },
+    {
+      "name": "cutOutSpeed",
+      "dtype": "int64",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 4,
+      "min": 0,
+      "max": 34,
+      "mean": 26.333333333333332,
+      "median": 25.0
+    },
+    {
+      "name": "ratedPower",
+      "dtype": "int64",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 13,
+      "min": 150,
+      "max": 3300,
+      "mean": 1957.8333333333333,
+      "median": 2000.0
+    },
+    {
+      "name": "operationalStatus",
+      "dtype": "str",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 2,
+      "examples": [
+        "operationalStatus_normalbetrieb",
+        "operationalStatus_normalbetrieb",
+        "operationalStatus_stillgelegt",
+        "operationalStatus_stillgelegt",
+        "operationalStatus_stillgelegt"
+      ],
+      "all_values": [
+        "operationalStatus_normalbetrieb",
+        "operationalStatus_stillgelegt"
+      ]
+    },
+    {
+      "name": "facility",
+      "dtype": "str",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 15,
+      "examples": [
+        "facility_COL",
+        "facility_FEL",
+        "facility_GUE",
+        "facility_MTC",
+        "facility_MTC"
+      ],
+      "all_values": [
+        "facility_CHA",
+        "facility_COL",
+        "facility_FEL",
+        "facility_GOT",
+        "facility_GRI",
+        "facility_GUE",
+        "facility_HAL",
+        "facility_LUT",
+        "facility_MTC",
+        "facility_MTG",
+        "facility_OGR",
+        "facility_PEU",
+        "facility_STB",
+        "facility_STC",
+        "facility_URI"
+      ]
+    },
+    {
+      "name": "x",
+      "dtype": "float64",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 60,
+      "min": 2525837.7182760187,
+      "max": 2760010.8453908064,
+      "mean": 2604956.515120974,
+      "median": 2570928.1653838228
+    },
+    {
+      "name": "y",
+      "dtype": "float64",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 60,
+      "min": 1108420.2068586552,
+      "max": 1239248.5988470144,
+      "mean": 1196114.5617687793,
+      "median": 1214193.3677987824
+    }
+  ]
+}

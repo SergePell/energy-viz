@@ -1,0 +1,207 @@
+{
+  "format": "csv",
+  "encoding": "utf-8",
+  "separator": ",",
+  "rows": 65,
+  "n_columns": 18,
+  "columns": [
+    {
+      "name": "Jahr",
+      "dtype": "int64",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 65,
+      "min": 1960,
+      "max": 2024,
+      "mean": 1992.0,
+      "median": 1992.0
+    },
+    {
+      "name": "Erzeugung_laufwerk_GWh",
+      "dtype": "float64",
+      "null_count": 10,
+      "null_pct": 15.38,
+      "unique_count": 55,
+      "min": 11218.0,
+      "max": 19403.0,
+      "mean": 15441.4,
+      "median": 15451.0
+    },
+    {
+      "name": "Erzeugung_speicherwerk_GWh",
+      "dtype": "float64",
+      "null_count": 10,
+      "null_pct": 15.38,
+      "unique_count": 55,
+      "min": 14059.0,
+      "max": 28934.0,
+      "mean": 19858.254545454547,
+      "median": 19924.0
+    },
+    {
+      "name": "Erzeugung_kernkraftwerk_GWh",
+      "dtype": "float64",
+      "null_count": 9,
+      "null_pct": 13.85,
+      "unique_count": 56,
+      "min": 563.0,
+      "max": 26370.0,
+      "mean": 19259.48214285714,
+      "median": 22108.0
+    },
+    {
+      "name": "Erzeugung_andere_total_GWh",
+      "dtype": "int64",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 64,
+      "min": 168,
+      "max": 3123,
+      "mean": 1850.676923076923,
+      "median": 1963.0
+    },
+    {
+      "name": "Erzeugung_andere_fossil_GWh",
+      "dtype": "float64",
+      "null_count": 30,
+      "null_pct": 46.15,
+      "unique_count": 35,
+      "min": 536.0,
+      "max": 2195.0,
+      "mean": 1577.8285714285714,
+      "median": 1728.0
+    },
+    {
+      "name": "Erzeugung_andere_erneuerbare_abfaelle_GWh",
+      "dtype": "float64",
+      "null_count": 30,
+      "null_pct": 46.15,
+      "unique_count": 33,
+      "min": 343.0,
+      "max": 1184.0,
+      "mean": 829.4571428571429,
+      "median": 919.0
+    },
+    {
+      "name": "Erzeugung_holz_GWh",
+      "dtype": "float64",
+      "null_count": 30,
+      "null_pct": 46.15,
+      "unique_count": 30,
+      "min": 6.0,
+      "max": 620.0,
+      "mean": 167.9142857142857,
+      "median": 92.0
+    },
+    {
+      "name": "Erzeugung_biogas_GWh",
+      "dtype": "float64",
+      "null_count": 30,
+      "null_pct": 46.15,
+      "unique_count": 35,
+      "min": 80.0,
+      "max": 452.0,
+      "mean": 224.71428571428572,
+      "median": 168.0
+    },
+    {
+      "name": "Erzeugung_photovoltaik_GWh",
+      "dtype": "float64",
+      "null_count": 30,
+      "null_pct": 46.15,
+      "unique_count": 33,
+      "min": 1.0,
+      "max": 5961.0,
+      "mean": 887.2285714285714,
+      "median": 29.0
+    },
+    {
+      "name": "Erzeugung_wind_GWh",
+      "dtype": "float64",
+      "null_count": 30,
+      "null_pct": 46.15,
+      "unique_count": 26,
+      "min": 0.0,
+      "max": 171.0,
+      "mean": 54.25714285714286,
+      "median": 16.0
+    },
+    {
+      "name": "Verbrauch_speicherpumpen_GWh",
+      "dtype": "int64",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 65,
+      "min": 211,
+      "max": 5567,
+      "mean": 1943.1076923076923,
+      "median": 1564.0
+    },
+    {
+      "name": "Erzeugung_netto_GWh",
+      "dtype": "int64",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 65,
+      "min": 20427,
+      "max": 76237,
+      "mean": 50889.584615384614,
+      "median": 55910.0
+    },
+    {
+      "name": "Einfuhr_GWh",
+      "dtype": "int64",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 65,
+      "min": 1306,
+      "max": 38346,
+      "mean": 19740.43076923077,
+      "median": 22799.0
+    },
+    {
+      "name": "Ausfuhr_GWh",
+      "dtype": "int64",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 65,
+      "min": 3822,
+      "max": 47293,
+      "mean": 23881.046153846153,
+      "median": 26801.0
+    },
+    {
+      "name": "Landesverbrauch_GWh",
+      "dtype": "int64",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 65,
+      "min": 17911,
+      "max": 64278,
+      "mean": 46748.96923076923,
+      "median": 50928.0
+    },
+    {
+      "name": "Verluste_GWh",
+      "dtype": "int64",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 64,
+      "min": 2020,
+      "max": 4493,
+      "mean": 3575.6615384615384,
+      "median": 3689.0
+    },
+    {
+      "name": "Endverbrauch_GWh",
+      "dtype": "int64",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 65,
+      "min": 15891,
+      "max": 59785,
+      "mean": 43173.307692307695,
+      "median": 47239.0
+    }
+  ]
+}

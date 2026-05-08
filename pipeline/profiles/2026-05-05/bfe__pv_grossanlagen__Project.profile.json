@@ -1,0 +1,195 @@
+{
+  "format": "csv",
+  "encoding": "utf-8",
+  "separator": ",",
+  "skipped_header_rows": 0,
+  "rows": 29,
+  "n_columns": 14,
+  "columns": [
+    {
+      "name": "xtf_id",
+      "dtype": "int64",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 29,
+      "min": 1,
+      "max": 56,
+      "mean": 32.41379310344828,
+      "median": 42.0
+    },
+    {
+      "name": "ProjectName",
+      "dtype": "str",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 29,
+      "examples": [
+        "ScuolSolar",
+        "PV Anlage Grengiols Solar",
+        "Alpines Solarprojekt \"Morgeten\"",
+        "SedrunSolar",
+        "Projekt Gondosolar"
+      ]
+    },
+    {
+      "name": "ProjectManagement",
+      "dtype": "str",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 26,
+      "examples": [
+        "ScuolSolar c/o Engadiner KraftwerkeAG",
+        "Grengiols Solar c/o FMV SA",
+        "Morgeten Solar AG",
+        "Energia Alpina SA",
+        "Gondosolar c/o E.E.S"
+      ]
+    },
+    {
+      "name": "ProjectWeb",
+      "dtype": "str",
+      "null_count": 19,
+      "null_pct": 65.52,
+      "unique_count": 10,
+      "examples": [
+        "https://www.scuolsolar.ch/",
+        "https://www.grengiols-solar.ch/de",
+        "https://www.morgeten.ch",
+        "https://www.energia-alpina.ch/",
+        "https://www.gondosolar.ch/"
+      ],
+      "all_values": [
+        "https://grandsplanssolar.ch",
+        "https://www.ekz.ch/de/ueber-ekz/unternehmen/engagement/felsenstrom.html",
+        "https://www.energia-alpina.ch/",
+        "https://www.engadin.solar",
+        "https://www.gondosolar.ch/",
+        "https://www.grengiols-solar.ch/de",
+        "https://www.jungfrau.ch/de-ch/unternehmen/jungfraubahnen/jungfraubahn-holding-ag/kraftwerk-jungfraubahn/",
+        "https://www.morgeten.ch",
+        "https://www.pv-mont-soleil.ch/",
+        "https://www.scuolsolar.ch/"
+      ]
+    },
+    {
+      "name": "GeometrySurface",
+      "dtype": "float64",
+      "null_count": 29,
+      "null_pct": 100.0,
+      "unique_count": 0,
+      "examples": []
+    },
+    {
+      "name": "GeometryMultipoint",
+      "dtype": "float64",
+      "null_count": 29,
+      "null_pct": 100.0,
+      "unique_count": 0,
+      "examples": []
+    },
+    {
+      "name": "Elevation",
+      "dtype": "int64",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 29,
+      "min": 454,
+      "max": 3142,
+      "mean": 2133.689655172414,
+      "median": 2156.0
+    },
+    {
+      "name": "FinalNonRecurrentRemuneration",
+      "dtype": "float64",
+      "null_count": 29,
+      "null_pct": 100.0,
+      "unique_count": 0,
+      "examples": []
+    },
+    {
+      "name": "ShareOfSubsidisedCosts",
+      "dtype": "float64",
+      "null_count": 29,
+      "null_pct": 100.0,
+      "unique_count": 0,
+      "examples": []
+    },
+    {
+      "name": "Municipalities",
+      "dtype": "str",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 28,
+      "examples": [
+        "Scuol",
+        "Grengiols",
+        "Oberwil im Simmental",
+        "Tujetsch",
+        "Zwischbergen"
+      ]
+    },
+    {
+      "name": "Cantons",
+      "dtype": "str",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 8,
+      "examples": [
+        "GR",
+        "VS",
+        "BE",
+        "GR",
+        "VS"
+      ],
+      "all_values": [
+        "BE",
+        "BE ",
+        "GR",
+        "SG",
+        "TI",
+        "UR",
+        "VS",
+        "Valais"
+      ]
+    },
+    {
+      "name": "EnergySource",
+      "dtype": "str",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 1,
+      "examples": [
+        "es1",
+        "es1",
+        "es1",
+        "es1",
+        "es1"
+      ],
+      "all_values": [
+        "es1"
+      ]
+    },
+    {
+      "name": "_x",
+      "dtype": "float64",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 29,
+      "min": 2565744.0,
+      "max": 2817000.379779513,
+      "mean": 2678544.7033794317,
+      "median": 2654300.0
+    },
+    {
+      "name": "_y",
+      "dtype": "float64",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 29,
+      "min": 1091065.0,
+      "max": 1223507.0,
+      "mean": 1152575.4418818075,
+      "median": 1146000.0
+    }
+  ]
+}
