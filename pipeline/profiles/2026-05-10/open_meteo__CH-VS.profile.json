@@ -1,0 +1,107 @@
+{
+  "format": "csv",
+  "encoding": "utf-8",
+  "separator": ",",
+  "skipped_header_rows": 0,
+  "rows": 81984,
+  "n_columns": 8,
+  "columns": [
+    {
+      "name": "zeitstempel_utc",
+      "dtype": "str",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 81984,
+      "examples": [
+        "2017-01-01 00:00:00+00:00",
+        "2017-01-01 01:00:00+00:00",
+        "2017-01-01 02:00:00+00:00",
+        "2017-01-01 03:00:00+00:00",
+        "2017-01-01 04:00:00+00:00"
+      ]
+    },
+    {
+      "name": "station_id",
+      "dtype": "str",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 1,
+      "examples": [
+        "CH-VS",
+        "CH-VS",
+        "CH-VS",
+        "CH-VS",
+        "CH-VS"
+      ],
+      "all_values": [
+        "CH-VS"
+      ]
+    },
+    {
+      "name": "temperature_2m",
+      "dtype": "float64",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 485,
+      "min": -12.9,
+      "max": 38.2,
+      "mean": 12.150292740046838,
+      "median": 11.3
+    },
+    {
+      "name": "shortwave_radiation",
+      "dtype": "float64",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 967,
+      "min": 0.0,
+      "max": 980.0,
+      "mean": 164.3211724238876,
+      "median": 7.0
+    },
+    {
+      "name": "direct_radiation",
+      "dtype": "float64",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 855,
+      "min": 0.0,
+      "max": 876.0,
+      "mean": 108.11759611631538,
+      "median": 0.0
+    },
+    {
+      "name": "wind_speed_10m",
+      "dtype": "float64",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 129,
+      "min": 0.0,
+      "max": 14.7,
+      "mean": 3.9571026053864173,
+      "median": 3.8
+    },
+    {
+      "name": "cloud_cover",
+      "dtype": "int64",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 101,
+      "min": 0,
+      "max": 100,
+      "mean": 61.39468676814988,
+      "median": 77.0
+    },
+    {
+      "name": "precipitation",
+      "dtype": "float64",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 76,
+      "min": 0.0,
+      "max": 10.5,
+      "mean": 0.15877366315378613,
+      "median": 0.0
+    }
+  ]
+}

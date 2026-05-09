@@ -1,0 +1,52 @@
+{
+  "format": "csv",
+  "encoding": "utf-8",
+  "separator": ",",
+  "skipped_header_rows": 0,
+  "rows": 8761,
+  "n_columns": 3,
+  "columns": [
+    {
+      "name": "zeitstempel_utc",
+      "dtype": "str",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 8761,
+      "examples": [
+        "2023-12-31T23:00:00+00:00",
+        "2024-01-01T00:00:00+00:00",
+        "2024-01-01T01:00:00+00:00",
+        "2024-01-01T02:00:00+00:00",
+        "2024-01-01T03:00:00+00:00"
+      ]
+    },
+    {
+      "name": "gebiet_code",
+      "dtype": "str",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 1,
+      "examples": [
+        "CH",
+        "CH",
+        "CH",
+        "CH",
+        "CH"
+      ],
+      "all_values": [
+        "CH"
+      ]
+    },
+    {
+      "name": "preis_eur_mwh",
+      "dtype": "float64",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 6120,
+      "min": -427.51,
+      "max": 310.64,
+      "mean": 76.05132747403263,
+      "median": 75.86
+    }
+  ]
+}
