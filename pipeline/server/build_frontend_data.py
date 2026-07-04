@@ -87,6 +87,24 @@ def cantonal_generation_monthly() -> list:
                          "mwh": round(float(r["erzeugung_mwh"]), 1)})
     return rows
 
+def grenzfluss_monatlich() -> list:
+    frames = []
+    for pfad in sorted(FACT.glob("swissgrid_grenzkupplung_15min_*.parquet")):
+        frames.append(pd.read_parquet(pfad))
+    df = pd.concat(frames, ignore_index=True)
+
+    df["jahr"] = df["zeitstempel_utc"].dt.year
+    df["monat"] = df["zeitstempel_utc"].dt.month
+
+    grp = (df.groupby(["jahr", "monat", "richtung_code"])["energie_mwh"]
+             .sum()
+             .reset_index())
+
+    grp["date"] = pd.to_datetime(
+        grp["jahr"].astype(str) + "-" + grp["monat"].astype(str).str.zfill(2) + "-01"
+    ).dt.strftime("%Y-%m-%d")
+
+    return grp[["date", "richtung_code", "energie_mwh"]].to_dict("records")
 
 
 # Energiemix aus bilanz_erzeugung_monat.json (Long-Format, energieform_code).
@@ -158,6 +176,11 @@ def main():
     (OUT / "energiemix_monat.json").write_text(
         json.dumps(mix, ensure_ascii=False), encoding="utf-8")
     print(f"  energiemix_monat.json  ({len(mix)} Monate)")
+
+    fluss = grenzfluss_monatlich()
+    (OUT / "grenzfluss_monat.json").write_text(
+        json.dumps(fluss, ensure_ascii=False), encoding="utf-8")
+    print(f"  grenzfluss_monat.json  ({len(fluss)} Zeilen)")
 
     for src in [ANALYZE / "landesverbrauch_daily_anomaly.json",
                 DIM / "kanton_geometry.geojson"]:
