@@ -19,7 +19,7 @@ function MixTooltip({ active, payload, label }) {
   const total = payload.reduce((s, p) => s + (p.value || 0), 0)
   const d = new Date(label)
   return (
-    <div style={{ background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: 8, padding: '8px 10px', fontSize: 12, color: 'var(--text-primary)' }}>
+    <div style={{ background: '#12141c', border: '1px solid var(--border)', borderRadius: 8, padding: '8px 10px', fontSize: 12, color: 'var(--text-primary)' }}>
       <div style={{ fontWeight: 500 }}>{d.getMonth() + 1}/{d.getFullYear()}</div>
       {[...payload].reverse().map(p => (
         <div key={p.name} style={{ color: p.color }}>{p.name}: {p.value.toFixed(0)} GWh</div>

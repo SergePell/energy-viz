@@ -17,7 +17,7 @@ function firstCoord(geo) {
 function fmtDatum(ms) {
   const d = new Date(ms)
   const p = n => String(n).padStart(2, '0')
-  return `${p(d.getDate())}.${p(d.getMonth() + 1)}.${String(d.getFullYear()).slice(2)}`
+  return `${p(d.getUTCDate())}.${p(d.getUTCMonth() + 1)}.${String(d.getUTCFullYear()).slice(2)}`
 }
 
 export function ChoroplethKarte({ selected, onSelect, brushRange }) {
@@ -86,7 +86,7 @@ export function ChoroplethKarte({ selected, onSelect, brushRange }) {
       {hover && (
         <div style={{
           position: 'absolute', top: 8, left: 8, pointerEvents: 'none', maxWidth: 230,
-          background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: 8,
+          background: '#12141c', border: '1px solid var(--border)', borderRadius: 8,
           padding: '8px 10px', fontSize: 12, color: 'var(--text-primary)',
         }}>
           <div style={{ fontWeight: 500 }}>{hover.name}</div>

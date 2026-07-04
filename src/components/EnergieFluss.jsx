@@ -51,12 +51,13 @@ function baueGraph(data, brushRange) {
 }
 
 const W = 720, H = 400
+const ACHSEN_LABEL_HOEHE = 26 // reservierter Platz unten für "Import →" / "← Export"
 const C_IMPORT = '#4c9be0'
 const C_EXPORT = '#efb23a'
 const C_CH = '#e24b4a'
 const C_LAND = '#2b8a78'
 
-export function EnergieFluss({ brushRange }) {
+export function EnergieFluss({ brushRange, fokusLand, onLandKlick }) {
   const { data } = useJson('/data/grenzfluss_monat.json')
 
   const graph = useMemo(() => {
@@ -70,19 +71,24 @@ export function EnergieFluss({ brushRange }) {
   const { nodes, links } = sankey()
     .nodeWidth(16)
     .nodePadding(20)
-    .extent([[10, 10], [W - 10, H - 10]])({
+    .extent([[10, 10], [W - 10, H - 10 - ACHSEN_LABEL_HOEHE]])({
       nodes: graph.nodes.map(d => ({ ...d })),
       links: graph.links.map(d => ({ ...d })),
     })
 
   return (
     <div style={{ width: '100%' }}>
-      <svg viewBox={`0 0 ${W} ${H}`} style={{ width: '100%', height: 'auto' }}>
+      <svg viewBox={`0 0 ${W} ${H}`} style={{ width: '100%', height: 'auto', userSelect: 'none' }}>
         {links.map((l, i) => {
           const istImport = l.target.id === 'CH'
+          // Ist dieser Link mit dem Fokus-Land verbunden?
+          const trifftFokus = !fokusLand || (
+            l.source.id === `imp_${fokusLand}` || l.target.id === `exp_${fokusLand}`
+          )
+          const opacity = trifftFokus ? 0.45 : 0.08
           return (
             <path key={i} d={sankeyLinkHorizontal()(l)}
-              fill="none" stroke={istImport ? C_IMPORT : C_EXPORT} strokeOpacity={0.45}
+              fill="none" stroke={istImport ? C_IMPORT : C_EXPORT} strokeOpacity={opacity}
               strokeWidth={Math.max(1, l.width)}>
               <title>
                 {istImport
@@ -94,21 +100,31 @@ export function EnergieFluss({ brushRange }) {
         })}
         {nodes.map((n, i) => {
           const istExport = n.id.startsWith('exp_')
+          const istImport = n.id.startsWith('imp_')
+          const land = (istImport || istExport) ? n.id.slice(4) : null   // 'imp_DE' → 'DE'
+          const istFokus = land && land === fokusLand
+          const gedimmt = fokusLand && n.id !== 'CH' && land !== fokusLand
+          const klickbar = land && onLandKlick
           return (
-            <g key={i}>
+            <g key={i}
+              style={{ cursor: klickbar ? 'pointer' : 'default', opacity: gedimmt ? 0.35 : 1 }}
+              onClick={() => klickbar && onLandKlick(land)}>
               <rect x={n.x0} y={n.y0} width={n.x1 - n.x0} height={n.y1 - n.y0}
-                fill={n.id === 'CH' ? C_CH : C_LAND} rx={2} />
+                fill={n.id === 'CH' ? C_CH : C_LAND} rx={2}
+                stroke={istFokus ? '#ffffff' : 'none'} strokeWidth={istFokus ? 2 : 0} />
               <text x={istExport ? n.x0 - 6 : n.x1 + 6}
                 y={(n.y0 + n.y1) / 2} dy="0.35em"
                 textAnchor={istExport ? 'end' : 'start'}
-                fontSize={11} fill="var(--text-secondary)">
+                fontSize={11}
+                fill={istFokus ? 'var(--text-primary)' : 'var(--text-secondary)'}
+                fontWeight={istFokus ? 500 : 400}>
                 {n.name}
               </text>
             </g>
           )
         })}
-        <text x={20} y={H - 4} fontSize={10} fill="var(--text-muted)">Import →</text>
-        <text x={W - 20} y={H - 4} textAnchor="end" fontSize={10} fill="var(--text-muted)">← Export</text>
+        <text x={20} y={H - ACHSEN_LABEL_HOEHE + 16} fontSize={10} fill="var(--text-muted)">Import →</text>
+        <text x={W - 20} y={H - ACHSEN_LABEL_HOEHE + 16} textAnchor="end" fontSize={10} fill="var(--text-muted)">← Export</text>
       </svg>
     </div>
   )

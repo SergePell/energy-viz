@@ -4,7 +4,6 @@ import {
 } from 'recharts'
 import { useJson } from '../hooks/useJson'
 import { QuickInfo } from './QuickInfo'
-import { JahrDropdown } from './JahrDropdown'
 
 const C_LINIE = '#2b8a78'
 const C_ANOMALIE = '#e24b4a'
@@ -30,7 +29,7 @@ function InfoTooltip({ active, payload, einheit }) {
   if (!active || !payload || !payload.length) return null
   const d = payload[0].payload
   return (
-    <div style={{ background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: 8, padding: '8px 10px', fontSize: 12, color: 'var(--text-primary)' }}>
+    <div style={{ background: '#12141c', border: '1px solid var(--border)', borderRadius: 8, padding: '8px 10px', fontSize: 12, color: 'var(--text-primary)' }}>
       <div style={{ fontWeight: 500 }}>{d.date}</div>
       <div>{einheit}: {(d.mwh / 1000).toFixed(0)} GWh</div>
       {d.score != null && (<>
@@ -43,13 +42,11 @@ function InfoTooltip({ active, payload, einheit }) {
   )
 }
 
-export function VerbrauchAnomalie({ selectedKanton, onClear, onBrush }) {
+export function VerbrauchAnomalie({ selectedKanton, onClear, brushRange }) {
   const { data: verbrauch } = useJson('/data/verbrauch_national_daily.json')
   const { data: anomalie } = useJson('/data/landesverbrauch_daily_anomaly.json')
   const { data: kantonMonat } = useJson('/data/erzeugung_kanton_monat.json')
   const [schwelle, setSchwelle] = useState(0.9)
-  const [von, setVon] = useState(null)
-  const [bis, setBis] = useState(null)
 
   const merged = useMemo(() => {
     if (!verbrauch || !anomalie) return null
@@ -71,23 +68,15 @@ export function VerbrauchAnomalie({ selectedKanton, onClear, onBrush }) {
 
   const linieVoll = useMemo(() => (merged ? ausduennen(merged) : []), [merged])
 
-  const jahre = useMemo(() => {
-    if (!linieVoll.length) return []
-    const y0 = new Date(linieVoll[0].t).getFullYear()
-    const y1 = new Date(linieVoll[linieVoll.length - 1].t).getFullYear()
-    return Array.from({ length: y1 - y0 + 1 }, (_, i) => y0 + i)
-  }, [linieVoll])
-
   const kantonModus = !!selectedKanton
 
   if (kantonModus && !kantonReihe) return <p style={{ color: 'var(--text-muted)' }}>Lade Kanton…</p>
   if (!kantonModus && !merged) return <p style={{ color: 'var(--text-muted)' }}>Lade Daten…</p>
 
-  const y0 = jahre[0], y1 = jahre[jahre.length - 1]
-  const effVon = von ?? y0
-  const effBis = bis ?? y1
-  const tVon = Date.parse(`${effVon}-01-01`)
-  const tBis = Date.parse(`${effBis}-12-31`)
+  // Zeitbereich kommt jetzt vollständig aus dem globalen Filter (brushRange).
+  // Fallback: gesamter Datenbereich, falls kein Filter gesetzt ist.
+  const tVon = brushRange ? brushRange[0] : (linieVoll[0]?.t ?? 0)
+  const tBis = brushRange ? brushRange[1] : (linieVoll[linieVoll.length - 1]?.t ?? Date.now())
   const imBereich = t => t >= tVon && t <= tBis
 
   // Variante A: Linie und Anomalien folgen dem gewählten Zeitraum
@@ -95,14 +84,6 @@ export function VerbrauchAnomalie({ selectedKanton, onClear, onBrush }) {
   const anomalien = merged ? merged.filter(d => d.score != null && d.score >= schwelle && !d.feiertag && imBereich(d.t)) : []
   const feiertage = merged ? merged.filter(d => d.score != null && d.score >= schwelle && d.feiertag && imBereich(d.t)) : []
   const xDomain = [tVon, tBis]
-
-  function melde(v, b) {
-    const voll = v === y0 && b === y1
-    if (onBrush) onBrush(voll ? null : [Date.parse(`${v}-01-01`), Date.parse(`${b}-12-31`)])
-  }
-  function aendereVon(v) { const b = Math.max(v, effBis); setVon(v); setBis(b); melde(v, b) }
-  function aendereBis(b) { const v = Math.min(effVon, b); setVon(v); setBis(b); melde(v, b) }
-  function zuruecksetzen() { setVon(null); setBis(null); if (onBrush) onBrush(null) }
 
   const einheit = kantonModus ? 'Erzeugung' : 'Verbrauch'
 
@@ -115,7 +96,7 @@ export function VerbrauchAnomalie({ selectedKanton, onClear, onBrush }) {
         {kantonModus
           ? <button onClick={onClear} style={{ fontSize: 12, padding: '3px 10px', borderRadius: 6, border: '1px solid var(--border)', background: 'var(--bg-card)', color: 'var(--text-secondary)', cursor: 'pointer' }}>← national</button>
           : <QuickInfo titel="Verbrauch, Anomalien & Schwellenwert">
-              Die grüne Linie ist der tägliche Landesverbrauch (ab 2009). Rote Punkte sind erkannte Anomalien, gelbe als Feiertag erwartete Ausschläge, die deshalb nicht als Anomalie gezählt werden. Der Schwellenwert steuert die Empfindlichkeit: je höher, desto weniger und nur die stärksten Tage. Anomalien gibt es erst ab 2017, weil dafür Wetter und Preis als Kontext nötig sind. Über die Jahresauswahl filterst du den Zeitraum, der Linie und Karte gemeinsam einschränkt.
+              Die grüne Linie ist der tägliche Landesverbrauch (ab 2009). Rote Punkte sind erkannte Anomalien, gelbe als Feiertag erwartete Ausschläge, die deshalb nicht als Anomalie gezählt werden. Der Schwellenwert steuert die Empfindlichkeit: je höher, desto weniger und nur die stärksten Tage. Anomalien gibt es erst ab 2017, weil dafür Wetter und Preis als Kontext nötig sind. Der Zeitraum wird über den globalen Filter oben gesteuert.
             </QuickInfo>}
       </div>
 
@@ -141,15 +122,6 @@ export function VerbrauchAnomalie({ selectedKanton, onClear, onBrush }) {
           <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginTop: 8, flexWrap: 'wrap' }}>
             <Punkt farbe={C_ANOMALIE} text="Anomalie" />
             <Punkt farbe={C_FEIERTAG} text="Feiertag (erwartet)" />
-            <span style={{ marginLeft: 'auto', display: 'inline-flex', alignItems: 'center', gap: 6, fontSize: 12, color: 'var(--text-secondary)' }}>
-              Zeitraum
-              <JahrDropdown wert={effVon} optionen={jahre} onChange={aendereVon} />
-              bis
-              <JahrDropdown wert={effBis} optionen={jahre} onChange={aendereBis} />
-              <button onClick={zuruecksetzen} style={{ fontSize: 12, padding: '3px 10px', borderRadius: 6, border: '1px solid var(--border)', background: 'var(--bg-card)', color: 'var(--text-secondary)', cursor: 'pointer' }}>
-                ganzer Zeitraum
-              </button>
-            </span>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginTop: 10, flexWrap: 'wrap' }}>
             <span style={{ fontSize: 12, color: 'var(--text-secondary)', whiteSpace: 'nowrap' }}>Schwellenwert</span>
