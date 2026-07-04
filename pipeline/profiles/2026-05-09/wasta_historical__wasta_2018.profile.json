@@ -1,0 +1,1464 @@
+{
+  "format": "xlsx",
+  "all_sheets": [
+    "Vorschau"
+  ],
+  "sheets": {
+    "Vorschau": {
+      "rows": 697,
+      "n_columns": 103,
+      "columns": [
+        {
+          "name": "ZE-Nr",
+          "dtype": "int64",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 697,
+          "min": 100100,
+          "max": 900200,
+          "mean": 352324.3816355811,
+          "median": 305400.0
+        },
+        {
+          "name": "ZE-Name",
+          "dtype": "str",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 697,
+          "examples": [
+            "Zwingen, Obermatt",
+            "Sedrun 1",
+            "Mutteins",
+            "Ilanz 1",
+            "Ilanz 2"
+          ]
+        },
+        {
+          "name": "WKA-Name",
+          "dtype": "str",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 666,
+          "examples": [
+            "Zwingen, Obermatt",
+            "Sedrun 1",
+            "Brigels-Tavanasa",
+            "Ilanz 1 (Stufe Tavanasa)",
+            "Ilanz 2 (Stufe Panix (Pigniu))"
+          ]
+        },
+        {
+          "name": "WKA-Typ",
+          "dtype": "str",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 4,
+          "examples": [
+            "L",
+            "S",
+            "L",
+            "L",
+            "S"
+          ],
+          "all_values": [
+            "L",
+            "P",
+            "S",
+            "U"
+          ]
+        },
+        {
+          "name": "ZE-Standort",
+          "dtype": "str",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 556,
+          "examples": [
+            "Zwingen",
+            "Sedrun",
+            "Tavanasa",
+            "Ilanz",
+            "Ilanz"
+          ]
+        },
+        {
+          "name": "ZE-Kanton",
+          "dtype": "str",
+          "null_count": 15,
+          "null_pct": 2.15,
+          "unique_count": 25,
+          "examples": [
+            "Basel-Landschaft",
+            "Graubünden",
+            "Graubünden",
+            "Graubünden",
+            "Graubünden"
+          ]
+        },
+        {
+          "name": "ZE-Status",
+          "dtype": "str",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 4,
+          "examples": [
+            "im Normalbetrieb",
+            "im Normalbetrieb",
+            "im Normalbetrieb",
+            "im Normalbetrieb",
+            "im Normalbetrieb"
+          ],
+          "all_values": [
+            "im Bau",
+            "im Normalbetrieb",
+            "im Umbau",
+            "stillgelegt"
+          ]
+        },
+        {
+          "name": "Funktion: Turbinieren",
+          "dtype": "str",
+          "null_count": 19,
+          "null_pct": 2.73,
+          "unique_count": 1,
+          "examples": [
+            "T",
+            "T",
+            "T",
+            "T",
+            "T"
+          ],
+          "all_values": [
+            "T"
+          ]
+        },
+        {
+          "name": "Funktion: Pumpen",
+          "dtype": "str",
+          "null_count": 657,
+          "null_pct": 94.26,
+          "unique_count": 1,
+          "examples": [
+            "P",
+            "P",
+            "P",
+            "P",
+            "P"
+          ],
+          "all_values": [
+            "P"
+          ]
+        },
+        {
+          "name": "QTurbine [m3/sec]",
+          "dtype": "float64",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 244,
+          "min": 0.0,
+          "max": 1500.0,
+          "mean": 43.03995695839312,
+          "median": 4.1
+        },
+        {
+          "name": "Inst. Turbinenleistung",
+          "dtype": "float64",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 361,
+          "min": 0.0,
+          "max": 1285.0,
+          "mean": 25.57200860832137,
+          "median": 1.8
+        },
+        {
+          "name": "(\"LTURBINE[MW]\"/100)*\"PROZ.ANTEILCH\"",
+          "dtype": "float64",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 363,
+          "min": 0.0,
+          "max": 1285.0,
+          "mean": 24.28179982783357,
+          "median": 1.73
+        },
+        {
+          "name": "Max. Leistung ab Generator",
+          "dtype": "float64",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 330,
+          "min": 0.0,
+          "max": 1260.0,
+          "mean": 24.588464849354377,
+          "median": 1.76
+        },
+        {
+          "name": "(\"LGENERATOR[MW]\"/100)*\"PROZ.ANTEILCH\"",
+          "dtype": "float64",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 334,
+          "min": 0.0,
+          "max": 1260.0,
+          "mean": 23.33972529411765,
+          "median": 1.7
+        },
+        {
+          "name": "Prod. ohne Umwälzbetrieb - W.",
+          "dtype": "float64",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 345,
+          "min": 0.0,
+          "max": 1260.0,
+          "mean": 24.686370157819226,
+          "median": 2.47
+        },
+        {
+          "name": "Prod. ohne Umwälzbetrieb - S.",
+          "dtype": "float64",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 414,
+          "min": 0.0,
+          "max": 625.0,
+          "mean": 33.5367575322812,
+          "median": 4.2
+        },
+        {
+          "name": "Prod. ohne Umwälzbetrieb - J.",
+          "dtype": "float64",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 428,
+          "min": 0.0,
+          "max": 1780.0,
+          "mean": 58.22312769010043,
+          "median": 6.94
+        },
+        {
+          "name": "(\"PROD.OHNEUMWÄLZBETRIEB-J.\"/100)*\"PROZ.ANTEILCH\"",
+          "dtype": "float64",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 427,
+          "min": 0.0,
+          "max": 1780.0,
+          "mean": 52.500798708751795,
+          "median": 6.89
+        },
+        {
+          "name": "QPumpe [m3/sec]",
+          "dtype": "float64",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 38,
+          "min": 0.0,
+          "max": 360.0,
+          "mean": 1.2978479196556671,
+          "median": 0.0
+        },
+        {
+          "name": "Inst. Pumpenleistung",
+          "dtype": "float64",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 41,
+          "min": 0.0,
+          "max": 1000.0,
+          "mean": 5.650200860832137,
+          "median": 0.0
+        },
+        {
+          "name": "Leistungsaufnahme Motoren",
+          "dtype": "float64",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 37,
+          "min": 0.0,
+          "max": 1000.0,
+          "mean": 5.603357245337159,
+          "median": 0.0
+        },
+        {
+          "name": "Bedarf ohne Umwälzb. - W.",
+          "dtype": "float64",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 19,
+          "min": 0.0,
+          "max": 27.0,
+          "mean": 0.15799139167862267,
+          "median": 0.0
+        },
+        {
+          "name": "Bedarf ohne Umwälzb. - S.",
+          "dtype": "float64",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 30,
+          "min": 0.0,
+          "max": 197.4,
+          "mean": 1.1549497847919656,
+          "median": 0.0
+        },
+        {
+          "name": "Bedarf ohne Umwälzb. - J.",
+          "dtype": "float64",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 32,
+          "min": 0.0,
+          "max": 205.9,
+          "mean": 1.3129411764705883,
+          "median": 0.0
+        },
+        {
+          "name": "ZE-Erste Inbetriebnahme",
+          "dtype": "int64",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 152,
+          "min": 1816,
+          "max": 2020,
+          "mean": 1954.2022955523673,
+          "median": 1959.0
+        },
+        {
+          "name": "ZE-Letzte Inbetriebnahme",
+          "dtype": "float64",
+          "null_count": 117,
+          "null_pct": 16.79,
+          "unique_count": 88,
+          "min": 1915.0,
+          "max": 2017.0,
+          "mean": 1985.3741379310345,
+          "median": 1991.0
+        },
+        {
+          "name": "ZE-Kote",
+          "dtype": "float64",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 650,
+          "min": 200.0,
+          "max": 2273.2,
+          "mean": 818.8982065997131,
+          "median": 655.45
+        },
+        {
+          "name": "Proz. Anteil CH",
+          "dtype": "float64",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 13,
+          "min": 0.0,
+          "max": 100.0,
+          "mean": 97.78098995695841,
+          "median": 100.0
+        },
+        {
+          "name": "Kantonsanteil: Kanton Name (1)",
+          "dtype": "str",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 26,
+          "examples": [
+            "Basel-Landschaft",
+            "Graubünden",
+            "Graubünden",
+            "Graubünden",
+            "Graubünden"
+          ]
+        },
+        {
+          "name": "Kantonsanteil (1)",
+          "dtype": "float64",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 37,
+          "min": 0.0,
+          "max": 100.0,
+          "mean": 95.07063127690103,
+          "median": 100.0
+        },
+        {
+          "name": "Kantonsanteil: Kanton Name (2)",
+          "dtype": "str",
+          "null_count": 660,
+          "null_pct": 94.69,
+          "unique_count": 14,
+          "examples": [
+            "Solothurn",
+            "Solothurn",
+            "Aargau",
+            "Schwyz",
+            "Schwyz"
+          ],
+          "all_values": [
+            "Aargau",
+            "Appenzell I.Rh.",
+            "Basel-Landschaft",
+            "Freiburg",
+            "Graubünden",
+            "Nidwalden",
+            "Schaffhausen",
+            "Schwyz",
+            "Solothurn",
+            "St.Gallen",
+            "Tessin",
+            "Waadt",
+            "Wallis",
+            "Zug"
+          ]
+        },
+        {
+          "name": "Kantonsanteil (2)",
+          "dtype": "float64",
+          "null_count": 660,
+          "null_pct": 94.69,
+          "unique_count": 30,
+          "min": 0.0,
+          "max": 98.74,
+          "mean": 48.09918918918919,
+          "median": 48.0
+        },
+        {
+          "name": "Kantonsanteil: Kanton Name (3)",
+          "dtype": "str",
+          "null_count": 693,
+          "null_pct": 99.43,
+          "unique_count": 4,
+          "examples": [
+            "Zug",
+            "Tessin",
+            "St.Gallen",
+            "Thurgau"
+          ],
+          "all_values": [
+            "St.Gallen",
+            "Tessin",
+            "Thurgau",
+            "Zug"
+          ]
+        },
+        {
+          "name": "Kantonsanteil (3)",
+          "dtype": "float64",
+          "null_count": 693,
+          "null_pct": 99.43,
+          "unique_count": 4,
+          "min": 9.55,
+          "max": 54.0,
+          "mean": 27.3625,
+          "median": 22.95
+        },
+        {
+          "name": "Genutzte Gewässer - Name (1)",
+          "dtype": "str",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 408,
+          "examples": [
+            "Birs",
+            "Froda",
+            "Dardinerbach",
+            "Vorderrhein",
+            "Ranasca Nord und Süd"
+          ]
+        },
+        {
+          "name": "Genutzte Gewässer - Name (2)",
+          "dtype": "str",
+          "null_count": 435,
+          "null_pct": 62.41,
+          "unique_count": 215,
+          "examples": [
+            "Rein da Curnera",
+            "Flem",
+            "Speicher Panix (Pigniu)",
+            "Fruntbach",
+            "Averserrhein"
+          ]
+        },
+        {
+          "name": "Genutzte Gewässer - Name (3)",
+          "dtype": "str",
+          "null_count": 572,
+          "null_pct": 82.07,
+          "unique_count": 109,
+          "examples": [
+            "Rein da Nalps",
+            "Ual da Schmuer",
+            "Guraletsch",
+            "Blesbach",
+            "Stausee Marmorera"
+          ]
+        },
+        {
+          "name": "Genutzte Gewässer - Name (4)",
+          "dtype": "str",
+          "null_count": 610,
+          "null_pct": 87.52,
+          "unique_count": 77,
+          "examples": [
+            "Rein da Tuma",
+            "Ual da Siat",
+            "Peilerbach",
+            "Juppabach",
+            "Scheubsbach"
+          ]
+        },
+        {
+          "name": "Genutzte Gewässer - Name (5)",
+          "dtype": "str",
+          "null_count": 645,
+          "null_pct": 92.54,
+          "unique_count": 46,
+          "examples": [
+            "Stausee Curnera",
+            "Stausee Zervreila",
+            "Lago di Lei",
+            "Seez",
+            "Räterichsbodensee"
+          ]
+        },
+        {
+          "name": "Genutzte Gewässer - Name (6)",
+          "dtype": "str",
+          "null_count": 661,
+          "null_pct": 94.84,
+          "unique_count": 32,
+          "examples": [
+            "Stausee Nalps",
+            "Valser Rhein",
+            "Madriserrhein",
+            "Siezbach",
+            "Steinwasser"
+          ]
+        },
+        {
+          "name": "Genutzte Gewässer - Name (7)",
+          "dtype": "str",
+          "null_count": 673,
+          "null_pct": 96.56,
+          "unique_count": 21,
+          "examples": [
+            "Stausee Sta.Maria",
+            "Maleggabach",
+            "Speicher Gigerwald",
+            "Triftwasser",
+            "Voralpreuss"
+          ]
+        },
+        {
+          "name": "(\"LGENERATOR[MW]\"/100)*\"PROZ.ANTEILCH\".1",
+          "dtype": "float64",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 334,
+          "min": 0.0,
+          "max": 1260.0,
+          "mean": 23.33972529411765,
+          "median": 1.7
+        },
+        {
+          "name": "Genutzte Gewässer - Name (8)",
+          "dtype": "str",
+          "null_count": 684,
+          "null_pct": 98.13,
+          "unique_count": 12,
+          "examples": [
+            "Vatgira",
+            "Niemetbach",
+            "Tamina",
+            "Urbachwasser (Mattenalpsee)",
+            "Rötibach"
+          ],
+          "all_values": [
+            "Nant de Drance, Triège",
+            "Niemetbach",
+            "Petit Hongrin",
+            "R. Giacobi",
+            "Reuse de Saleinaz",
+            "Rötibach",
+            "Tamina",
+            "Torrent Séry",
+            "Torrent de Planeureuse",
+            "Urbachwasser (Mattenalpsee)",
+            "Vatgira",
+            "Walenbach"
+          ]
+        },
+        {
+          "name": "Genutzte Gewässer - Name (9)",
+          "dtype": "str",
+          "null_count": 685,
+          "null_pct": 98.28,
+          "unique_count": 11,
+          "examples": [
+            "Vorderrhein",
+            "Parebach",
+            "Tersolbach",
+            "Wendenwasser",
+            "Wichlenbach"
+          ],
+          "all_values": [
+            "Parebach",
+            "R. Passera",
+            "R. de Tompey",
+            "Reuse de Saleinaz",
+            "Tersolbach",
+            "Torrent de Planeureuse",
+            "Torrent de Treutse-Bô",
+            "Vasevay",
+            "Vorderrhein",
+            "Wendenwasser",
+            "Wichlenbach"
+          ]
+        },
+        {
+          "name": "Genutzte Gewässer - Name (10)",
+          "dtype": "str",
+          "null_count": 691,
+          "null_pct": 99.14,
+          "unique_count": 6,
+          "examples": [
+            "Pisciabach",
+            "Wildwüestibach",
+            "Torrent de Planeureuse",
+            "R. des Champs",
+            "Torrent de Treutse Bô"
+          ],
+          "all_values": [
+            "Pisciabach",
+            "R. Sella",
+            "R. des Champs",
+            "Torrent de Planeureuse",
+            "Torrent de Treutse Bô",
+            "Wildwüestibach"
+          ]
+        },
+        {
+          "name": "Genutzte Gewässer - Name (11)",
+          "dtype": "str",
+          "null_count": 692,
+          "null_pct": 99.28,
+          "unique_count": 5,
+          "examples": [
+            "Reno di Lei",
+            "Wolfisbach",
+            "Torrent de Treutse-Bô",
+            "R. des Plans",
+            "Torrent du Tour"
+          ],
+          "all_values": [
+            "R. des Plans",
+            "Reno di Lei",
+            "Torrent de Treutse-Bô",
+            "Torrent du Tour",
+            "Wolfisbach"
+          ]
+        },
+        {
+          "name": "Genutzte Gewässer - Name (12)",
+          "dtype": "str",
+          "null_count": 693,
+          "null_pct": 99.43,
+          "unique_count": 4,
+          "examples": [
+            "Stausee Sufers",
+            "Torrent du Tour",
+            "R. du Sepey",
+            "Triège-CFF"
+          ],
+          "all_values": [
+            "R. du Sepey",
+            "Stausee Sufers",
+            "Torrent du Tour",
+            "Triège-CFF"
+          ]
+        },
+        {
+          "name": "Ersatzenergie: Richtung (1)",
+          "dtype": "str",
+          "null_count": 611,
+          "null_pct": 87.66,
+          "unique_count": 2,
+          "examples": [
+            "A",
+            "A",
+            "B",
+            "A",
+            "A"
+          ],
+          "all_values": [
+            "A",
+            "B"
+          ]
+        },
+        {
+          "name": "Ersatzenergie: Partner (1)",
+          "dtype": "str",
+          "null_count": 611,
+          "null_pct": 87.66,
+          "unique_count": 73,
+          "examples": [
+            "Repower AG (Zentrale Waltensburg)",
+            "Landolt, Mels  (Maismühle)",
+            "Axpo AG / KSL (Zentrale Mapragg)",
+            "AWAG (Zentrale Klingnau)",
+            "KRS (Zentrale Ryburg-Schwörstadt)"
+          ]
+        },
+        {
+          "name": "Ersatzenergie: Richtung (2)",
+          "dtype": "str",
+          "null_count": 677,
+          "null_pct": 97.13,
+          "unique_count": 2,
+          "examples": [
+            "A",
+            "A",
+            "A",
+            "B",
+            "A"
+          ],
+          "all_values": [
+            "A",
+            "B"
+          ]
+        },
+        {
+          "name": "Ersatzenergie: Partner (2)",
+          "dtype": "str",
+          "null_count": 677,
+          "null_pct": 97.13,
+          "unique_count": 20,
+          "examples": [
+            "KW Stoffel AG (Zentr. Mels)",
+            "Schluchseewerke",
+            "JCF (Zentrale Wildegg; stillgelegt)",
+            "RADAG (Zentrale Albbruck)",
+            "Sihl Manegg Immobilien AG (Zent. Manegg)"
+          ],
+          "all_values": [
+            "AET    (Diversi centrali)",
+            "BKW   (Centr. Aarberg,Hagneck,Kallnach)",
+            "ED (Zentrale Wyhlen)",
+            "FMO     (Centrale d'Orsières)",
+            "GKW        (Zentrale Neubrigg)",
+            "Hydroelectra (Zentrale Luterbach)",
+            "IBA (Zentrale Aarau Stadt)",
+            "JCF (Zentrale Wildegg; stillgelegt)",
+            "KRS (Zentrale Ryburg-Schwörstadt)",
+            "KW Stoffel AG (Zentr. Mels)",
+            "KWO    (Zentrale Handeck 1)",
+            "Kernkraftwerk Beznau",
+            "RADAG (Zentrale Albbruck)",
+            "RHOWAG (Zentrale Mörel)",
+            "RKS   (Zentrale Säckingen)",
+            "ROHWAG (Zentrale Ernen)",
+            "Schluchseewerk",
+            "Schluchseewerke",
+            "Sihl Manegg Immobilien AG (Zent. Manegg)",
+            "Spital Lachen, Lachen"
+          ]
+        },
+        {
+          "name": "Ersatzenergie: Richtung (3)",
+          "dtype": "str",
+          "null_count": 685,
+          "null_pct": 98.28,
+          "unique_count": 2,
+          "examples": [
+            "A",
+            "B",
+            "B",
+            "A",
+            "A"
+          ],
+          "all_values": [
+            "A",
+            "B"
+          ]
+        },
+        {
+          "name": "Ersatzenergie: Partner (3)",
+          "dtype": "str",
+          "null_count": 685,
+          "null_pct": 98.28,
+          "unique_count": 12,
+          "examples": [
+            "T+G              (Zentr. Ragaz)",
+            "ED (Zentrale Laufenburg)",
+            "Axpo Power AG (Zentrale Wildegg-Brugg)",
+            "Zermatt (GGB)",
+            "SRE     (Centrale de Sembrancher)"
+          ],
+          "all_values": [
+            "Axpo Power AG (Zentrale Wildegg-Brugg)",
+            "ED (Zentrale Laufenburg)",
+            "ED (Zentrale Rheinfelden)",
+            "EdF (Zentrale Kembs)",
+            "Groupe E SA (Cen. Hauterive, Schiffenen)",
+            "KWO        (Zentrale Handeck 1)",
+            "KWO     (Zentrale Handeck 1)",
+            "ROHWAG (Zentrale Mörel)",
+            "SRE     (Centrale de Sembrancher)",
+            "SW (Umwälzwerk Säckingen, D)",
+            "T+G              (Zentr. Ragaz)",
+            "Zermatt (GGB)"
+          ]
+        },
+        {
+          "name": "Ersatzenergie: Richtung (4)",
+          "dtype": "str",
+          "null_count": 692,
+          "null_pct": 99.28,
+          "unique_count": 2,
+          "examples": [
+            "A",
+            "A",
+            "A",
+            "B",
+            "A"
+          ],
+          "all_values": [
+            "A",
+            "B"
+          ]
+        },
+        {
+          "name": "Ersatzenergie: Partner (4)",
+          "dtype": "str",
+          "null_count": 692,
+          "null_pct": 99.28,
+          "unique_count": 5,
+          "examples": [
+            "EWM            (Zentr. Tobel)",
+            "Axpo Power AG (Rüchlig-Dotierzentrale)",
+            "EW Zermatt (Zentralen Mutt und Wiesti)",
+            "CFF      (Centrale Vernayaz)",
+            "FMV (Zentrale Chippis)"
+          ],
+          "all_values": [
+            "Axpo Power AG (Rüchlig-Dotierzentrale)",
+            "CFF      (Centrale Vernayaz)",
+            "EW Zermatt (Zentralen Mutt und Wiesti)",
+            "EWM            (Zentr. Tobel)",
+            "FMV (Zentrale Chippis)"
+          ]
+        },
+        {
+          "name": "Ersatzenergie: Richtung (5)",
+          "dtype": "str",
+          "null_count": 696,
+          "null_pct": 99.86,
+          "unique_count": 1,
+          "examples": [
+            "A"
+          ],
+          "all_values": [
+            "A"
+          ]
+        },
+        {
+          "name": "Ersatzenergie: Partner (5)",
+          "dtype": "str",
+          "null_count": 696,
+          "null_pct": 99.86,
+          "unique_count": 1,
+          "examples": [
+            "Hydroelectra AG (Zentr. Mels (Halde))"
+          ],
+          "all_values": [
+            "Hydroelectra AG (Zentr. Mels (Halde))"
+          ]
+        },
+        {
+          "name": "Ersatzenergie :Richtung (6)",
+          "dtype": "str",
+          "null_count": 696,
+          "null_pct": 99.86,
+          "unique_count": 1,
+          "examples": [
+            "A"
+          ],
+          "all_values": [
+            "A"
+          ]
+        },
+        {
+          "name": "Ersatzenergie: Partner (6)",
+          "dtype": "str",
+          "null_count": 696,
+          "null_pct": 99.86,
+          "unique_count": 1,
+          "examples": [
+            "Weberei Walenstadt"
+          ],
+          "all_values": [
+            "Weberei Walenstadt"
+          ]
+        },
+        {
+          "name": "Ersatzenergie: Richtung (7)",
+          "dtype": "float64",
+          "null_count": 697,
+          "null_pct": 100.0,
+          "unique_count": 0,
+          "examples": []
+        },
+        {
+          "name": "Ersatzenergie: Partner (7)",
+          "dtype": "float64",
+          "null_count": 697,
+          "null_pct": 100.0,
+          "unique_count": 0,
+          "examples": []
+        },
+        {
+          "name": "Ersatzenergie: Richtung (8)",
+          "dtype": "float64",
+          "null_count": 697,
+          "null_pct": 100.0,
+          "unique_count": 0,
+          "examples": []
+        },
+        {
+          "name": "Ersatzenergie: Partner (8)",
+          "dtype": "float64",
+          "null_count": 697,
+          "null_pct": 100.0,
+          "unique_count": 0,
+          "examples": []
+        },
+        {
+          "name": "Ersatzenergie: Richtung (9)",
+          "dtype": "float64",
+          "null_count": 697,
+          "null_pct": 100.0,
+          "unique_count": 0,
+          "examples": []
+        },
+        {
+          "name": "Ersatzenergie: Partner (9)",
+          "dtype": "float64",
+          "null_count": 697,
+          "null_pct": 100.0,
+          "unique_count": 0,
+          "examples": []
+        },
+        {
+          "name": "Ersatzenergie: Richtung (10)",
+          "dtype": "float64",
+          "null_count": 697,
+          "null_pct": 100.0,
+          "unique_count": 0,
+          "examples": []
+        },
+        {
+          "name": "Ersatzenergie: Partner (10)",
+          "dtype": "float64",
+          "null_count": 697,
+          "null_pct": 100.0,
+          "unique_count": 0,
+          "examples": []
+        },
+        {
+          "name": "Ersatzenergie: Richtung (11)",
+          "dtype": "float64",
+          "null_count": 697,
+          "null_pct": 100.0,
+          "unique_count": 0,
+          "examples": []
+        },
+        {
+          "name": "Ersatzenergie: Partner (11)",
+          "dtype": "float64",
+          "null_count": 697,
+          "null_pct": 100.0,
+          "unique_count": 0,
+          "examples": []
+        },
+        {
+          "name": "Ersatzenergie: Richtung (12)",
+          "dtype": "float64",
+          "null_count": 697,
+          "null_pct": 100.0,
+          "unique_count": 0,
+          "examples": []
+        },
+        {
+          "name": "Ersatzenergie: Partner (12)",
+          "dtype": "float64",
+          "null_count": 697,
+          "null_pct": 100.0,
+          "unique_count": 0,
+          "examples": []
+        },
+        {
+          "name": "Rechte - Name (1)",
+          "dtype": "str",
+          "null_count": 4,
+          "null_pct": 0.57,
+          "unique_count": 5,
+          "examples": [
+            "Konzession(en)",
+            "Konzession(en)",
+            "Konzession(en)",
+            "Konzession(en)",
+            "Konzession(en)"
+          ],
+          "all_values": [
+            "Andere Rechtsgrundlage",
+            "Bewilligung",
+            "Ehehaftes Recht",
+            "Konzession(en)",
+            "Verfügungsrecht"
+          ]
+        },
+        {
+          "name": "Rechte - Endjahr (1)",
+          "dtype": "float64",
+          "null_count": 4,
+          "null_pct": 0.57,
+          "unique_count": 85,
+          "min": 1998.0,
+          "max": 9999.0,
+          "mean": 3248.126984126984,
+          "median": 2059.0
+        },
+        {
+          "name": "Rechte - Name (2)",
+          "dtype": "str",
+          "null_count": 675,
+          "null_pct": 96.84,
+          "unique_count": 4,
+          "examples": [
+            "Konzession(en)",
+            "Konzession(en)",
+            "Ehehaftes Recht",
+            "Andere Rechtsgrundlage",
+            "Andere Rechtsgrundlage"
+          ],
+          "all_values": [
+            "Andere Rechtsgrundlage",
+            "Bewilligung",
+            "Ehehaftes Recht",
+            "Konzession(en)"
+          ]
+        },
+        {
+          "name": "Rechte - Endjahr (2)",
+          "dtype": "float64",
+          "null_count": 675,
+          "null_pct": 96.84,
+          "unique_count": 5,
+          "min": 2030.0,
+          "max": 9999.0,
+          "mean": 8554.227272727272,
+          "median": 9999.0
+        },
+        {
+          "name": "Rechte - Name (3)",
+          "dtype": "str",
+          "null_count": 695,
+          "null_pct": 99.71,
+          "unique_count": 2,
+          "examples": [
+            "Ehehaftes Recht",
+            "Andere Rechtsgrundlage"
+          ],
+          "all_values": [
+            "Andere Rechtsgrundlage",
+            "Ehehaftes Recht"
+          ]
+        },
+        {
+          "name": "Rechte - Endjahr (3)",
+          "dtype": "float64",
+          "null_count": 695,
+          "null_pct": 99.71,
+          "unique_count": 1,
+          "min": 9999.0,
+          "max": 9999.0,
+          "mean": 9999.0,
+          "median": 9999.0
+        },
+        {
+          "name": "Rechte - Name (4)",
+          "dtype": "float64",
+          "null_count": 697,
+          "null_pct": 100.0,
+          "unique_count": 0,
+          "examples": []
+        },
+        {
+          "name": "Rechte - Endjahr (4)",
+          "dtype": "float64",
+          "null_count": 697,
+          "null_pct": 100.0,
+          "unique_count": 0,
+          "examples": []
+        },
+        {
+          "name": "Rechte - Name (5)",
+          "dtype": "float64",
+          "null_count": 697,
+          "null_pct": 100.0,
+          "unique_count": 0,
+          "examples": []
+        },
+        {
+          "name": "Rechte - Endjahr (5)",
+          "dtype": "float64",
+          "null_count": 697,
+          "null_pct": 100.0,
+          "unique_count": 0,
+          "examples": []
+        },
+        {
+          "name": "Rechte - Name (6)",
+          "dtype": "float64",
+          "null_count": 697,
+          "null_pct": 100.0,
+          "unique_count": 0,
+          "examples": []
+        },
+        {
+          "name": "Rechte - Endjahr (6)",
+          "dtype": "float64",
+          "null_count": 697,
+          "null_pct": 100.0,
+          "unique_count": 0,
+          "examples": []
+        },
+        {
+          "name": "Rechte - Name (7)",
+          "dtype": "float64",
+          "null_count": 697,
+          "null_pct": 100.0,
+          "unique_count": 0,
+          "examples": []
+        },
+        {
+          "name": "Rechte - Endjahr (7)",
+          "dtype": "float64",
+          "null_count": 697,
+          "null_pct": 100.0,
+          "unique_count": 0,
+          "examples": []
+        },
+        {
+          "name": "Rechte - Name (8)",
+          "dtype": "float64",
+          "null_count": 697,
+          "null_pct": 100.0,
+          "unique_count": 0,
+          "examples": []
+        },
+        {
+          "name": "Rechte - Endjahr (8)",
+          "dtype": "float64",
+          "null_count": 697,
+          "null_pct": 100.0,
+          "unique_count": 0,
+          "examples": []
+        },
+        {
+          "name": "Rechte - Name (9)",
+          "dtype": "float64",
+          "null_count": 697,
+          "null_pct": 100.0,
+          "unique_count": 0,
+          "examples": []
+        },
+        {
+          "name": "Rechte - Endjahr (9)",
+          "dtype": "float64",
+          "null_count": 697,
+          "null_pct": 100.0,
+          "unique_count": 0,
+          "examples": []
+        },
+        {
+          "name": "Rechte - Name (10)",
+          "dtype": "float64",
+          "null_count": 697,
+          "null_pct": 100.0,
+          "unique_count": 0,
+          "examples": []
+        },
+        {
+          "name": "Rechte - Endjahr (10)",
+          "dtype": "float64",
+          "null_count": 697,
+          "null_pct": 100.0,
+          "unique_count": 0,
+          "examples": []
+        },
+        {
+          "name": "Bemerkung (1)",
+          "dtype": "str",
+          "null_count": 460,
+          "null_pct": 66.0,
+          "unique_count": 176,
+          "examples": [
+            "- Konzessionsverhandlungen sind im Gange",
+            "- Zentralen Sedrun 1 und Sedrun 2 in einer Kaverne",
+            "- Ersatzenergie:\tAbgabe an Repower AG als Realersatz für das stillgelegte Kraftwerk Waltensburg  ",
+            "- Zentralen Ilanz 1 und Ilanz 2 in einem Gebäude              ",
+            "- Zentralen Ilanz 1 und Ilanz 2 in einem Gebäude              "
+          ]
+        },
+        {
+          "name": "Bemerkung (2)",
+          "dtype": "str",
+          "null_count": 590,
+          "null_pct": 84.65,
+          "unique_count": 82,
+          "examples": [
+            "                                   ",
+            "                                         ",
+            "                                                 ",
+            "                                                 ",
+            " "
+          ]
+        },
+        {
+          "name": "Bemerkung (3)",
+          "dtype": "str",
+          "null_count": 640,
+          "null_pct": 91.82,
+          "unique_count": 44,
+          "examples": [
+            "                    \t             ",
+            "  Nach dem Umbau sind folgende Werte zu erwarten:",
+            "                                                   ",
+            "                                                   ",
+            "\tentweder zur Zentrale Innertkirchen 1 oder über die Reservoirkammern Trift zur Zentrale Hopflauenen (Trift) geleitet "
+          ]
+        },
+        {
+          "name": "Bemerkung (4)",
+          "dtype": "str",
+          "null_count": 658,
+          "null_pct": 94.4,
+          "unique_count": 33,
+          "examples": [
+            "  Ausbauwassermenge (an 138 Tagen erreicht)\t\t=   1100 m3/s",
+            "  b) \tIm Pumpbetrieb: Die Isogyre pumpt das Wasser aus den Reservoirkammern Trift und/oder aus dem Ausgleichsbecken Handeck",
+            "  ",
+            "                                               \t\t\t  Rest bis 21 m3/s Speicherwasser ab Zentrale Handeck 3 (Isogyre)",
+            "  c) Speicherkraftwerkbetrieb im Winter "
+          ]
+        },
+        {
+          "name": "Bemerkung (5)",
+          "dtype": "str",
+          "null_count": 672,
+          "null_pct": 96.41,
+          "unique_count": 20,
+          "examples": [
+            "  Installierte Leistung sämtlicher Turbinen\t\t=   84.90 MW",
+            "\tin den Räterichsbodensee ",
+            "  c) Speicherkraftwerkbetrieb: Winter, dh. Speicherwasser ab Zentrale Handeck 3 (Isogyre)",
+            " ",
+            "                              "
+          ],
+          "all_values": [
+            "\t\t\tVal d'Arolla sud et ouest",
+            "\tin den Räterichsbodensee ",
+            " ",
+            "    \t\t\tChâtelard-Barberine 1 = 46 MW",
+            "       ",
+            "            ",
+            "                              ",
+            "                                                ",
+            "                                                       ",
+            "    Basse chute: \t\tDébit max.turbiné                    \t\t=  15.0 m3/s",
+            "  Installierte Leistung sämtlicher Turbinen\t\t=    8.20 MW",
+            "  Installierte Leistung sämtlicher Turbinen\t\t=   0.90 MW",
+            "  Installierte Leistung sämtlicher Turbinen\t\t=   84.90 MW",
+            "  Mittlere Produktionserwartung im Jahr\t\t\t=   6.90 GWh",
+            "  Puissance installée totale des pompes: Palier Mottec-Moiry    = 25.10 MW; Palier Turtmann-Mottec-Moiry   =  6.60 MW     ",
+            "  c) Speicherkraftwerkbetrieb: Winter, dh. Speicherwasser ab Zentrale Handeck 3 (Isogyre)",
+            "- Erzeugt Bahnstrom 16,7 Hertz        ",
+            "- Veytaux II: 2 machine à 120 MW (turbinage / pompage)",
+            "Production l'hiver:    0.713 GWh     ",
+            "diese wird dem KW Aarberg zugerechnet. Mit einer Erneuerung des Dotierkraftwekes wird die 300 kW Leistung erreicht und"
+          ]
+        },
+        {
+          "name": "Bemerkung (6)",
+          "dtype": "str",
+          "null_count": 678,
+          "null_pct": 97.27,
+          "unique_count": 18,
+          "examples": [
+            "  Maximal mögliche Leistung ab Generatoren\t\t=   84.00 MW",
+            "- Zentralen Handeck 3 (Isogyre) und Handeck 3 (Pumpzentrale) in einer Kaverne",
+            "- Zentrale Hopflauenen (Trift) und Hopflauenen (Leimboden) in einem Gebäude                ",
+            "wird somit als eigene Anlage in der WASTA aufgenommen.",
+            "                 \t        "
+          ],
+          "all_values": [
+            "\t\t\tVal Ferpècle est",
+            " ",
+            "      ",
+            "                 \t        ",
+            "                         ",
+            "                          \t\tChâtelard-Barberine 2 = 82 MW          ",
+            "                            ",
+            "    (Bassin des Esserts)  \tPuiss.inst.des turb.Francis axe Gr.1 \t=  50.5 MW  ",
+            "  Maximal mögliche Leistung ab Generatoren\t\t=    7.90 MW",
+            "  Maximal mögliche Leistung ab Generatoren\t\t=   0.90 MW",
+            "  Maximal mögliche Leistung ab Generatoren\t\t=   84.00 MW",
+            "  Puissance maximale absorbée par les moteurs:\tPalier Mottec-Moiry\t=  28.00 MW; Palier Turtmann-Mottec-Moiry   =  7.50 MW",
+            "- La production total, d'environ 969,7 GWh/a, dont 159,7 GWh proviennent des apport naturel",
+            "- Status der Zentrale: Aufnahme des Normalbetriebes ist im Sommer 2019 vorgesehen",
+            "- Zentrale Hopflauenen (Trift) und Hopflauenen (Leimboden) in einem Gebäude                ",
+            "- Zentralen Handeck 3 (Isogyre) und Handeck 3 (Pumpzentrale) in einer Kaverne",
+            "Production l'année:  2.334 GWh   ",
+            "wird somit als eigene Anlage in der WASTA aufgenommen."
+          ]
+        },
+        {
+          "name": "Bemerkung (7)",
+          "dtype": "str",
+          "null_count": 681,
+          "null_pct": 97.7,
+          "unique_count": 14,
+          "examples": [
+            "  Mittlere Produktionserwartung im Sommerhalbjahr\t=   315.7 GWh",
+            "                   ",
+            "      ",
+            "                  ",
+            "  Mittlere Produktionserwartung im Sommerhalbjahr\t=   17.20 GWh"
+          ],
+          "all_values": [
+            " ",
+            "      ",
+            "               \t\t\tPuissance max.disponible        Gr.1 \t=  48.5 MW                    ",
+            "                  ",
+            "                   ",
+            "                         ",
+            "                          ",
+            "                                 ",
+            "  Mittlere Produktionserwartung im Sommerhalbjahr\t=   17.20 GWh",
+            "  Mittlere Produktionserwartung im Sommerhalbjahr\t=   3.5 GWh",
+            "  Mittlere Produktionserwartung im Sommerhalbjahr\t=   315.7 GWh",
+            "- Die Zentrale wird für den Anschluss an die Druckleitung bei der Zentrale im Sommer 2018 für einige Wochen stillgelegt",
+            "- La centrale Mottec fait pompage-turbinage                   \t    ",
+            "- Pour la production moyenne escomptée aux bornes des alternateurs on suppose une exploitation normale de Châtelard-Barberine 1"
+          ]
+        },
+        {
+          "name": "Bemerkung (8)",
+          "dtype": "str",
+          "null_count": 683,
+          "null_pct": 97.99,
+          "unique_count": 11,
+          "examples": [
+            "  Mittlere Produktionserwartung im Winterhalbjahr\t\t=   258.3 GWh",
+            "      ",
+            "     ",
+            " ",
+            "  Mittlere Produktionserwartung im Winterhalbjahr\t\t=   5.72 GWh"
+          ],
+          "all_values": [
+            " ",
+            "     ",
+            "      ",
+            "                          ",
+            "                                            ",
+            "  Mittlere Produktionserwartung im Winterhalbjahr\t\t=   1.5 GWh",
+            "  Mittlere Produktionserwartung im Winterhalbjahr\t\t=   258.3 GWh",
+            "  Mittlere Produktionserwartung im Winterhalbjahr\t\t=   5.72 GWh",
+            "  et Châtelard-Barberine 2",
+            "- Die Zentrale wird im  Frühling / Sommer 2019 für einige Wochen stillgelegt zum Anschluss der Druckleitung",
+            "- Les équipements haute chute, basse chute et Centrale de pompage de Châtelard-Vallorcine se trouvent dans le même bâtiment et leur"
+          ]
+        },
+        {
+          "name": "Bemerkung (9)",
+          "dtype": "str",
+          "null_count": 683,
+          "null_pct": 97.99,
+          "unique_count": 12,
+          "examples": [
+            "  Mittlere Produktionserwartung im Jahr\t\t\t=   574 GWh",
+            "                                                    ",
+            "                                         ",
+            "                         \t",
+            "  Mittlere Produktionserwartung im Jahr\t\t\t=   22.92 GWh"
+          ],
+          "all_values": [
+            " ",
+            "          ",
+            "                     \t      ",
+            "                         \t",
+            "                                         ",
+            "                                             ",
+            "                                                    ",
+            "  Mittlere Produktionserwartung im Jahr\t\t\t=   22.92 GWh",
+            "  Mittlere Produktionserwartung im Jahr\t\t\t=   5.0 GWh",
+            "  Mittlere Produktionserwartung im Jahr\t\t\t=   574 GWh",
+            "  fonctionnement est étroitement lié",
+            "- La centrale Châtelard-Barberine 2 fait pompage-turbinage "
+          ]
+        },
+        {
+          "name": "Bemerkung (10)",
+          "dtype": "str",
+          "null_count": 687,
+          "null_pct": 98.57,
+          "unique_count": 9,
+          "examples": [
+            "  Die Konzessionsdauer läuft bis ins Jahr\t\t\t=   2072",
+            "         ",
+            "                                   ",
+            "  Kote Maschinensaalboden\t\t\t\t=   480,60 m.ü.M",
+            "                     \t     "
+          ],
+          "all_values": [
+            " ",
+            "       ",
+            "         ",
+            "                     \t     ",
+            "                                   ",
+            "  Die Konzessionsdauer läuft bis ins Jahr\t\t\t=   2072",
+            "  Die Konzessionsdauer läuft bis ins Jahr\t\t\t=   2076",
+            "  Kote Maschinensaalboden\t\t\t\t=   480,60 m.ü.M",
+            "- Procedure renouvellement concession en cours "
+          ]
+        },
+        {
+          "name": "ZE-Koordinaten unscharf (Ost)",
+          "dtype": "int64",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 644,
+          "min": 486880,
+          "max": 844830,
+          "mean": 668982.9842180775,
+          "median": 668540.0
+        },
+        {
+          "name": "ZE-Koordinaten unscharf (Nord)",
+          "dtype": "int64",
+          "null_count": 0,
+          "null_pct": 0.0,
+          "unique_count": 640,
+          "min": 81630,
+          "max": 283470,
+          "mean": 179201.82209469154,
+          "median": 178750.0
+        }
+      ]
+    }
+  }
+}
