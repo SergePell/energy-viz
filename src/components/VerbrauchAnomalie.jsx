@@ -52,7 +52,7 @@ function InfoTooltip({ active, payload, einheit, schwelle }) {
   const istAnomal = hatScore && d.score >= schwelle
   return (
     <div style={{
-      background: '#12141c', border: '1px solid var(--border)', borderRadius: 8,
+      background: 'var(--bg-elevated)', border: '1px solid var(--border)', borderRadius: 8,
       padding: '10px 12px', fontSize: 12, color: 'var(--text-primary)', minWidth: 180,
     }}>
       <div style={{ fontWeight: 500, marginBottom: 4 }}>{formatiereDatum(d.date)}</div>

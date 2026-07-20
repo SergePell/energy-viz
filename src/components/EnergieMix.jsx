@@ -14,12 +14,33 @@ const FORMEN = [
   { key: 'Photovoltaik', farbe: '#efb23a' },
 ]
 
+// Kleine Inline-Icons je Energieträger. Rein visuell, an die Trägerfarbe gebunden.
+function TraegerIcon({ typ, farbe, size = 14 }) {
+  const p = { width: size, height: size, viewBox: '0 0 24 24', fill: 'none', stroke: farbe, strokeWidth: 2, strokeLinecap: 'round', strokeLinejoin: 'round' }
+  switch (typ) {
+    case 'Laufwasser':   // fliessendes Wasser: Wellen
+      return <svg {...p}><path d="M2 9c2.5-2.5 4.5-2.5 7 0s4.5 2.5 7 0" /><path d="M2 15c2.5-2.5 4.5-2.5 7 0s4.5 2.5 7 0" /></svg>
+    case 'Speicher':     // gespeichertes Wasser: Tropfen
+      return <svg {...p}><path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z" /></svg>
+    case 'Kernkraft':    // Atom
+      return <svg {...p}><circle cx="12" cy="12" r="1.6" fill={farbe} stroke="none" /><ellipse cx="12" cy="12" rx="10" ry="4" /><ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(60 12 12)" /><ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(120 12 12)" /></svg>
+    case 'Thermisch':    // Flamme
+      return <svg {...p}><path d="M12 3c1 3-2 4-2 7a2 2 0 0 0 4 0c0-1-1-2-1-2 2 1 3 3 3 5a5 5 0 0 1-10 0c0-4 4-6 6-10z" /></svg>
+    case 'Wind':         // Windböen
+      return <svg {...p}><path d="M3 8h10a2.5 2.5 0 1 0-2.5-2.5" /><path d="M3 16h7a2.5 2.5 0 1 1-2.5 2.5" /><path d="M3 12h14a2.5 2.5 0 1 0-2.5-2.5" /></svg>
+    case 'Photovoltaik': // Sonne
+      return <svg {...p}><circle cx="12" cy="12" r="4" /><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4" /></svg>
+    default:             // Andere: drei Punkte
+      return <svg {...p}><circle cx="6" cy="12" r="1.4" fill={farbe} stroke="none" /><circle cx="12" cy="12" r="1.4" fill={farbe} stroke="none" /><circle cx="18" cy="12" r="1.4" fill={farbe} stroke="none" /></svg>
+  }
+}
+
 function MixTooltip({ active, payload, label }) {
   if (!active || !payload || !payload.length) return null
   const total = payload.reduce((s, p) => s + (p.value || 0), 0)
   const d = new Date(label)
   return (
-    <div style={{ background: '#12141c', border: '1px solid var(--border)', borderRadius: 8, padding: '8px 10px', fontSize: 12, color: 'var(--text-primary)' }}>
+    <div style={{ background: 'var(--bg-elevated)', border: '1px solid var(--border)', borderRadius: 8, padding: '8px 10px', fontSize: 12, color: 'var(--text-primary)' }}>
       <div style={{ fontWeight: 500 }}>{d.getMonth() + 1}/{d.getFullYear()}</div>
       {[...payload].reverse().map(p => (
         <div key={p.name} style={{ color: p.color }}>{p.name}: {p.value.toFixed(0)} GWh</div>
@@ -82,14 +103,14 @@ export function EnergieMix({ brushRange }) {
                 onClick={() => setAktiv(a => (a === f.key ? null : f.key))}
                 style={{
                   border: `1px solid ${istFokus ? f.farbe : 'var(--border)'}`,
-                  background: istFokus ? `${f.farbe}22` : '#12141c',
+                  background: istFokus ? `${f.farbe}22` : 'var(--bg-elevated)',
                   borderRadius: 6, padding: '6px 10px', cursor: 'pointer',
                   opacity: gedimmt ? 0.35 : 1,
                   display: 'flex', flexDirection: 'column', alignItems: 'flex-start',
                   minWidth: 96, transition: 'opacity 120ms, background 120ms',
                 }}>
                 <span style={{ display: 'flex', alignItems: 'center', gap: 5, fontSize: 11, color: 'var(--text-secondary)' }}>
-                  <span style={{ width: 8, height: 8, borderRadius: '50%', background: f.farbe }} />
+                  <TraegerIcon typ={f.key} farbe={f.farbe} size={14} />
                   {f.key}
                 </span>
                 <span style={{ fontSize: 14, fontWeight: 500, color: 'var(--text-primary)', marginTop: 2 }}>
@@ -102,7 +123,7 @@ export function EnergieMix({ brushRange }) {
             )
           })}
           <div style={{
-            border: '1px solid var(--border)', background: '#12141c',
+            border: '1px solid var(--border)', background: 'var(--bg-elevated)',
             borderRadius: 6, padding: '6px 10px',
             display: 'flex', flexDirection: 'column', justifyContent: 'center', minWidth: 96,
           }}>

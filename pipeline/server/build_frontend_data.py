@@ -11,7 +11,7 @@ Outputs:
   grenzfluss_monat.json            [{date, richtung_code, energie_mwh}]
   anlagen_standorte.json           [{typ, name, kanton_code, lat, lon, leistung_mw, produktion_gwh, ...}]
   gesamtenergie_sankey.json        {jahr: [{source, target, value}, ...]}   aus OGD115
-  wetter_national_daily.json       [{date, temp, niederschlag, sonne, wolken, wind}]
+  wetter_national_daily.json       [{date, temp, temp_min, temp_max, niederschlag, sonne, wolken, wind}]
   + kopiert: landesverbrauch_daily_anomaly.json, kanton_geometry.geojson
 """
 
@@ -401,7 +401,7 @@ def wetter_national_daily() -> list:
     mitteln.
 
     Output-Schema:
-        [{date, temp, niederschlag, sonne, wolken, wind}, ...]
+        [{date, temp, temp_min, temp_max, niederschlag, sonne, wolken, wind}, ...]
     """
     pfad = FACT / "wetter_stuendlich.parquet"
     if not pfad.exists():
@@ -430,11 +430,20 @@ def wetter_national_daily() -> list:
         "wind_speed_10m": "mean",
     }).reset_index()
 
+    # Tageshoch/-tief aus dem nationalen Stundenmittel der Temperatur.
+    # Erst je Stunde ueber die Stationen mitteln, dann je Tag Min/Max.
+    # Alle drei (Mittel/Min/Max) stammen so aus derselben nationalen
+    # Stundenkurve, womit min <= temp <= max garantiert ist.
+    nat_stunde = df.groupby(["datum", "zeitstempel_utc"])["temperature_2m"].mean()
+    tag_extrem = nat_stunde.groupby(level=0).agg(["min", "max"])
+
     rows = []
     for _, r in national.iterrows():
         rows.append({
             "date": r["datum"].strftime("%Y-%m-%d"),
             "temp": round(float(r["temperature_2m"]), 1),
+            "temp_min": round(float(tag_extrem.loc[r["datum"], "min"]), 1),
+            "temp_max": round(float(tag_extrem.loc[r["datum"], "max"]), 1),
             "niederschlag": round(float(r["precipitation"]), 1),
             "sonne": int(round(float(r["shortwave_radiation"]))),
             "wolken": int(round(float(r["cloud_cover"]))),

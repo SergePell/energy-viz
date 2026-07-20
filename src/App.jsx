@@ -14,6 +14,7 @@ import { JahrDropdown } from './components/JahrDropdown'
 import { useJson } from './hooks/useJson'
 import { TagesProfil } from './components/TagesProfil'
 import { ZerlegungAnsicht } from './components/ZerlegungAnsicht'
+import { ErzeugungZeitreihe } from './components/ErzeugungZeitreihe'
 
 const REITER = [
   { id: 'analyse', label: 'Analyse' },
@@ -29,6 +30,41 @@ const JAHR_FALLBACK_MAX = 2026
 // Startwert des Schwellenwertes. Markiert zwei Anomalien; 0.65 markiert drei.
 const SCHWELLE_START = 0.68
 
+// Metadaten für den Footer. Datenstand konsistent mit der Pipeline (SNAPSHOT = 2026-05-10).
+const META = {
+  autor: 'Serge Pellegatta',
+  version: '1.0',
+  snapshot: '10. Mai 2026',
+  repo: 'github.com/SergePell/energy-viz',
+}
+
+// Umschalter Dark/Light. currentColor sorgt dafür, dass das Icon die Textfarbe
+// des Buttons erbt und in beiden Themes passt.
+function ThemeToggle({ theme, onToggle }) {
+  const dunkel = theme === 'dark'
+  return (
+    <button onClick={onToggle} title="Farbschema wechseln"
+      style={{
+        display: 'inline-flex', alignItems: 'center', gap: 6, flexShrink: 0,
+        background: 'var(--bg-elevated)', color: 'var(--text-secondary)',
+        border: '1px solid var(--border)', borderRadius: 6,
+        padding: '6px 10px', fontSize: 12, cursor: 'pointer',
+      }}>
+      {dunkel ? (
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round">
+          <circle cx="12" cy="12" r="4" />
+          <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4" />
+        </svg>
+      ) : (
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z" />
+        </svg>
+      )}
+      {dunkel ? 'Hell' : 'Dunkel'}
+    </button>
+  )
+}
+
 function App() {
   const [kanton, setKanton] = useState(null)
   const [reiter, setReiter] = useState('analyse')
@@ -39,6 +75,16 @@ function App() {
   const [schwelle, setSchwelle] = useState(SCHWELLE_START)
   const waehlen = code => setKanton(prev => (prev === code ? null : code))
   const landKlick = land => setFokusLand(prev => (prev === land ? null : land))
+
+  // Theme (dark = Default). Wahl wird in localStorage gemerkt und als
+  // data-theme-Attribut auf <html> gesetzt, wo die CSS-Variablen umschalten.
+  const [theme, setTheme] = useState(() => {
+    try { return localStorage.getItem('theme') || 'dark' } catch { return 'dark' }
+  })
+  useEffect(() => {
+    document.documentElement.dataset.theme = theme
+    try { localStorage.setItem('theme', theme) } catch { /* localStorage nicht verfügbar */ }
+  }, [theme])
 
   // Jahresbereich aus den Handelsdaten ableiten (deckt 2009–2026 ab, der weiteste vorhandene Range)
   const { data: fluesse } = useJson('/data/grenzfluss_monat.json')
@@ -86,12 +132,18 @@ function App() {
 
   return (
     <div style={{ padding: '24px 20px', maxWidth: 1300, margin: '0 auto' }}>
-      <p style={{ fontFamily: 'var(--font-mono)', fontSize: 10, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--text-muted)', marginBottom: 6 }}>
-        Visual Analytics · Energie Schweiz
-      </p>
-      <h1 style={{ fontSize: 30, fontWeight: 400, lineHeight: 1.15, marginBottom: 16, color: 'var(--text-primary)' }}>
-        Energie-Dashboard Schweiz
-      </h1>
+      {/* Kopfzeile mit Titel links und Theme-Umschalter rechts */}
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 12, marginBottom: 16 }}>
+        <div>
+          <p style={{ fontFamily: 'var(--font-mono)', fontSize: 10, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--text-muted)', marginBottom: 6 }}>
+            Visual Analytics · Energie Schweiz
+          </p>
+          <h1 style={{ fontSize: 30, fontWeight: 400, lineHeight: 1.15, margin: 0, color: 'var(--text-primary)' }}>
+            Energie-Dashboard Schweiz
+          </h1>
+        </div>
+        <ThemeToggle theme={theme} onToggle={() => setTheme(t => (t === 'dark' ? 'light' : 'dark'))} />
+      </div>
 
       {/* Reiterleiste */}
       <div style={{ display: 'flex', gap: 4, borderBottom: '1px solid var(--border)', marginBottom: 20 }}>
@@ -140,20 +192,24 @@ function App() {
       {/* Reiter 1: Analyse */}
       {reiter === 'analyse' && (
         <>
-          {/* Oberer Block: Karte und Verbrauch nebeneinander */}
+          {/* Oberer Block: Erzeugung (links) und Verbrauch (rechts) visuell getrennt */}
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(420px, 1fr))', gap: 20, alignItems: 'start' }}>
+
             <section>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--text-muted)', marginBottom: 10 }}>Erzeugung</div>
               {titel('Erzeugung pro Kanton',
                 <QuickInfo titel="Erzeugung pro Kanton">
                   Erzeugung je Kanton, eingefärbt nach Menge. Sieben Swissgrid-Regionen fassen mehrere Kantone zusammen (z. B. AI, AR), diese teilen sich denselben Wert. Bei gewähltem Zeitraum zeigt die Karte die Summe über diese Monate, sonst die Jahressumme.
                 </QuickInfo>)}
               <ChoroplethKarte selected={kanton} onSelect={waehlen} brushRange={zeitraum} />
+              <div style={{ marginTop: 24 }}>
+                <ErzeugungZeitreihe selectedKanton={kanton} onClear={() => setKanton(null)} brushRange={zeitraum} />
+              </div>
             </section>
 
             <section>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--text-muted)', marginBottom: 10 }}>Verbrauch</div>
               <VerbrauchAnomalie
-                selectedKanton={kanton}
-                onClear={() => setKanton(null)}
                 brushRange={zeitraum}
                 onTagWaehlen={setTag}
                 schwelle={schwelle}
@@ -163,16 +219,10 @@ function App() {
             </section>
           </div>
 
-          {/* Zerlegung über die volle Breite. Vier gestapelte Panels in einer
-              halben Spalte wären unlesbar. Der Schwellenwert koppelt sie mit
-              der Verbrauchslinie darüber. */}
-          <section style={{ marginTop: 16 }}>
+          <section style={{ marginTop: 24 }}>
             <ZerlegungAnsicht brushRange={zeitraum} schwelle={schwelle} />
           </section>
 
-          {/* Wetter über die volle Breite, direkt über dem Energiemix.
-              So stehen Ursache (Wetter) und Wirkung (Erzeugung) untereinander
-              auf derselben Zeitachse. */}
           <section style={{ marginTop: 24 }}>
             {titel('Wetter (national)',
               <QuickInfo titel="Wetter">
@@ -244,13 +294,11 @@ function App() {
         </section>
       )}
 
-      <div style={{ marginTop: 24, paddingTop: 12, borderTop: '1px solid var(--border)', display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: 8 }}>
-        <span style={{ fontFamily: 'var(--font-mono)', fontSize: 9, color: 'var(--text-muted)', letterSpacing: '0.08em' }}>
-          Prototyp · MSc Thesis FHGR
-        </span>
-        <span style={{ fontFamily: 'var(--font-mono)', fontSize: 9, color: 'var(--text-muted)' }}>
-          Daten: Swissgrid, BFE, Open-Meteo, ENTSO-E
-        </span>
+      <div style={{ marginTop: 24, paddingTop: 12, borderTop: '1px solid var(--border)', display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: '6px 20px', fontFamily: 'var(--font-mono)', fontSize: 9, color: 'var(--text-muted)', letterSpacing: '0.06em' }}>
+        <span>Prototyp · MSc-Thesis FHGR · {META.autor} · v{META.version}</span>
+        <span>Datenstand: {META.snapshot}</span>
+        <span>Quellen: Swissgrid, BFE, Open-Meteo, ENTSO-E</span>
+        <a href={`https://${META.repo}`} target="_blank" rel="noreferrer" style={{ color: 'var(--text-muted)', textDecoration: 'underline' }}>{META.repo}</a>
       </div>
     </div>
   )

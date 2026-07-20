@@ -42,7 +42,7 @@ function MonatDropdown({ wert, onChange }) {
     <span style={{ position: 'relative', display: 'inline-block' }}>
       <button onClick={() => setOffen(o => !o)} style={{
         fontSize: 12, padding: '3px 8px', borderRadius: 6, border: '1px solid var(--border)',
-        background: '#12141c', color: 'var(--text-primary)', cursor: 'pointer',
+        background: 'var(--bg-elevated)', color: 'var(--text-primary)', cursor: 'pointer',
         minWidth: 90, display: 'inline-flex', justifyContent: 'space-between', gap: 6, alignItems: 'center',
       }}>
         {MONATE[wert - 1]}<span style={{ color: 'var(--text-muted)', fontSize: 10 }}>▾</span>
@@ -50,17 +50,17 @@ function MonatDropdown({ wert, onChange }) {
       {offen && (
         <span style={{
           position: 'absolute', top: 28, left: 0, zIndex: 30, maxHeight: 300, overflowY: 'auto',
-          background: '#12141c', border: '1px solid var(--border)', borderRadius: 8,
+          background: 'var(--bg-elevated)', border: '1px solid var(--border)', borderRadius: 8,
           boxShadow: '0 4px 16px rgba(0,0,0,0.55)', padding: 4, minWidth: 110,
         }}>
           {MONATE.map((m, i) => (
             <span key={m} onClick={() => { onChange(i + 1); setOffen(false) }} style={{
               display: 'block', fontSize: 12, padding: '5px 10px', borderRadius: 5, cursor: 'pointer',
               color: (i + 1) === wert ? 'var(--text-primary)' : 'var(--text-secondary)',
-              background: (i + 1) === wert ? '#242835' : '#12141c',
+              background: (i + 1) === wert ? '#242835' : 'var(--bg-elevated)',
             }}
               onMouseEnter={e => { if ((i + 1) !== wert) e.currentTarget.style.background = '#1c1f2a' }}
-              onMouseLeave={e => { if ((i + 1) !== wert) e.currentTarget.style.background = '#12141c' }}>
+              onMouseLeave={e => { if ((i + 1) !== wert) e.currentTarget.style.background = 'var(--bg-elevated)' }}>
               {m}
             </span>
           ))}
@@ -114,7 +114,7 @@ export function EnergieVergleich() {
             <button key={m} onClick={() => setModus(m)}
               style={{
                 fontSize: 12, padding: '4px 12px', border: 'none', cursor: 'pointer',
-                background: modus === m ? '#242835' : '#12141c',
+                background: modus === m ? '#242835' : 'var(--bg-elevated)',
                 color: modus === m ? 'var(--text-primary)' : 'var(--text-muted)',
                 fontWeight: modus === m ? 500 : 400,
               }}>
@@ -144,7 +144,7 @@ export function EnergieVergleich() {
       <div style={{ display: 'flex', gap: 16, marginBottom: 20, flexWrap: 'wrap' }}>
         <div style={{
           border: '1px solid var(--border)', borderRadius: 8, padding: '12px 16px', minWidth: 160,
-          background: '#12141c',
+          background: 'var(--bg-elevated)',
         }}>
           <div style={{ fontSize: 11, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.08em' }}>A</div>
           <div style={{ fontSize: 14, color: 'var(--text-secondary)', marginBottom: 4 }}>{labelA}</div>
@@ -154,7 +154,7 @@ export function EnergieVergleich() {
         </div>
         <div style={{
           border: '1px solid var(--border)', borderRadius: 8, padding: '12px 16px', minWidth: 160,
-          background: '#12141c',
+          background: 'var(--bg-elevated)',
         }}>
           <div style={{ fontSize: 11, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.08em' }}>B</div>
           <div style={{ fontSize: 14, color: 'var(--text-secondary)', marginBottom: 4 }}>{labelB}</div>
@@ -164,7 +164,7 @@ export function EnergieVergleich() {
         </div>
         <div style={{
           border: '1px solid var(--border)', borderRadius: 8, padding: '12px 16px', minWidth: 160,
-          background: '#12141c',
+          background: 'var(--bg-elevated)',
         }}>
           <div style={{ fontSize: 11, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.08em' }}>Delta B − A</div>
           <div style={{ fontSize: 14, color: 'var(--text-secondary)', marginBottom: 4 }}>Gesamt</div>

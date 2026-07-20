@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react'
 
 // Deckendes Dropdown-Panel, unabhängig davon ob --bg-card selbst transparent ist.
-const PANEL_BG = '#12141c'
+const PANEL_BG = 'var(--bg-elevated)'
 const HOVER_BG = '#1c1f2a'
 const AKTIV_BG = '#242835'
 

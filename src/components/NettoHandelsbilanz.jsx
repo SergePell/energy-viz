@@ -50,7 +50,7 @@ function NettoTooltip({ active, payload, label }) {
   const richtung = v >= 0 ? 'Exportüberschuss' : 'Importüberschuss'
   return (
     <div style={{
-      background: '#12141c', border: '1px solid var(--border, #2a2d3a)',
+      background: 'var(--bg-elevated)', border: '1px solid var(--border, #2a2d3a)',
       borderRadius: 6, padding: '8px 12px', fontSize: 12, color: 'var(--text-secondary)',
     }}>
       <div style={{ marginBottom: 4, opacity: 0.7 }}>{label}</div>

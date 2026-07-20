@@ -77,7 +77,7 @@ function ZerlegungTooltip({ active, payload, label, feld, beschriftung }) {
   const d = eintrag.payload
   const istAnomal = d.score != null && payload.some(p => p.dataKey === feld && p.fill === C_ANOMALIE)
   return (
-    <div style={{ background: '#12141c', border: '1px solid var(--border)', borderRadius: 8,
+    <div style={{ background: 'var(--bg-elevated)', border: '1px solid var(--border)', borderRadius: 8,
                   padding: '8px 10px', fontSize: 12, color: 'var(--text-primary)' }}>
       <div style={{ fontWeight: 500, marginBottom: 3 }}>{d.date ?? new Date(label).toISOString().slice(0, 10)}</div>
       <div style={{ color: 'var(--text-secondary)' }}>
@@ -190,7 +190,7 @@ export function ZerlegungAnsicht({ brushRange, schwelle }) {
               <button key={r.id} onClick={() => setReiheId(r.id)}
                 style={{ fontSize: 12, padding: '4px 10px', borderRadius: 6, cursor: 'pointer',
                          border: `1px solid ${reiheId === r.id ? 'var(--text-secondary)' : 'var(--border)'}`,
-                         background: reiheId === r.id ? '#1b1f2a' : '#12141c',
+                         background: reiheId === r.id ? '#1b1f2a' : 'var(--bg-elevated)',
                          color: reiheId === r.id ? 'var(--text-primary)' : 'var(--text-muted)' }}>
                 {r.label}
               </button>

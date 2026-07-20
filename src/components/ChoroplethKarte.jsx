@@ -167,7 +167,7 @@ export function ChoroplethKarte({ selected, onSelect, brushRange }) {
       {hoverAnlage && (
         <div style={{
           position: 'absolute', top: 34, right: 8, pointerEvents: 'none', maxWidth: 250,
-          background: '#12141c', border: '1px solid var(--border)', borderRadius: 8,
+          background: 'var(--bg-elevated)', border: '1px solid var(--border)', borderRadius: 8,
           padding: '9px 11px', fontSize: 12, color: 'var(--text-primary)',
           zIndex: 10,
         }}>
@@ -195,7 +195,7 @@ export function ChoroplethKarte({ selected, onSelect, brushRange }) {
       {hover && !hoverAnlage && (
         <div style={{
           position: 'absolute', top: 34, left: 8, pointerEvents: 'none', maxWidth: 230,
-          background: '#12141c', border: '1px solid var(--border)', borderRadius: 8,
+          background: 'var(--bg-elevated)', border: '1px solid var(--border)', borderRadius: 8,
           padding: '8px 10px', fontSize: 12, color: 'var(--text-primary)',
         }}>
           <div style={{ fontWeight: 500 }}>{hover.name}</div>
