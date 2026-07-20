@@ -72,7 +72,7 @@ Weitere Skripte: `npm run build` (Produktions-Build), `npm run preview` (Build l
 Die Python-Abhängigkeiten installieren (empfohlen in einer virtuellen Umgebung):
 
 ```bash
-pip install pandas numpy scikit-learn statsmodels pyarrow requests python-dotenv
+pip install -r requirements.txt
 ```
 
 Anschliessend die gesamte Pipeline über den Orchestrator ausführen:
@@ -116,7 +116,7 @@ energy-viz/
 
 ## Reproduzierbarkeit
 
-Die im Frontend gezeigten Analysen basieren auf einem eingefrorenen Datenstand vom **10. Mai 2026**. Dieser Snapshot ist als Konstante in den Analyse-Skripten hinterlegt, sodass die Ergebnisse reproduzierbar bleiben. Eine Ausnahme bildet die Übersicht zur Gesamtenergiebilanz (BFE OGD115), die den jeweils neuesten verfügbaren Snapshot verwendet.
+Die im Frontend gezeigten Analysen basieren auf einem eingefrorenen Datenstand vom **10. Mai 2026**. Der Snapshot wird über die Umgebungsvariable `ENERGYVIZ_SNAPSHOT` gesteuert und fällt ohne Angabe auf dieses Datum zurück, sodass die Ergebnisse reproduzierbar bleiben. Eine Ausnahme bildet die Übersicht zur Gesamtenergiebilanz (BFE OGD115), die den jeweils neuesten verfügbaren Snapshot verwendet.
 
 ## Autor und Kontext
 
