@@ -43,6 +43,21 @@ export function EnergieMix({ brushRange }) {
     return r
   }, [data, brushRange])
 
+  // Aggregierte Summen pro Energieträger für den gewählten Zeitraum
+  const kennzahlen = useMemo(() => {
+    if (!reihe || reihe.length === 0) return null
+    const summen = Object.fromEntries(FORMEN.map(f => [f.key, 0]))
+    for (const d of reihe) {
+      for (const f of FORMEN) summen[f.key] += d[f.key] || 0
+    }
+    const total = Object.values(summen).reduce((s, v) => s + v, 0)
+    // Nach Grösse sortiert für die KPI-Darstellung
+    const rang = [...FORMEN]
+      .map(f => ({ ...f, summe: summen[f.key], anteil: total > 0 ? summen[f.key] / total : 0 }))
+      .sort((a, b) => b.summe - a.summe)
+    return { total, rang }
+  }, [reihe])
+
   if (!reihe) return <p style={{ color: 'var(--text-muted)' }}>Lade Energiemix…</p>
   if (brushRange && reihe.length === 0)
     return <p style={{ color: 'var(--text-muted)' }}>Kein Energiemix für den gewählten Zeitraum (Daten 2000 bis 2024).</p>
@@ -54,7 +69,53 @@ export function EnergieMix({ brushRange }) {
   }
 
   return (
-    <div style={{ width: '100%', height: 340 }}>
+    <div style={{ width: '100%' }}>
+      {/* KPI-Kacheln pro Energieträger, sortiert nach Grösse */}
+      {kennzahlen && (
+        <div style={{ display: 'flex', gap: 6, marginBottom: 10, flexWrap: 'wrap', alignItems: 'stretch' }}>
+          {kennzahlen.rang.map(f => {
+            const istFokus = aktiv === f.key
+            const gedimmt = aktiv && !istFokus
+            return (
+              <button
+                key={f.key}
+                onClick={() => setAktiv(a => (a === f.key ? null : f.key))}
+                style={{
+                  border: `1px solid ${istFokus ? f.farbe : 'var(--border)'}`,
+                  background: istFokus ? `${f.farbe}22` : '#12141c',
+                  borderRadius: 6, padding: '6px 10px', cursor: 'pointer',
+                  opacity: gedimmt ? 0.35 : 1,
+                  display: 'flex', flexDirection: 'column', alignItems: 'flex-start',
+                  minWidth: 96, transition: 'opacity 120ms, background 120ms',
+                }}>
+                <span style={{ display: 'flex', alignItems: 'center', gap: 5, fontSize: 11, color: 'var(--text-secondary)' }}>
+                  <span style={{ width: 8, height: 8, borderRadius: '50%', background: f.farbe }} />
+                  {f.key}
+                </span>
+                <span style={{ fontSize: 14, fontWeight: 500, color: 'var(--text-primary)', marginTop: 2 }}>
+                  {(f.summe / 1000).toFixed(1)} TWh
+                </span>
+                <span style={{ fontSize: 10, color: 'var(--text-muted)' }}>
+                  {(f.anteil * 100).toFixed(1)}%
+                </span>
+              </button>
+            )
+          })}
+          <div style={{
+            border: '1px solid var(--border)', background: '#12141c',
+            borderRadius: 6, padding: '6px 10px',
+            display: 'flex', flexDirection: 'column', justifyContent: 'center', minWidth: 96,
+          }}>
+            <span style={{ fontSize: 11, color: 'var(--text-secondary)' }}>Gesamt</span>
+            <span style={{ fontSize: 14, fontWeight: 500, color: 'var(--text-primary)', marginTop: 2 }}>
+              {(kennzahlen.total / 1000).toFixed(1)} TWh
+            </span>
+            <span style={{ fontSize: 10, color: 'var(--text-muted)' }}>im Zeitraum</span>
+          </div>
+        </div>
+      )}
+
+      <div style={{ width: '100%', height: 340 }}>
       <ResponsiveContainer>
         <AreaChart data={reihe} margin={{ top: 10, right: 16, bottom: 4, left: 4 }}>
           <XAxis dataKey="t" type="number" scale="time" domain={brushRange ? brushRange : ['dataMin', 'dataMax']}
@@ -72,8 +133,9 @@ export function EnergieMix({ brushRange }) {
           })}
         </AreaChart>
       </ResponsiveContainer>
+      </div>
       <div style={{ fontSize: 11, color: 'var(--text-muted)', marginTop: 4 }}>
-        Klick auf einen Energieträger in der Legende hebt ihn hervor, erneuter Klick zeigt wieder alle.
+        Klick auf einen Energieträger in der Kachel-Reihe oder Legende hebt ihn hervor, erneuter Klick zeigt wieder alle.
       </div>
     </div>
   )

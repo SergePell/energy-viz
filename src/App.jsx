@@ -6,23 +6,37 @@ import { EnergieFluss } from './components/EnergieFluss'
 import { NettoHandelsbilanz } from './components/NettoHandelsbilanz'
 import { HandelsbilanzKPI } from './components/HandelsbilanzKPI'
 import { HandelsbilanzLaender } from './components/HandelsbilanzLaender'
+import { EnergieVergleich } from './components/EnergieVergleich'
+import { GesamtenergieSankey } from './components/GesamtenergieSankey'
+import { WetterLinie } from './components/WetterLinie'
 import { QuickInfo } from './components/QuickInfo'
 import { JahrDropdown } from './components/JahrDropdown'
 import { useJson } from './hooks/useJson'
+import { TagesProfil } from './components/TagesProfil'
+import { ZerlegungAnsicht } from './components/ZerlegungAnsicht'
 
 const REITER = [
   { id: 'analyse', label: 'Analyse' },
   { id: 'handel', label: 'Grenzüberschreitender Handel' },
+  { id: 'vergleich', label: 'Vergleich' },
+  { id: 'gesamt', label: 'Gesamtenergie' },
 ]
 
 // Fallback-Bereich, bevor Daten geladen sind
 const JAHR_FALLBACK_MIN = 2009
 const JAHR_FALLBACK_MAX = 2026
 
+// Startwert des Schwellenwertes. Markiert zwei Anomalien; 0.65 markiert drei.
+const SCHWELLE_START = 0.68
+
 function App() {
   const [kanton, setKanton] = useState(null)
   const [reiter, setReiter] = useState('analyse')
   const [fokusLand, setFokusLand] = useState(null)  // 'DE' | 'FR' | 'AT' | 'IT' | null
+  const [tag, setTag] = useState(null)              // Datum für das Viertelstundenprofil
+  // Der Schwellenwert liegt auf App-Ebene, weil er zwei Ansichten koppelt:
+  // die Anomaliepunkte auf der Verbrauchslinie und jene im Residuum-Panel.
+  const [schwelle, setSchwelle] = useState(SCHWELLE_START)
   const waehlen = code => setKanton(prev => (prev === code ? null : code))
   const landKlick = land => setFokusLand(prev => (prev === land ? null : land))
 
@@ -95,34 +109,38 @@ function App() {
         ))}
       </div>
 
-      {/* Globaler Zeitraumfilter, gilt über beide Reiter */}
-      <div style={{
-        display: 'flex', alignItems: 'center', gap: 12, marginBottom: 20,
-        padding: '10px 12px', border: '1px solid var(--border)', borderRadius: 6,
-      }}>
-        <span style={{ fontSize: 11, color: 'var(--text-muted)', letterSpacing: '0.08em', textTransform: 'uppercase' }}>
-          Zeitraum
-        </span>
-        <JahrDropdown wert={vonJahr} optionen={jahre}
-          onChange={j => { setVonJahr(j); if (j > bisJahr) setBisJahr(j) }} />
-        <span style={{ color: 'var(--text-muted)', fontSize: 12 }}>bis</span>
-        <JahrDropdown wert={bisJahr} optionen={jahre}
-          onChange={j => { setBisJahr(j); if (j < vonJahr) setVonJahr(j) }} />
-        <button
-          onClick={() => { setVonJahr(jahrMin); setBisJahr(jahrMax) }}
-          style={{
-            marginLeft: 'auto',
-            background: 'var(--bg-card)', color: 'var(--text-secondary)',
-            border: '1px solid var(--border)', borderRadius: 6,
-            padding: '4px 10px', fontSize: 12, cursor: 'pointer',
-          }}>
-          Zurücksetzen
-        </button>
-      </div>
+      {/* Globaler Zeitraumfilter, gilt für Analyse und Handel — im Vergleich- und
+          Gesamtenergie-Reiter wird stattdessen die eigene A/B-Auswahl der Komponente genutzt */}
+      {reiter !== 'vergleich' && reiter !== 'gesamt' && (
+        <div style={{
+          display: 'flex', alignItems: 'center', gap: 12, marginBottom: 20,
+          padding: '10px 12px', border: '1px solid var(--border)', borderRadius: 6,
+        }}>
+          <span style={{ fontSize: 11, color: 'var(--text-muted)', letterSpacing: '0.08em', textTransform: 'uppercase' }}>
+            Zeitraum
+          </span>
+          <JahrDropdown wert={vonJahr} optionen={jahre}
+            onChange={j => { setVonJahr(j); if (j > bisJahr) setBisJahr(j) }} />
+          <span style={{ color: 'var(--text-muted)', fontSize: 12 }}>bis</span>
+          <JahrDropdown wert={bisJahr} optionen={jahre}
+            onChange={j => { setBisJahr(j); if (j < vonJahr) setVonJahr(j) }} />
+          <button
+            onClick={() => { setVonJahr(jahrMin); setBisJahr(jahrMax) }}
+            style={{
+              marginLeft: 'auto',
+              background: 'var(--bg-card)', color: 'var(--text-secondary)',
+              border: '1px solid var(--border)', borderRadius: 6,
+              padding: '4px 10px', fontSize: 12, cursor: 'pointer',
+            }}>
+            Zurücksetzen
+          </button>
+        </div>
+      )}
 
       {/* Reiter 1: Analyse */}
       {reiter === 'analyse' && (
         <>
+          {/* Oberer Block: Karte und Verbrauch nebeneinander */}
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(420px, 1fr))', gap: 20, alignItems: 'start' }}>
             <section>
               {titel('Erzeugung pro Kanton',
@@ -133,9 +151,35 @@ function App() {
             </section>
 
             <section>
-              <VerbrauchAnomalie selectedKanton={kanton} onClear={() => setKanton(null)} brushRange={zeitraum} />
+              <VerbrauchAnomalie
+                selectedKanton={kanton}
+                onClear={() => setKanton(null)}
+                brushRange={zeitraum}
+                onTagWaehlen={setTag}
+                schwelle={schwelle}
+                onSchwelleChange={setSchwelle}
+              />
+              <TagesProfil datum={tag} onClose={() => setTag(null)} />
             </section>
           </div>
+
+          {/* Zerlegung über die volle Breite. Vier gestapelte Panels in einer
+              halben Spalte wären unlesbar. Der Schwellenwert koppelt sie mit
+              der Verbrauchslinie darüber. */}
+          <section style={{ marginTop: 16 }}>
+            <ZerlegungAnsicht brushRange={zeitraum} schwelle={schwelle} />
+          </section>
+
+          {/* Wetter über die volle Breite, direkt über dem Energiemix.
+              So stehen Ursache (Wetter) und Wirkung (Erzeugung) untereinander
+              auf derselben Zeitachse. */}
+          <section style={{ marginTop: 24 }}>
+            {titel('Wetter (national)',
+              <QuickInfo titel="Wetter">
+                Nationaler Tagesdurchschnitt aus 18 Kantonsstationen. Sichtbare Grössen über die Toggle-Buttons umschaltbar. Zeitraum synchron zum Filter oben.
+              </QuickInfo>)}
+            <WetterLinie brushRange={zeitraum} />
+          </section>
 
           <section style={{ marginTop: 24 }}>
             {titel('Energiemix nach Energieträger',
@@ -175,6 +219,28 @@ function App() {
           <div style={{ marginTop: 24 }}>
             <NettoHandelsbilanz brushRange={zeitraum} fokusLand={fokusLand} onZeitpunktKlick={zeitpunktKlick} />
           </div>
+        </section>
+      )}
+
+      {/* Reiter 3: Vergleich */}
+      {reiter === 'vergleich' && (
+        <section>
+          {titel('Vergleich zweier Zeiträume',
+            <QuickInfo titel="Zeitraum-Vergleich">
+              Vergleicht den Energiemix zweier ausgewählter Perioden (Monat oder Jahr) direkt gegenüber. Die Delta-Spalte zeigt die absolute und prozentuale Veränderung zwischen A und B. Die Balken sind auf den grössten Wert beider Perioden skaliert, wodurch die relative Grösse der Träger direkt ablesbar wird.
+            </QuickInfo>)}
+          <EnergieVergleich />
+        </section>
+      )}
+
+      {/* Reiter 4: Gesamtenergie */}
+      {reiter === 'gesamt' && (
+        <section>
+          {titel('Gesamtenergiebilanz Schweiz',
+            <QuickInfo titel="Gesamtenergie-Sankey">
+              Sankey-Darstellung der Schweizer Energiebilanz nach BFE Gesamtenergiestatistik. Links die Endenergie-Träger, rechts die Verwendungssektoren. Die Breite der Bänder zeigt die transportierte Energiemenge in Terawattstunden pro Jahr. Diese Perspektive ergänzt den Strom-fokussierten Analyse-Reiter um Wärme, Verkehr und weitere Energieanwendungen.
+            </QuickInfo>)}
+          <GesamtenergieSankey />
         </section>
       )}
 

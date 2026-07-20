@@ -78,6 +78,14 @@ SOURCES = {
         "priority": "A",
         "notes": "Aktuelle Landes- und Endverbrauchsdaten des BFE-Energiedashboards",
     },
+# === Gesamtenergiestatistik (OGD115) ===
+    "gesamtenergie_bilanz": {
+        "slug": "energiebilanz-der-schweiz",
+        "preferred_formats": ["CSV"],
+        "rq_bezug": "RQ, SQ-1",
+        "priority": "A",
+        "notes": "BFE Gesamtenergiestatistik OGD115 — jaehrliche Energiebilanz nach Traeger und Sektor, Grundlage fuer den Gesamtenergie-Sankey",
+    },
 }
 
 

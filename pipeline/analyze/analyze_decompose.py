@@ -2,7 +2,9 @@
 Stufe 1 der Analyse-Pipeline: Zeitreihenzerlegung (STL / MSTL).
 
 Liest zwei Reihen aus den Fact-Tabellen eines Snapshots, zerlegt sie und
-exportiert das Residuum als Bruecke zu Stufe 2 (Isolation Forest).
+exportiert:
+  <name>_resid.json   nur das Residuum, Bruecke zu Stufe 2 (Isolation Forest)
+  <name>_decomp.json  alle Komponenten fuer die Zerlegungsansicht im Frontend
 
   taeglicher Verbrauch   <- swissgrid_ch_aggregat_15min_*.parquet  -> MSTL (7, 365)
   monatliche Wasserkraft <- bilanz_erzeugung_monat.json            -> STL  (12)
@@ -16,6 +18,8 @@ Abhaengigkeiten: pandas, pyarrow, statsmodels >= 0.14, matplotlib
 from pathlib import Path
 import glob
 import json
+import math
+import os
 import pandas as pd
 import matplotlib
 matplotlib.use("Agg")
@@ -26,7 +30,7 @@ from statsmodels.tsa.seasonal import STL, MSTL
 # ============================================================
 # CONFIG
 # ============================================================
-SNAPSHOT = "2026-05-10"                       # gegen welchen Stand gerechnet wird
+SNAPSHOT = os.environ.get("ENERGYVIZ_SNAPSHOT", "2026-05-10")
 
 PIPELINE_ROOT = Path(__file__).resolve().parent.parent   # .../pipeline
 FACT = PIPELINE_ROOT / "intermediate" / SNAPSHOT / "fact"
@@ -44,8 +48,16 @@ DROP_PROVISORISCH = True
 HYDRO_CODES = ["wasserkraft_laufwerk", "wasserkraft_speicherwerk"]
 
 
+def _rund(v, stellen=1):
+    """NaN-sicher runden. json.dumps schreibt NaN sonst woertlich in die Datei,
+    was kein gueltiges JSON ist und JSON.parse im Browser scheitern laesst."""
+    if v is None or (isinstance(v, float) and not math.isfinite(v)):
+        return None
+    return round(float(v), stellen)
+
+
 # ============================================================
-# Loader: zwei massgeschneiderte Funktionen fuer das echte Schema
+# Loader
 # ============================================================
 def load_daily_consumption() -> pd.Series:
     """Alle Jahres-Parquets des CH-Aggregats zusammenfuehren und auf
@@ -121,26 +133,65 @@ def plot(name, res):
 
 def export_resid(name, resid):
     out = OUTPUT / f"{name}_resid.json"
-    payload = [
-        {"date": d.strftime("%Y-%m-%d"),
-         "resid": (None if pd.isna(v) else round(float(v), 4))}
-        for d, v in resid.items()
-    ]
+    payload = [{"date": d.strftime("%Y-%m-%d"), "resid": _rund(v, 4)}
+               for d, v in resid.items()]
     with open(out, "w", encoding="utf-8") as f:
         json.dump(payload, f, ensure_ascii=False, indent=2)
-    print(f"   Residuum -> {out}  ({len(payload)} Punkte)")
+    print(f"   Residuum -> {out.name}  ({len(payload)} Punkte)")
+
+
+def export_komponenten(name, res, methode, perioden, original):
+    """Alle Komponenten der Zerlegung als JSON fuer die Frontend-Ansicht.
+
+    MSTL liefert `seasonal` als DataFrame mit einer Spalte je Periode
+    (seasonal_7, seasonal_365), STL als Series. Die Spaltennamen werden
+    uebernommen und zu saison_<periode> umbenannt.
+    """
+    seasonal = res.seasonal
+    if isinstance(seasonal, pd.DataFrame):
+        sais = {c.replace("seasonal_", "saison_"): seasonal[c] for c in seasonal.columns}
+    else:
+        sais = {f"saison_{perioden[0]}": seasonal}
+
+    punkte = []
+    for d in res.trend.index:
+        rec = {"date": d.strftime("%Y-%m-%d"),
+               "original": _rund(original.loc[d], 1),
+               "trend": _rund(res.trend.loc[d], 1),
+               "resid": _rund(res.resid.loc[d], 1)}
+        for k, serie in sais.items():
+            rec[k] = _rund(serie.loc[d], 1)
+        punkte.append(rec)
+
+    payload = {
+        "reihe": name,
+        "methode": methode,
+        "perioden": list(perioden),
+        "saison_felder": list(sais.keys()),
+        "einheit": "MWh",
+        "punkte": punkte,
+    }
+    out = OUTPUT / f"{name}_decomp.json"
+    with open(out, "w", encoding="utf-8") as f:
+        json.dump(payload, f, ensure_ascii=False, allow_nan=False)
+    kb = out.stat().st_size / 1024
+    print(f"   Komponenten -> {out.name}  ({len(punkte)} Punkte, "
+          f"{', '.join(sais.keys())}, {kb:.0f} KB)")
 
 
 def run(name, series, method, periods):
     print(f"\n== {name} ({method}) ==")
     print(f"   {len(series)} Punkte, {series.index.min().date()} bis {series.index.max().date()}")
     if method == "MSTL":
-        res = MSTL(series, periods=periods).fit()
+        perioden = tuple(periods)
+        res = MSTL(series, periods=perioden).fit()
     else:
+        perioden = (periods,)
         res = STL(series, period=periods, robust=True).fit()
     print(f"   Residuum: mean={res.resid.mean():.2f}  std={res.resid.std():.2f}")
     plot(name, res)
     export_resid(name, res.resid)
+    export_komponenten(name, res, method, perioden, series)
 
 
 def main():

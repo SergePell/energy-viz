@@ -8,9 +8,10 @@ Liest die Residuen aus Stufe 1 und bewertet jeden Zeitpunkt:
 
 Feiertage werden NICHT als Modellmerkmal genutzt (ein seltenes Binaerflag
 bildet eine eigene kleine Gruppe und wird dadurch erst recht isoliert).
-Stattdessen werden sie nach dem Scoring behandelt: Ein als auffaellig
-markierter Tag, der auf einen Feiertag faellt, gilt als erklaert (erwartbar)
-und wird ausgewiesen, aber nicht als Anomalie gezaehlt.
+Stattdessen wird je Tag mitexportiert, ob er ein de-facto landesweiter
+Feiertag ist. Die Entscheidung, ab welchem Score ein Tag als Anomalie gilt,
+faellt im Frontend ueber den justierbaren Schwellenwert. Dieses Skript
+exportiert nur den Score und den Kontext, keine fertige Klassifikation.
 
 Abhaengigkeiten: pandas, pyarrow, scikit-learn, holidays
 """
@@ -18,6 +19,7 @@ Abhaengigkeiten: pandas, pyarrow, scikit-learn, holidays
 from pathlib import Path
 from collections import Counter
 import json
+import os
 import pandas as pd
 from sklearn.ensemble import IsolationForest
 import holidays
@@ -26,24 +28,32 @@ import holidays
 # ============================================================
 # CONFIG
 # ============================================================
-SNAPSHOT = "2026-05-10"
+SNAPSHOT = os.environ.get("ENERGYVIZ_SNAPSHOT", "2026-05-10")
 PIPELINE_ROOT = Path(__file__).resolve().parent.parent
 FACT = PIPELINE_ROOT / "intermediate" / SNAPSHOT / "fact"
 ANALYZE = PIPELINE_ROOT / "output" / "analyze"
 
 IF_PARAMS = dict(n_estimators=100, max_samples=256, random_state=42)
-ANOMALIE_QUANTIL = 0.01          # untere Score-Schwelle (im Frontend justierbar)
+
+# Liu et al. (2008) begegnen Swamping und Masking durch kleine Stichproben.
+# Bei den Monatsreihen (n rund 300 bzw. 96) wuerde max_samples=256 fast den
+# ganzen Datensatz umfassen und das Subsampling aushebeln. Deshalb ein
+# reihenspezifischer Wert.
+# Decision-Log: verworfen wurde ein einheitliches max_samples=256.
+MAX_SAMPLES_KURZ = 64
 
 # Ein Tag gilt als (de-facto landesweiter) Feiertag, wenn er in mindestens
-# so vielen Kantonen offizieller Feiertag ist. 14 von 27 = Mehrheit.
-# Decision-Log: Berchtoldstag (8 Kantone) liegt knapp darunter.
+# so vielen Kantonen offizieller Feiertag ist. 14 von 26 = Mehrheit.
+# Decision-Log: Berchtoldstag liegt knapp darunter.
 KANTON_SCHWELLE = 14
 JAHRE = range(2009, 2027)
 
 
 def build_feiertage(jahre, schwelle) -> dict:
     """De-facto landesweite Feiertage durch Aggregation ueber alle Kantone."""
-    subs = holidays.Switzerland().subdivisions
+    # 'Stadt Zurich' ist kein Kanton, sondern eine Stadt; der Kanton ZH ist
+    # separat enthalten. Ohne Ausschluss wuerden Zuercher Feiertage doppelt zaehlen.
+    subs = [s for s in holidays.Switzerland().subdivisions if s != "Stadt Zurich"]
     result = {}
     for y in jahre:
         cnt, nm = Counter(), {}
@@ -97,19 +107,21 @@ def score_if(df: pd.DataFrame, feature_cols: list, max_samples=None) -> pd.Serie
 
 
 def to_anomaly_score(score: pd.Series) -> pd.Series:
-    """score_samples (tief=anomal) -> 0..1, 1 = am anomalsten (Liu-Konvention)."""
-    inv = -score
-    return (inv - inv.min()) / (inv.max() - inv.min())
+    """sklearn.score_samples liefert -s(x,n). Rueckumkehr ergibt Lius
+    Anomalie-Score s(x,n) in (0,1]: nahe 1 = klare Anomalie, deutlich
+    unter 0.5 = normal, alle Werte um 0.5 = keine ausgepraegten Anomalien
+    (Liu et al., 2008). Bewusst keine Min-Max-Skalierung, damit die Werte
+    zwischen Reihen und Laeufen vergleichbar bleiben."""
+    return -score
 
 
 def print_top(name: str, df: pd.DataFrame, score: pd.Series, feature_cols: list,
               ohne_feiertage: bool, feiertage_aktiv: bool = True):
     print(f"\n  [{name}]  {', '.join(feature_cols)}")
     s = score.sort_values()
-    shown, hol = 0, 0
+    shown = 0
     for d, sc in s.items():
         if feiertage_aktiv and is_feiertag(d):
-            hol += 1
             if ohne_feiertage:
                 continue
             tag = f"  (Feiertag: {FEIERTAGE[d.date()]})"
@@ -125,34 +137,31 @@ def print_top(name: str, df: pd.DataFrame, score: pd.Series, feature_cols: list,
 
 def export(name: str, df: pd.DataFrame, score: pd.Series, feature_cols: list,
            feiertage_aktiv: bool = True):
+    """Exportiert Score und Kontext je Tag.
+
+    Bewusst keine Klassifikation in normal/anomal: Diese Entscheidung faellt
+    im Frontend ueber den justierbaren Schwellenwert. Eine zweite, offline
+    fixierte Schwelle wuerde zu zwei widerspruechlichen Anomaliedefinitionen
+    im selben Projekt fuehren.
+    """
     asc = to_anomaly_score(score)
-    thr = score.quantile(ANOMALIE_QUANTIL)
-    out, n_anom, n_feier = [], 0, 0
+    out = []
     for d in df.index:
-        feier = feiertage_aktiv and is_feiertag(d)
-        unter_schwelle = bool(score.loc[d] <= thr)
-        if unter_schwelle and feier:
-            kategorie = "feiertag_erwartet"
-            n_feier += 1
-        elif unter_schwelle:
-            kategorie = "anomalie"
-            n_anom += 1
-        else:
-            kategorie = "normal"
         rec = {"date": d.strftime("%Y-%m-%d"),
                "resid": round(float(df.loc[d, "resid"]), 2)}
         for c in feature_cols:
             if c != "resid":
                 rec[c] = round(float(df.loc[d, c]), 3)
-        rec["is_feiertag"] = feier
+        rec["is_feiertag"] = bool(feiertage_aktiv and is_feiertag(d))
         rec["feiertag_name"] = FEIERTAGE.get(d.date())
         rec["anomaly_score"] = round(float(asc.loc[d]), 4)
-        rec["kategorie"] = kategorie               # normal | anomalie | feiertag_erwartet
         out.append(rec)
     p = ANALYZE / f"{name}_anomaly.json"
     with open(p, "w", encoding="utf-8") as f:
         json.dump(out, f, ensure_ascii=False, indent=2)
-    print(f"  -> {p.name}: {n_anom} echte Anomalien, {n_feier} als Feiertag erklaert (q={ANOMALIE_QUANTIL})")
+    print(f"  -> {p.name}: {len(out)} Tage, "
+          f"Score {asc.min():.3f} bis {asc.max():.3f} "
+          f"(Median {asc.median():.3f}, 99%-Quantil {asc.quantile(0.99):.3f})")
 
 
 # ============================================================
@@ -180,6 +189,8 @@ def analyse_verbrauch():
 
     if have_ctx:
         d2 = df.dropna(subset=["temp", "preis", "strahlung", "niederschlag"])
+        print(f"  (multivariater Zeitraum: {d2.index.min().date()} bis "
+              f"{d2.index.max().date()}, {len(d2)} Tage)")
         # E1-E3: Kontext, Feiertage erklaert (ausgeblendet) -> echte Anomalien
         print_top("E1 +Temperatur", d2, score_if(d2, ["resid", "temp"]),
                   ["resid", "temp"], ohne_feiertage=True)
@@ -192,7 +203,6 @@ def analyse_verbrauch():
     else:
         sc = score_if(df, ["resid"])
         export("landesverbrauch_daily", df, sc, ["resid"])
-
 
 
 def monthly_precip_anom(path: Path) -> pd.DataFrame:
@@ -213,8 +223,9 @@ def analyse_wasserkraft():
     print("\n================ WASSERKRAFT (monatlich) ================")
     df = pd.DataFrame({"resid": load_resid("wasserkraft_monthly")}).dropna()
 
-    # Hauptartefakt: Baseline univariat auf der vollen Reihe (ab 2000)
-    sc = score_if(df, ["resid"])
+    # Hauptartefakt: Baseline univariat auf der vollen Reihe (ab 2000).
+    # max_samples reihenspezifisch, sonst saehe jeder Baum 85 % der Daten.
+    sc = score_if(df, ["resid"], max_samples=MAX_SAMPLES_KURZ)
     print_top("Baseline univariat (volle Reihe)", df, sc, ["resid"],
               ohne_feiertage=False, feiertage_aktiv=False)
     export("wasserkraft_monthly", df, sc, ["resid"], feiertage_aktiv=False)
@@ -224,7 +235,10 @@ def analyse_wasserkraft():
     if wetter.exists():
         d2 = df.join(monthly_precip_anom(wetter)).dropna(subset=["niederschlag_anom"])
         feats = ["resid", "niederschlag_anom", "niederschlag_3m"]
-        sc2 = score_if(d2, feats, max_samples=min(256, len(d2)))
+        # Frueher stand hier min(256, len(d2)). Das ergab max_samples = n und
+        # damit gar kein Subsampling; zugleich unterdrueckte es die
+        # sklearn-Warnung, die auf genau dieses Problem hingewiesen haette.
+        sc2 = score_if(d2, feats, max_samples=MAX_SAMPLES_KURZ)
         print_top("Experiment +Niederschlag (ab 2017)", d2, sc2, feats,
                   ohne_feiertage=False, feiertage_aktiv=False)
 
