@@ -5,8 +5,7 @@ Schreibt nach <repo>/public/data/.
 Outputs:
   verbrauch_national_daily.json    [{date, mwh}]
   verbrauch_national_monthly.json  [{date, mwh}]
-  erzeugung_kanton_<jahr>.json     [{kanton, mwh, einheit, ist_gruppe}]  (26 Kantone)
-  erzeugung_kanton_monat.json      [{kanton, date, mwh}]
+  erzeugung_kanton_monat.json      [{kanton, date, mwh, einheit, ist_gruppe}]  (26 Kantone)
   energiemix_monat.json            [{date, Laufwasser, Speicher, ...}]
   grenzfluss_monat.json            [{date, richtung_code, energie_mwh}]
   anlagen_standorte.json           [{typ, name, kanton_code, lat, lon, leistung_mw, produktion_gwh, ...}]
@@ -89,23 +88,6 @@ def national_consumption() -> pd.Series:
     return daily.iloc[1:-1]
 
 
-def cantonal_generation_by_canton(year: int) -> list:
-    """Gesamterzeugung je Einheit, aufgeloest auf 26 Kantone (Gruppen teilen ihren Wert)."""
-    f = FACT / f"swissgrid_erzeugung_15min_{year}.parquet"
-    gen = pd.read_parquet(f, columns=["swissgrid_einheit", "erzeugung_mwh"]) \
-            .groupby("swissgrid_einheit")["erzeugung_mwh"].sum()
-    rows = []
-    for einheit, mwh in gen.items():
-        kantone = EINHEIT_KANTONE.get(einheit)
-        if not kantone:
-            continue                                   # uebergreifend / Ausland weglassen
-        ist_gruppe = len(kantone) > 1
-        for k in kantone:
-            rows.append({"kanton": k, "mwh": round(float(mwh), 1),
-                         "einheit": einheit, "ist_gruppe": ist_gruppe})
-    return rows
-
-
 def cantonal_generation_monthly() -> list:
     """Monatliche Erzeugung je Kanton (alle Jahre), Gruppen auf Kantone aufgeloest."""
     files = sorted(glob.glob(str(FACT / "swissgrid_erzeugung_15min_*.parquet")))
@@ -118,9 +100,14 @@ def cantonal_generation_monthly() -> list:
     g = df.groupby(["swissgrid_einheit", "monat"])["erzeugung_mwh"].sum().reset_index()
     rows = []
     for _, r in g.iterrows():
-        for k in EINHEIT_KANTONE.get(r["swissgrid_einheit"], []):
+        kantone = EINHEIT_KANTONE.get(r["swissgrid_einheit"], [])
+        # Gruppen teilen ihren Wert auf alle enthaltenen Kantone. Das Flag wird
+        # mitexportiert, damit das Frontend im Tooltip darauf hinweisen kann.
+        ist_gruppe = len(kantone) > 1
+        for k in kantone:
             rows.append({"kanton": k, "date": r["monat"].strftime("%Y-%m-%d"),
-                         "mwh": round(float(r["erzeugung_mwh"]), 1)})
+                         "mwh": round(float(r["erzeugung_mwh"]), 1),
+                         "einheit": r["swissgrid_einheit"], "ist_gruppe": ist_gruppe})
     return rows
 
 
@@ -130,6 +117,12 @@ def grenzfluss_monatlich() -> list:
         frames.append(pd.read_parquet(pfad))
     df = pd.concat(frames, ignore_index=True)
 
+    # Ohne Konvertierung nach Europe/Zurich fallen die Viertelstunden ab
+    # 23:00 UTC des 31. Dezember in das Vorjahr. Dadurch entstand ein
+    # Geistermonat 2008-12, der in der Zeitraumauswahl als waehlbares Jahr
+    # 2008 erschien. Alle uebrigen Aggregationen konvertieren bereits.
+    df["zeitstempel_utc"] = (pd.to_datetime(df["zeitstempel_utc"], utc=True)
+                               .dt.tz_convert("Europe/Zurich"))
     df["jahr"] = df["zeitstempel_utc"].dt.year
     df["monat"] = df["zeitstempel_utc"].dt.month
 
@@ -458,11 +451,6 @@ def write_series(name: str, s: pd.Series):
     print(f"  {name}  ({len(payload)} Punkte)")
 
 
-def latest_full_year() -> int:
-    years = [int(Path(f).stem.split("_")[-1])
-             for f in glob.glob(str(FACT / "swissgrid_erzeugung_15min_*.parquet"))]
-    return max(years)
-
 def viertelstunde_pro_jahr(jahr: int) -> dict:
     """Viertelstundenprofil je Tag eines Jahres.
 
@@ -490,11 +478,6 @@ def main():
     daily = national_consumption()
     write_series("verbrauch_national_daily.json", daily)
     write_series("verbrauch_national_monthly.json", daily.resample("MS").sum())
-
-    year = latest_full_year()
-    rows = cantonal_generation_by_canton(year)
-    write_json(f"erzeugung_kanton_{year}.json", rows)
-    print(f"  erzeugung_kanton_{year}.json  ({len(rows)} Kantone)")
 
     monat = cantonal_generation_monthly()
     write_json("erzeugung_kanton_monat.json", monat)

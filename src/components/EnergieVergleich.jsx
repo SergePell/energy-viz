@@ -57,9 +57,9 @@ function MonatDropdown({ wert, onChange }) {
             <span key={m} onClick={() => { onChange(i + 1); setOffen(false) }} style={{
               display: 'block', fontSize: 12, padding: '5px 10px', borderRadius: 5, cursor: 'pointer',
               color: (i + 1) === wert ? 'var(--text-primary)' : 'var(--text-secondary)',
-              background: (i + 1) === wert ? '#242835' : 'var(--bg-elevated)',
+              background: (i + 1) === wert ? 'var(--bg-active)' : 'var(--bg-elevated)',
             }}
-              onMouseEnter={e => { if ((i + 1) !== wert) e.currentTarget.style.background = '#1c1f2a' }}
+              onMouseEnter={e => { if ((i + 1) !== wert) e.currentTarget.style.background = 'var(--bg-hover)' }}
               onMouseLeave={e => { if ((i + 1) !== wert) e.currentTarget.style.background = 'var(--bg-elevated)' }}>
               {m}
             </span>
@@ -114,7 +114,7 @@ export function EnergieVergleich() {
             <button key={m} onClick={() => setModus(m)}
               style={{
                 fontSize: 12, padding: '4px 12px', border: 'none', cursor: 'pointer',
-                background: modus === m ? '#242835' : 'var(--bg-elevated)',
+                background: modus === m ? 'var(--bg-active)' : 'var(--bg-elevated)',
                 color: modus === m ? 'var(--text-primary)' : 'var(--text-muted)',
                 fontWeight: modus === m ? 500 : 400,
               }}>

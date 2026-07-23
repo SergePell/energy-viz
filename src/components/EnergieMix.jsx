@@ -79,6 +79,17 @@ export function EnergieMix({ brushRange }) {
     return { total, rang }
   }, [reihe])
 
+  // Bei einem Zeitraum von hoechstens rund 13 Monaten wiederholt sich die
+  // Jahreszahl auf jedem Tick. In diesem Fall auf Monatskuerzel umschalten.
+  const spanne = reihe && reihe.length > 1 ? reihe[reihe.length - 1].t - reihe[0].t : 0
+  const mehrereJahre = spanne > 400 * 24 * 3600 * 1000
+  const xTickFmt = t => {
+    const d = new Date(t)
+    return mehrereJahre
+      ? d.getFullYear()
+      : d.toLocaleDateString('de-CH', { month: 'short', timeZone: 'UTC' })
+  }
+
   if (!reihe) return <p style={{ color: 'var(--text-muted)' }}>Lade Energiemix…</p>
   if (brushRange && reihe.length === 0)
     return <p style={{ color: 'var(--text-muted)' }}>Kein Energiemix für den gewählten Zeitraum (Daten 2000 bis 2024).</p>
@@ -140,7 +151,7 @@ export function EnergieMix({ brushRange }) {
       <ResponsiveContainer>
         <AreaChart data={reihe} margin={{ top: 10, right: 16, bottom: 4, left: 4 }}>
           <XAxis dataKey="t" type="number" scale="time" domain={brushRange ? brushRange : ['dataMin', 'dataMax']}
-                 tickFormatter={t => new Date(t).getFullYear()} tick={{ fontSize: 11 }} minTickGap={40} />
+                 tickFormatter={xTickFmt} tick={{ fontSize: 11 }} minTickGap={mehrereJahre ? 40 : 18} />
           <YAxis tick={{ fontSize: 11 }} width={64} tickFormatter={v => (v / 1000).toFixed(0) + ' TWh'} />
           <Tooltip content={<MixTooltip />} />
           <Legend wrapperStyle={{ fontSize: 12, cursor: 'pointer' }} onClick={legendeKlick} />

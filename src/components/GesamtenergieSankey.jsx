@@ -235,7 +235,7 @@ export function GesamtenergieSankey() {
         {active && (
           <div style={{
             position: 'absolute', top: 8, left: '50%', transform: 'translateX(-50%)', pointerEvents: 'none',
-            background: '#12141c', border: '1px solid var(--border)', borderRadius: 8,
+            background: 'var(--bg-elevated)', border: '1px solid var(--border)', borderRadius: 8,
             padding: '8px 12px', fontSize: 12, color: 'var(--text-primary)', maxWidth: 320,
           }}>
             {active.type === 'link' ? (

@@ -5,7 +5,6 @@ import { QuickInfo } from './QuickInfo'
 
 const W = 600
 const H = 380
-const JAHR_DATEN = '/data/erzeugung_kanton_2026.json'
 const C_HINWEIS = '#ef9f27'
 
 // Farbcode je Anlagentyp (angelehnt an EnergieMix)
@@ -38,12 +37,37 @@ function fmtDatum(ms) {
 
 export function ChoroplethKarte({ selected, onSelect, brushRange }) {
   const { data: geo } = useJson('/data/kanton_geometry.geojson')
-  const { data: jahr } = useJson(JAHR_DATEN)
   const { data: monat } = useJson('/data/erzeugung_kanton_monat.json')
   const { data: anlagen } = useJson('/data/anlagen_standorte.json')
   const [hover, setHover] = useState(null)
   const [hoverAnlage, setHoverAnlage] = useState(null)
   const [zeigen, setZeigen] = useState({ wasserkraft: true, pumpspeicher: true, kernkraft: true })
+
+  // Standardansicht ohne Zeitraumfilter: Summe des neuesten vollstaendigen
+  // Kalenderjahres, abgeleitet aus der Monatsreihe. Zuvor wurde hier eine fest
+  // verdrahtete Jahresdatei geladen; im laufenden Jahr enthielt diese nur ein
+  // Rumpfjahr, das wie eine Jahressumme aussah und zusaetzlich die Domaene der
+  // Farbskala verzerrte.
+  const jahresSumme = useMemo(() => {
+    if (!monat || !monat.length) return { jahr: null, werte: null }
+    const proJahr = new Map()
+    for (const r of monat) {
+      const j = Number(r.date.slice(0, 4))
+      if (!proJahr.has(j)) proJahr.set(j, { monate: new Set(), sum: new Map() })
+      const eintrag = proJahr.get(j)
+      eintrag.monate.add(r.date.slice(5, 7))
+      const cur = eintrag.sum.get(r.kanton)
+        || { kanton: r.kanton, mwh: 0, einheit: r.einheit, ist_gruppe: r.ist_gruppe }
+      cur.mwh += r.mwh
+      eintrag.sum.set(r.kanton, cur)
+    }
+    const vollstaendig = [...proJahr.entries()]
+      .filter(([, e]) => e.monate.size === 12)
+      .map(([j]) => j)
+    if (!vollstaendig.length) return { jahr: null, werte: null }
+    const j = Math.max(...vollstaendig)
+    return { jahr: j, werte: [...proJahr.get(j).sum.values()] }
+  }, [monat])
 
   const werte = useMemo(() => {
     if (brushRange && monat) {
@@ -52,15 +76,18 @@ export function ChoroplethKarte({ selected, onSelect, brushRange }) {
       for (const r of monat) {
         const t = Date.parse(r.date)
         if (t >= s && t <= e) {
-          const cur = sum.get(r.kanton) || { kanton: r.kanton, mwh: 0 }
+          // einheit/ist_gruppe mitfuehren, damit der Tooltip auch bei
+          // gewaehltem Zeitraum auf Kantonsgruppen hinweisen kann
+          const cur = sum.get(r.kanton)
+            || { kanton: r.kanton, mwh: 0, einheit: r.einheit, ist_gruppe: r.ist_gruppe }
           cur.mwh += r.mwh
           sum.set(r.kanton, cur)
         }
       }
       return [...sum.values()]
     }
-    return jahr
-  }, [brushRange, monat, jahr])
+    return jahresSumme.werte
+  }, [brushRange, monat, jahresSumme])
 
   const keineDaten = brushRange && (!werte || werte.length === 0)
   const vmap = useMemo(() => (werte ? new Map(werte.map(w => [w.kanton, w])) : new Map()), [werte])
@@ -123,7 +150,7 @@ export function ChoroplethKarte({ selected, onSelect, brushRange }) {
           </label>
         ))}
         <QuickInfo titel="Anlagen">
-          Marker zeigen Kraftwerksstandorte. Radius skaliert mit erwarteter Jahresproduktion (log-Skala). Wasserkraftanlagen ab 20 GWh/Jahr aus WASTA (BFE), alle fünf Schweizer Kernkraftwerke. Umwälz- und Pumpspeicherkraftwerke unter „Pumpspeicher" zusammengefasst. Mühleberg mit gestricheltem Rand als stillgelegte Anlage markiert.
+          Marker zeigen Kraftwerksstandorte. Radius skaliert mit erwarteter Jahresproduktion (log-Skala). Wasserkraftanlagen ab 20 GWh/Jahr aus WASTA (BFE) sowie die fünf Kernkraftwerksblöcke an vier Standorten. Umwälz- und Pumpspeicherkraftwerke unter „Pumpspeicher" zusammengefasst. Mühleberg mit gestricheltem Rand als stillgelegte Anlage markiert.
         </QuickInfo>
       </div>
 
@@ -202,7 +229,7 @@ export function ChoroplethKarte({ selected, onSelect, brushRange }) {
           {hover.v
             ? <>
                 <div>{(hover.v.mwh / 1000).toFixed(0)} GWh Erzeugung</div>
-                {hover.v.ist_gruppe && (
+                {hover.v.ist_gruppe && hover.v.einheit && (
                   <div style={{ color: 'var(--text-muted)' }}>
                     Wert gilt für die Gruppe {hover.v.einheit.replace('CH-', '').replace(/_/g, ', ')}
                   </div>
@@ -223,11 +250,13 @@ export function ChoroplethKarte({ selected, onSelect, brushRange }) {
         <span style={{ flex: 1, height: 8, borderRadius: 4, background: 'linear-gradient(to right, #e5f5e0, #006d2c)' }} />
         <span>viel Erzeugung</span>
         <QuickInfo titel="Farbskala">
-          Die Farbe kodiert die erzeugte Energiemenge eines Kantons, dunkler bedeutet mehr Erzeugung. Sieben Swissgrid-Regionen fassen mehrere Kantone zusammen, diese teilen sich denselben Wert. Bei gewähltem Zeitraum zeigt die Karte die Summe über diese Monate, sonst die Jahressumme.
+          Die Farbe kodiert die erzeugte Energiemenge eines Kantons, dunkler bedeutet mehr Erzeugung. Die Quelle liefert 18 räumliche Einheiten statt 26 Kantone: Sieben davon sind Gruppen, deren Kantone sich denselben Wert teilen. Bei gewähltem Zeitraum zeigt die Karte die Summe über die enthaltenen Monate, sonst die Summe des neuesten vollständigen Kalenderjahres. Kantonale Werte liegen erst ab 2015 vor.
         </QuickInfo>
         {brushRange
           ? <span style={{ marginLeft: 4, color: 'var(--text-secondary)' }}>· Zeitraum {fmtDatum(brushRange[0])}–{fmtDatum(brushRange[1])}</span>
-          : <span style={{ marginLeft: 4 }}>· Jahressumme</span>}
+          : <span style={{ marginLeft: 4 }}>
+              · {jahresSumme.jahr ? `Jahressumme ${jahresSumme.jahr}` : 'kein vollständiges Jahr verfügbar'}
+            </span>}
         {selected && <span style={{ color: 'var(--text-secondary)' }}>· gewählt: {selected.replace('CH-', '')}</span>}
       </div>
     </div>

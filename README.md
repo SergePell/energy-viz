@@ -1,5 +1,7 @@
 # energy-viz
 
+Live-Demo: https://energy-viz-pellegatta.netlify.app (Datenstand 10. Mai 2026)
+
 Visual-Analytics-Prototyp zur explorativen Analyse von Energieformen und -erzeugung in der Schweiz.
 
 Dieses Repository ist der im Rahmen der Masterarbeit *«Visual Analytics von Energieformen und -erzeugungen in der Schweiz»* (FHGR, Studienrichtung Data Visualization) entwickelte Forschungsprototyp. Er integriert öffentliche Energiedaten über die zeitliche, räumliche und thematische Dimension und verbindet interaktive Visualisierung mit vorberechneten analytischen Verfahren (Zeitreihenzerlegung und kontextuelle Anomalieerkennung).
@@ -30,10 +32,11 @@ Analytische Kernbausteine: STL- und MSTL-Zerlegung (Trend, Saison, Residuum) sow
 | BFE (OGD32, OGD115, OGD123, WASTA) | monatliche Elektrizitätsbilanz, Gesamtenergiestatistik, Anlagenstammdaten |
 | ENTSO-E Transparency | Day-Ahead-Spotpreis Schweiz (Gebotszone 10YCH-SWISSGRIDZ) |
 | Open-Meteo | Temperatur, Globalstrahlung, Niederschlag |
+| swisstopo | Kantonsgrenzen (GeoJSON) für die kartografische Darstellung |
 
 ## Architektur
 
-Die Pipeline folgt einem Extract-Transform-Analyze-Serving-Ablauf. Jede Stufe schreibt ihre Ausgaben als Zwischenartefakte, sodass sich einzelne Schritte unabhängig ausführen lassen.
+Die Datenpipeline folgt einem Extract-Transform-Serving-Ablauf. Zwischen Transform und Serving liegt die Analysestufe, die Zerlegung und Anomalieerkennung vorberechnet. Jede Stufe schreibt ihre Ausgaben als Zwischenartefakte, sodass sich einzelne Schritte unabhängig ausführen lassen.
 
 ```
 Rohdaten (API/CSV/XLSX)
@@ -116,10 +119,34 @@ energy-viz/
 
 ## Reproduzierbarkeit
 
-Die im Frontend gezeigten Analysen basieren auf einem eingefrorenen Datenstand vom **10. Mai 2026**. Der Snapshot wird über die Umgebungsvariable `ENERGYVIZ_SNAPSHOT` gesteuert und fällt ohne Angabe auf dieses Datum zurück, sodass die Ergebnisse reproduzierbar bleiben. Eine Ausnahme bildet die Übersicht zur Gesamtenergiebilanz (BFE OGD115), die den jeweils neuesten verfügbaren Snapshot verwendet.
+Die im Frontend gezeigten Analysen basieren auf einem eingefrorenen Datenstand vom **10. Mai 2026**. Der Snapshot wird über die Umgebungsvariable `ENERGYVIZ_SNAPSHOT` gesteuert und fällt ohne Angabe auf dieses Datum zurück, sodass die Ergebnisse reproduzierbar bleiben.
+
+Eine Ausnahme bildet die Übersicht zur Gesamtenergiebilanz (BFE OGD115). Sie wurde erst nach dem Einfrieren der Baseline ergänzt und löst ihren Datenstand auf den jeweils neuesten vorhandenen Snapshot-Ordner auf. Die in der Arbeit berichteten Werte dieser Ansicht entsprechen dem Snapshot vom **5. Juli 2026**. Ein erneuter Pipeline-Lauf erzeugt einen neuen, tagesdatierten Snapshot; die Baseline vom 10. Mai 2026 bleibt davon unberührt, die Gesamtenergie-Ansicht folgt hingegen dem neuen Stand.
+
+Um die berichteten Werte exakt nachzustellen, wird der Snapshot explizit gesetzt:
+
+```bash
+ENERGYVIZ_SNAPSHOT=2026-05-10 python refresh_all.py
+```
+
+Unter Windows PowerShell:
+
+```powershell
+$env:ENERGYVIZ_SNAPSHOT="2026-05-10"; python refresh_all.py
+```
+
+## Lizenz
+
+<!-- TODO vor der Veröffentlichung: LICENSE-Datei ergänzen und hier verlinken. -->
+
+Der Quellcode steht unter der MIT-Lizenz (siehe `LICENSE`). Die verwendeten Daten stammen aus den oben genannten öffentlichen Quellen; deren jeweilige Nutzungsbedingungen gelten unverändert weiter und sind zu beachten.
+
+## Zitation
+
+> Pellegatta, S. (2026). *energy-viz* [Software-Repository]. GitHub. https://github.com/SergePell/energy-viz
 
 ## Autor und Kontext
 
 Serge Pellegatta, Masterarbeit an der Fachhochschule Graubünden (FHGR), Studienrichtung Data Visualization, 2026. Betreuung: Michael Burch.
 
-Der Prototyp ist ein akademischer Forschungsgegenstand und keine produktionsreife Anwendung. Die Daten stammen aus den oben genannten öffentlichen Quellen; deren jeweilige Nutzungsbedingungen sind zu beachten.
+Der Prototyp ist ein akademischer Forschungsgegenstand und keine produktionsreife Anwendung.

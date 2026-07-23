@@ -19,6 +19,8 @@
   --bg-secondary: #0d1220;
   --bg-card: rgba(255, 255, 255, 0.015);
   --bg-elevated: #12141c;            /* Tooltips, Buttons, Kacheln (vorher hartkodiert) */
+  --bg-hover: #1c1f2a;               /* Hover-Flaeche in Listen und Umschaltern */
+  --bg-active: #242835;              /* gewaehlter Eintrag in Listen und Umschaltern */
   --border: rgba(255, 255, 255, 0.06);
   --text-primary: #ffffff;
   --text-secondary: rgba(255, 255, 255, 0.5);
@@ -47,6 +49,8 @@
   --bg-secondary: #e9ebf0;
   --bg-card: rgba(0, 0, 0, 0.02);
   --bg-elevated: #ffffff;
+  --bg-hover: rgba(0, 0, 0, 0.05);
+  --bg-active: rgba(0, 0, 0, 0.09);
   --border: rgba(0, 0, 0, 0.10);
   --text-primary: #12141c;
   --text-secondary: rgba(0, 0, 0, 0.55);

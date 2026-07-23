@@ -1,11 +1,14 @@
 import { useState, useRef, useEffect } from 'react'
 
 // Deckendes Dropdown-Panel, unabhängig davon ob --bg-card selbst transparent ist.
+// Hover- und Aktivflaeche kommen aus dem Theme. Zuvor waren beide fest auf
+// Dunkelwerte gesetzt; im hellen Theme stand dadurch dunkle Schrift auf
+// dunklem Grund und der gewaehlte Eintrag war unlesbar.
 const PANEL_BG = 'var(--bg-elevated)'
-const HOVER_BG = '#1c1f2a'
-const AKTIV_BG = '#242835'
+const HOVER_BG = 'var(--bg-hover)'
+const AKTIV_BG = 'var(--bg-active)'
 
-// Dunkles, eigenes Dropdown (ersetzt das native <select>, dessen aufgeklappte Liste hell bleibt).
+// Eigenes Dropdown (ersetzt das native <select>, das sich nicht durchgaengig gestalten laesst).
 export function JahrDropdown({ wert, optionen, onChange }) {
   const [offen, setOffen] = useState(false)
   const ref = useRef(null)

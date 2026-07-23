@@ -150,12 +150,23 @@ export function ZerlegungAnsicht({ brushRange, schwelle }) {
     ? [aufbereitet.punkte[0].t, aufbereitet.punkte[aufbereitet.punkte.length - 1].t]
     : ['dataMin', 'dataMax']
 
+  // Bei kurzen Zeitraeumen wiederholt sich die Jahreszahl auf jedem Tick.
+  const mehrereJahre = hatPunkte
+    ? (xDomain[1] - xDomain[0]) > 400 * 24 * 3600 * 1000
+    : true
+  const xTickFmt = t => {
+    const d = new Date(t)
+    return mehrereJahre
+      ? d.getFullYear()
+      : d.toLocaleDateString('de-CH', { month: 'short', timeZone: 'UTC' })
+  }
+
   const xAchse = zeigeTicks => (
     <XAxis dataKey="t" type="number" scale="time" domain={xDomain}
-           tickFormatter={t => new Date(t).getFullYear()}
+           tickFormatter={xTickFmt}
            tick={zeigeTicks ? { fontSize: 11 } : false}
            axisLine={zeigeTicks} tickLine={zeigeTicks}
-           height={zeigeTicks ? 20 : 1} minTickGap={40} />
+           height={zeigeTicks ? 20 : 1} minTickGap={mehrereJahre ? 40 : 18} />
   )
 
   // Trend liegt weit von null entfernt und braucht eine eng anliegende Achse.
@@ -190,7 +201,7 @@ export function ZerlegungAnsicht({ brushRange, schwelle }) {
               <button key={r.id} onClick={() => setReiheId(r.id)}
                 style={{ fontSize: 12, padding: '4px 10px', borderRadius: 6, cursor: 'pointer',
                          border: `1px solid ${reiheId === r.id ? 'var(--text-secondary)' : 'var(--border)'}`,
-                         background: reiheId === r.id ? '#1b1f2a' : 'var(--bg-elevated)',
+                         background: reiheId === r.id ? 'var(--bg-active)' : 'var(--bg-elevated)',
                          color: reiheId === r.id ? 'var(--text-primary)' : 'var(--text-muted)' }}>
                 {r.label}
               </button>

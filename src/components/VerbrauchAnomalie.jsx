@@ -125,6 +125,15 @@ export function VerbrauchAnomalie({ selectedKanton, onClear, brushRange, onTagWa
 
   const einheit = kantonModus ? 'Erzeugung' : 'Verbrauch'
 
+  // Bei kurzen Zeitraeumen wiederholt sich die Jahreszahl auf jedem Tick.
+  const mehrereJahre = (tBis - tVon) > 400 * 24 * 3600 * 1000
+  const xTickFmt = t => {
+    const d = new Date(t)
+    return mehrereJahre
+      ? d.getFullYear()
+      : d.toLocaleDateString('de-CH', { month: 'short', timeZone: 'UTC' })
+  }
+
   // Recharts liefert bei Scatter je nach Version den Datensatz direkt oder
   // in .payload. Beide Faelle abfangen.
   const punktGeklickt = p => {
@@ -148,8 +157,8 @@ export function VerbrauchAnomalie({ selectedKanton, onClear, brushRange, onTagWa
         </h2>
         {kantonModus
           ? <button onClick={onClear} style={{ fontSize: 12, padding: '3px 10px', borderRadius: 6, border: '1px solid var(--border)', background: 'var(--bg-card)', color: 'var(--text-secondary)', cursor: 'pointer' }}>← national</button>
-          : <QuickInfo titel="Verbrauch, Anomalien & Schwellenwert">
-              Die grüne Linie ist der tägliche Landesverbrauch. Rote Punkte sind erkannte Anomalien, gelbe als Feiertag erwartete Ausschläge, die deshalb nicht als Anomalie gezählt werden. Der Anomalie-Score nach Liu et al. (2008) liegt zwischen 0 und 1: Werte nahe 1 bedeuten, dass sich ein Tag sehr leicht von allen anderen abtrennen lässt und damit klar auffällig ist; Werte um 0.5 bedeuten unauffällig. In dieser Zeitreihe reichen die Scores von 0.39 bis 0.71. Der Schwellenwert steuert die Empfindlichkeit: je höher, desto weniger und nur die stärksten Tage. Anomalien gibt es erst ab 2017, weil dafür Wetter und Preis als Kontext nötig sind. Ein Klick auf einen Punkt oder auf die Linie öffnet das Viertelstundenprofil des Tages. Der Zeitraum wird über den globalen Filter oben gesteuert.
+          : <QuickInfo titel="Verbrauch, Anomalien und Schwellenwert">
+              Die grüne Linie ist der tägliche Landesverbrauch. Rote Punkte sind erkannte Anomalien, gelbe als Feiertag erwartete Ausschläge, die deshalb nicht als Anomalie gezählt werden. Der Anomalie-Score nach Liu et al. (2008) liegt zwischen 0 und 1: Werte nahe 1 bedeuten, dass sich ein Tag sehr leicht von allen anderen abtrennen lässt und damit klar auffällig ist; Werte deutlich unter 0.5 sprechen für einen unauffälligen Tag. Liegen alle Werte einer Reihe nahe bei 0.5, enthält sie keine ausgeprägten Anomalien. In dieser Zeitreihe reichen die Scores von 0.39 bis 0.71. Der Schwellenwert steuert die Empfindlichkeit: je höher, desto weniger und nur die stärksten Tage. Anomalien gibt es erst ab 2017, weil dafür Wetter und Preis als Kontext nötig sind. Ein Klick auf einen Punkt oder auf die Linie öffnet das Viertelstundenprofil des Tages. Der Zeitraum wird über den globalen Filter oben gesteuert.
             </QuickInfo>}
       </div>
 
@@ -160,7 +169,7 @@ export function VerbrauchAnomalie({ selectedKanton, onClear, brushRange, onTagWa
                          margin={{ top: 10, right: 16, bottom: 4, left: 4 }}>
             <XAxis dataKey="t" type="number" scale="time"
                    domain={kantonModus ? ['dataMin', 'dataMax'] : xDomain}
-                   tickFormatter={t => new Date(t).getFullYear()} tick={{ fontSize: 11 }} minTickGap={40} />
+                   tickFormatter={xTickFmt} tick={{ fontSize: 11 }} minTickGap={mehrereJahre ? 40 : 18} />
             <YAxis tick={{ fontSize: 11 }} width={64}
                    domain={kantonModus ? ['dataMin - 5000', 'dataMax + 5000'] : [110000, 240000]}
                    tickFormatter={v => (v / 1000).toFixed(0) + ' GWh'} />
